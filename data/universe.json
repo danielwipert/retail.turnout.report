@@ -1,0 +1,682 @@
+{
+  "_about": "Chains tracked by The Turnout Report. tier=core gets full vitals + badges; tier=watch gets comp + direction arrows. Both get Company Health. CIKs are filled by `python -m turnout resolve-ciks`. See planning/03_spec_v2.1_turnout_report.md section 3.",
+  "spec_version": "2.1",
+  "groups": {
+    "limited_service": "Limited-Service",
+    "full_service": "Full-Service",
+    "mass_club_value": "Mass, Club & Value",
+    "home_specialty": "Home & Specialty"
+  },
+  "chains": [
+    {
+      "ticker": "SBUX",
+      "name": "Starbucks",
+      "tier": "core",
+      "group": "limited_service",
+      "segment": "North America comparable store sales",
+      "segment_keywords": [
+        "North America"
+      ],
+      "calendar": "fiscal_sep",
+      "status": "confirmed",
+      "cik": null,
+      "notes": ""
+    },
+    {
+      "ticker": "BROS",
+      "name": "Dutch Bros",
+      "tier": "core",
+      "group": "limited_service",
+      "segment": "Systemwide same shop sales",
+      "segment_keywords": [
+        "systemwide",
+        "System"
+      ],
+      "calendar": "calendar",
+      "status": "confirmed",
+      "cik": null,
+      "notes": "Also reports company-operated"
+    },
+    {
+      "ticker": "LOCO",
+      "name": "El Pollo Loco",
+      "tier": "core",
+      "group": "limited_service",
+      "segment": "System-wide comparable restaurant sales",
+      "segment_keywords": [
+        "system-wide",
+        "System-wide"
+      ],
+      "calendar": "calendar",
+      "status": "confirmed",
+      "cik": null,
+      "notes": "Company and franchise splits also reported"
+    },
+    {
+      "ticker": "SHAK",
+      "name": "Shake Shack",
+      "tier": "core",
+      "group": "limited_service",
+      "segment": "Company-operated same-Shack sales",
+      "segment_keywords": [
+        "Same-Shack"
+      ],
+      "calendar": "calendar",
+      "status": "confirmed",
+      "cik": null,
+      "notes": "Traffic + price/mix; results in a shareholder letter exhibit"
+    },
+    {
+      "ticker": "PTLO",
+      "name": "Portillo's",
+      "tier": "core",
+      "group": "limited_service",
+      "segment": "Same-restaurant sales",
+      "segment_keywords": [],
+      "calendar": "calendar",
+      "status": "confirmed",
+      "cik": null,
+      "notes": ""
+    },
+    {
+      "ticker": "SG",
+      "name": "Sweetgreen",
+      "tier": "core",
+      "group": "limited_service",
+      "segment": "Same-store sales",
+      "segment_keywords": [],
+      "calendar": "calendar",
+      "status": "confirmed",
+      "cik": null,
+      "notes": "Traffic + mix + price"
+    },
+    {
+      "ticker": "CMG",
+      "name": "Chipotle",
+      "tier": "core",
+      "group": "limited_service",
+      "segment": "Comparable restaurant sales",
+      "segment_keywords": [],
+      "calendar": "calendar",
+      "status": "to_confirm",
+      "cik": null,
+      "notes": ""
+    },
+    {
+      "ticker": "CAVA",
+      "name": "Cava",
+      "tier": "core",
+      "group": "limited_service",
+      "segment": "Same restaurant sales",
+      "segment_keywords": [
+        "CAVA"
+      ],
+      "calendar": "calendar",
+      "status": "to_confirm",
+      "cik": null,
+      "notes": ""
+    },
+    {
+      "ticker": "TXRH",
+      "name": "Texas Roadhouse",
+      "tier": "core",
+      "group": "full_service",
+      "segment": "Company restaurant comparable sales",
+      "segment_keywords": [
+        "company restaurants"
+      ],
+      "calendar": "calendar",
+      "status": "confirmed",
+      "cik": null,
+      "notes": ""
+    },
+    {
+      "ticker": "EAT",
+      "name": "Brinker",
+      "tier": "core",
+      "group": "full_service",
+      "segment": "Chili's comparable restaurant sales",
+      "segment_keywords": [
+        "Chili's"
+      ],
+      "calendar": "fiscal_jun",
+      "status": "confirmed",
+      "cik": null,
+      "notes": ""
+    },
+    {
+      "ticker": "CAKE",
+      "name": "Cheesecake Factory",
+      "tier": "core",
+      "group": "full_service",
+      "segment": "The Cheesecake Factory restaurants comparable sales",
+      "segment_keywords": [
+        "Cheesecake Factory"
+      ],
+      "calendar": "calendar",
+      "status": "confirmed",
+      "cik": null,
+      "notes": "Traffic + pricing + mix"
+    },
+    {
+      "ticker": "BLMN",
+      "name": "Bloomin' Brands",
+      "tier": "core",
+      "group": "full_service",
+      "segment": "Combined U.S. comparable restaurant sales",
+      "segment_keywords": [
+        "U.S."
+      ],
+      "calendar": "calendar",
+      "status": "confirmed",
+      "cik": null,
+      "notes": ""
+    },
+    {
+      "ticker": "CBRL",
+      "name": "Cracker Barrel",
+      "tier": "core",
+      "group": "full_service",
+      "segment": "Comparable store restaurant sales",
+      "segment_keywords": [
+        "restaurant"
+      ],
+      "calendar": "fiscal_jul",
+      "status": "confirmed",
+      "cik": null,
+      "notes": "Fiscal year ends ~Aug 1"
+    },
+    {
+      "ticker": "BJRI",
+      "name": "BJ's Restaurants",
+      "tier": "core",
+      "group": "full_service",
+      "segment": "Comparable restaurant sales",
+      "segment_keywords": [],
+      "calendar": "calendar",
+      "status": "confirmed",
+      "cik": null,
+      "notes": "New in v2"
+    },
+    {
+      "ticker": "KRUS",
+      "name": "Kura Sushi",
+      "tier": "core",
+      "group": "full_service",
+      "segment": "Comparable restaurant sales",
+      "segment_keywords": [],
+      "calendar": "fiscal_aug",
+      "status": "confirmed",
+      "cik": null,
+      "notes": "New in v2. Fiscal year ends Aug 31"
+    },
+    {
+      "ticker": "FWRG",
+      "name": "First Watch",
+      "tier": "core",
+      "group": "full_service",
+      "segment": "Same-restaurant sales",
+      "segment_keywords": [],
+      "calendar": "calendar",
+      "status": "to_confirm",
+      "cik": null,
+      "notes": ""
+    },
+    {
+      "ticker": "WMT",
+      "name": "Walmart",
+      "tier": "core",
+      "group": "mass_club_value",
+      "segment": "Walmart U.S. comparable sales, ex-fuel",
+      "segment_keywords": [
+        "Walmart U.S."
+      ],
+      "calendar": "nrf",
+      "status": "confirmed",
+      "cik": null,
+      "notes": ""
+    },
+    {
+      "ticker": "COST",
+      "name": "Costco",
+      "tier": "core",
+      "group": "mass_club_value",
+      "segment": "U.S. comparable sales, adjusted for gas and FX",
+      "segment_keywords": [
+        "U.S."
+      ],
+      "calendar": "fiscal_aug",
+      "status": "confirmed",
+      "cik": null,
+      "notes": "16-week Q4"
+    },
+    {
+      "ticker": "TGT",
+      "name": "Target",
+      "tier": "core",
+      "group": "mass_club_value",
+      "segment": "Total comparable sales",
+      "segment_keywords": [],
+      "calendar": "nrf",
+      "status": "confirmed",
+      "cik": null,
+      "notes": ""
+    },
+    {
+      "ticker": "GO",
+      "name": "Grocery Outlet",
+      "tier": "core",
+      "group": "mass_club_value",
+      "segment": "Comparable store sales",
+      "segment_keywords": [],
+      "calendar": "calendar",
+      "status": "confirmed",
+      "cik": null,
+      "notes": ""
+    },
+    {
+      "ticker": "DG",
+      "name": "Dollar General",
+      "tier": "core",
+      "group": "mass_club_value",
+      "segment": "Same-store sales",
+      "segment_keywords": [],
+      "calendar": "nrf",
+      "status": "to_confirm",
+      "cik": null,
+      "notes": ""
+    },
+    {
+      "ticker": "DLTR",
+      "name": "Dollar Tree",
+      "tier": "core",
+      "group": "mass_club_value",
+      "segment": "Dollar Tree segment comparable sales",
+      "segment_keywords": [
+        "Dollar Tree"
+      ],
+      "calendar": "nrf",
+      "status": "to_confirm",
+      "cik": null,
+      "notes": ""
+    },
+    {
+      "ticker": "HD",
+      "name": "Home Depot",
+      "tier": "core",
+      "group": "home_specialty",
+      "segment": "U.S. comparable sales",
+      "segment_keywords": [
+        "U.S."
+      ],
+      "calendar": "nrf",
+      "status": "confirmed",
+      "cik": null,
+      "notes": ""
+    },
+    {
+      "ticker": "LOW",
+      "name": "Lowe's",
+      "tier": "core",
+      "group": "home_specialty",
+      "segment": "U.S. comparable sales",
+      "segment_keywords": [
+        "U.S."
+      ],
+      "calendar": "nrf",
+      "status": "to_confirm",
+      "cik": null,
+      "notes": ""
+    },
+    {
+      "ticker": "FND",
+      "name": "Floor & Decor",
+      "tier": "core",
+      "group": "home_specialty",
+      "segment": "Comparable store sales",
+      "segment_keywords": [],
+      "calendar": "calendar",
+      "status": "confirmed",
+      "cik": null,
+      "notes": "New in v2. Traffic/ticket are in the 10-Q"
+    },
+    {
+      "ticker": "DKS",
+      "name": "DICK'S Sporting Goods",
+      "tier": "core",
+      "group": "home_specialty",
+      "segment": "DICK'S Business comparable sales (exclude Foot Locker)",
+      "segment_keywords": [
+        "DICK'S Business"
+      ],
+      "calendar": "nrf",
+      "status": "confirmed",
+      "cik": null,
+      "notes": ""
+    },
+    {
+      "ticker": "ULTA",
+      "name": "Ulta Beauty",
+      "tier": "core",
+      "group": "home_specialty",
+      "segment": "Comparable sales",
+      "segment_keywords": [],
+      "calendar": "nrf",
+      "status": "to_confirm",
+      "cik": null,
+      "notes": ""
+    },
+    {
+      "ticker": "ASO",
+      "name": "Academy Sports + Outdoors",
+      "tier": "core",
+      "group": "home_specialty",
+      "segment": "Comparable sales",
+      "segment_keywords": [],
+      "calendar": "nrf",
+      "status": "to_confirm",
+      "cik": null,
+      "notes": ""
+    },
+    {
+      "ticker": "TSCO",
+      "name": "Tractor Supply",
+      "tier": "core",
+      "group": "home_specialty",
+      "segment": "Comparable store sales",
+      "segment_keywords": [],
+      "calendar": "calendar",
+      "status": "to_confirm",
+      "cik": null,
+      "notes": ""
+    },
+    {
+      "ticker": "FIVE",
+      "name": "Five Below",
+      "tier": "core",
+      "group": "home_specialty",
+      "segment": "Comparable sales",
+      "segment_keywords": [],
+      "calendar": "nrf",
+      "status": "to_confirm",
+      "cik": null,
+      "notes": ""
+    },
+    {
+      "ticker": "MCD",
+      "name": "McDonald's",
+      "tier": "watch",
+      "group": "limited_service",
+      "segment": "",
+      "segment_keywords": [],
+      "calendar": "calendar",
+      "status": "to_confirm",
+      "cik": null,
+      "notes": ""
+    },
+    {
+      "ticker": "WEN",
+      "name": "Wendy's",
+      "tier": "watch",
+      "group": "limited_service",
+      "segment": "",
+      "segment_keywords": [],
+      "calendar": "calendar",
+      "status": "to_confirm",
+      "cik": null,
+      "notes": ""
+    },
+    {
+      "ticker": "DPZ",
+      "name": "Domino's",
+      "tier": "watch",
+      "group": "limited_service",
+      "segment": "",
+      "segment_keywords": [],
+      "calendar": "calendar",
+      "status": "to_confirm",
+      "cik": null,
+      "notes": ""
+    },
+    {
+      "ticker": "JACK",
+      "name": "Jack in the Box",
+      "tier": "watch",
+      "group": "limited_service",
+      "segment": "",
+      "segment_keywords": [],
+      "calendar": "fiscal_sep",
+      "status": "to_confirm",
+      "cik": null,
+      "notes": ""
+    },
+    {
+      "ticker": "WING",
+      "name": "Wingstop",
+      "tier": "watch",
+      "group": "limited_service",
+      "segment": "",
+      "segment_keywords": [],
+      "calendar": "calendar",
+      "status": "to_confirm",
+      "cik": null,
+      "notes": ""
+    },
+    {
+      "ticker": "PZZA",
+      "name": "Papa John's",
+      "tier": "watch",
+      "group": "limited_service",
+      "segment": "",
+      "segment_keywords": [],
+      "calendar": "calendar",
+      "status": "to_confirm",
+      "cik": null,
+      "notes": ""
+    },
+    {
+      "ticker": "DRI",
+      "name": "Darden",
+      "tier": "watch",
+      "group": "full_service",
+      "segment": "",
+      "segment_keywords": [],
+      "calendar": "fiscal_may",
+      "status": "to_confirm",
+      "cik": null,
+      "notes": ""
+    },
+    {
+      "ticker": "PLAY",
+      "name": "Dave & Buster's",
+      "tier": "watch",
+      "group": "full_service",
+      "segment": "",
+      "segment_keywords": [],
+      "calendar": "nrf",
+      "status": "to_confirm",
+      "cik": null,
+      "notes": ""
+    },
+    {
+      "ticker": "NDLS",
+      "name": "Noodles & Company",
+      "tier": "watch",
+      "group": "limited_service",
+      "segment": "",
+      "segment_keywords": [],
+      "calendar": "calendar",
+      "status": "to_confirm",
+      "cik": null,
+      "notes": ""
+    },
+    {
+      "ticker": "BJ",
+      "name": "BJ's Wholesale Club",
+      "tier": "watch",
+      "group": "mass_club_value",
+      "segment": "",
+      "segment_keywords": [],
+      "calendar": "nrf",
+      "status": "to_confirm",
+      "cik": null,
+      "notes": ""
+    },
+    {
+      "ticker": "KR",
+      "name": "Kroger",
+      "tier": "watch",
+      "group": "mass_club_value",
+      "segment": "",
+      "segment_keywords": [],
+      "calendar": "fiscal_jan",
+      "status": "to_confirm",
+      "cik": null,
+      "notes": ""
+    },
+    {
+      "ticker": "ACI",
+      "name": "Albertsons",
+      "tier": "watch",
+      "group": "mass_club_value",
+      "segment": "",
+      "segment_keywords": [],
+      "calendar": "fiscal_feb",
+      "status": "to_confirm",
+      "cik": null,
+      "notes": ""
+    },
+    {
+      "ticker": "SFM",
+      "name": "Sprouts Farmers Market",
+      "tier": "watch",
+      "group": "mass_club_value",
+      "segment": "",
+      "segment_keywords": [],
+      "calendar": "calendar",
+      "status": "to_confirm",
+      "cik": null,
+      "notes": ""
+    },
+    {
+      "ticker": "OLLI",
+      "name": "Ollie's Bargain Outlet",
+      "tier": "watch",
+      "group": "mass_club_value",
+      "segment": "",
+      "segment_keywords": [],
+      "calendar": "nrf",
+      "status": "to_confirm",
+      "cik": null,
+      "notes": ""
+    },
+    {
+      "ticker": "AZO",
+      "name": "AutoZone",
+      "tier": "watch",
+      "group": "home_specialty",
+      "segment": "",
+      "segment_keywords": [],
+      "calendar": "fiscal_aug",
+      "status": "to_confirm",
+      "cik": null,
+      "notes": ""
+    },
+    {
+      "ticker": "ORLY",
+      "name": "O'Reilly Automotive",
+      "tier": "watch",
+      "group": "home_specialty",
+      "segment": "",
+      "segment_keywords": [],
+      "calendar": "calendar",
+      "status": "to_confirm",
+      "cik": null,
+      "notes": ""
+    },
+    {
+      "ticker": "TJX",
+      "name": "TJX Companies",
+      "tier": "watch",
+      "group": "home_specialty",
+      "segment": "",
+      "segment_keywords": [],
+      "calendar": "nrf",
+      "status": "to_confirm",
+      "cik": null,
+      "notes": ""
+    },
+    {
+      "ticker": "ROST",
+      "name": "Ross Stores",
+      "tier": "watch",
+      "group": "home_specialty",
+      "segment": "",
+      "segment_keywords": [],
+      "calendar": "nrf",
+      "status": "to_confirm",
+      "cik": null,
+      "notes": ""
+    },
+    {
+      "ticker": "BURL",
+      "name": "Burlington Stores",
+      "tier": "watch",
+      "group": "home_specialty",
+      "segment": "",
+      "segment_keywords": [],
+      "calendar": "nrf",
+      "status": "to_confirm",
+      "cik": null,
+      "notes": ""
+    },
+    {
+      "ticker": "BBY",
+      "name": "Best Buy",
+      "tier": "watch",
+      "group": "home_specialty",
+      "segment": "",
+      "segment_keywords": [],
+      "calendar": "nrf",
+      "status": "to_confirm",
+      "cik": null,
+      "notes": ""
+    },
+    {
+      "ticker": "ANF",
+      "name": "Abercrombie & Fitch",
+      "tier": "watch",
+      "group": "home_specialty",
+      "segment": "",
+      "segment_keywords": [],
+      "calendar": "nrf",
+      "status": "to_confirm",
+      "cik": null,
+      "notes": ""
+    },
+    {
+      "ticker": "AEO",
+      "name": "American Eagle Outfitters",
+      "tier": "watch",
+      "group": "home_specialty",
+      "segment": "",
+      "segment_keywords": [],
+      "calendar": "nrf",
+      "status": "to_confirm",
+      "cik": null,
+      "notes": ""
+    },
+    {
+      "ticker": "BBWI",
+      "name": "Bath & Body Works",
+      "tier": "watch",
+      "group": "home_specialty",
+      "segment": "",
+      "segment_keywords": [],
+      "calendar": "nrf",
+      "status": "to_confirm",
+      "cik": null,
+      "notes": ""
+    }
+  ]
+}

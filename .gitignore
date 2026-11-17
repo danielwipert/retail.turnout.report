@@ -1,0 +1,21 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.venv/
+venv/
+build/
+dist/
+
+# Secrets
+.env
+
+# Cached SEC filings (rebuildable from SEC; see spec open item O-4)
+data/raw/
+
+# OS / editors
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
