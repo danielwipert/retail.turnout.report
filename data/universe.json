@@ -19,7 +19,7 @@
       ],
       "calendar": "fiscal_sep",
       "status": "confirmed",
-      "cik": null,
+      "cik": "0000829224",
       "notes": ""
     },
     {
@@ -34,7 +34,7 @@
       ],
       "calendar": "calendar",
       "status": "confirmed",
-      "cik": null,
+      "cik": "0001866581",
       "notes": "Also reports company-operated"
     },
     {
@@ -49,7 +49,7 @@
       ],
       "calendar": "calendar",
       "status": "confirmed",
-      "cik": null,
+      "cik": "0001606366",
       "notes": "Company and franchise splits also reported"
     },
     {
@@ -63,7 +63,7 @@
       ],
       "calendar": "calendar",
       "status": "confirmed",
-      "cik": null,
+      "cik": "0001620533",
       "notes": "Traffic + price/mix; results in a shareholder letter exhibit"
     },
     {
@@ -75,7 +75,7 @@
       "segment_keywords": [],
       "calendar": "calendar",
       "status": "confirmed",
-      "cik": null,
+      "cik": "0001871509",
       "notes": ""
     },
     {
@@ -87,7 +87,7 @@
       "segment_keywords": [],
       "calendar": "calendar",
       "status": "confirmed",
-      "cik": null,
+      "cik": "0001477815",
       "notes": "Traffic + mix + price"
     },
     {
@@ -99,7 +99,7 @@
       "segment_keywords": [],
       "calendar": "calendar",
       "status": "to_confirm",
-      "cik": null,
+      "cik": "0001058090",
       "notes": ""
     },
     {
@@ -113,7 +113,7 @@
       ],
       "calendar": "calendar",
       "status": "to_confirm",
-      "cik": null,
+      "cik": "0001639438",
       "notes": ""
     },
     {
@@ -127,7 +127,7 @@
       ],
       "calendar": "calendar",
       "status": "confirmed",
-      "cik": null,
+      "cik": "0001289460",
       "notes": ""
     },
     {
@@ -141,7 +141,7 @@
       ],
       "calendar": "fiscal_jun",
       "status": "confirmed",
-      "cik": null,
+      "cik": "0000703351",
       "notes": ""
     },
     {
@@ -155,7 +155,7 @@
       ],
       "calendar": "calendar",
       "status": "confirmed",
-      "cik": null,
+      "cik": "0000887596",
       "notes": "Traffic + pricing + mix"
     },
     {
@@ -169,7 +169,7 @@
       ],
       "calendar": "calendar",
       "status": "confirmed",
-      "cik": null,
+      "cik": "0001546417",
       "notes": ""
     },
     {
@@ -183,7 +183,7 @@
       ],
       "calendar": "fiscal_jul",
       "status": "confirmed",
-      "cik": null,
+      "cik": "0001067294",
       "notes": "Fiscal year ends ~Aug 1"
     },
     {
@@ -195,7 +195,7 @@
       "segment_keywords": [],
       "calendar": "calendar",
       "status": "confirmed",
-      "cik": null,
+      "cik": "0001013488",
       "notes": "New in v2"
     },
     {
@@ -207,7 +207,7 @@
       "segment_keywords": [],
       "calendar": "fiscal_aug",
       "status": "confirmed",
-      "cik": null,
+      "cik": "0001772177",
       "notes": "New in v2. Fiscal year ends Aug 31"
     },
     {
@@ -219,7 +219,7 @@
       "segment_keywords": [],
       "calendar": "calendar",
       "status": "to_confirm",
-      "cik": null,
+      "cik": "0001789940",
       "notes": ""
     },
     {
@@ -233,7 +233,7 @@
       ],
       "calendar": "nrf",
       "status": "confirmed",
-      "cik": null,
+      "cik": "0000104169",
       "notes": ""
     },
     {
@@ -247,7 +247,7 @@
       ],
       "calendar": "fiscal_aug",
       "status": "confirmed",
-      "cik": null,
+      "cik": "0000909832",
       "notes": "16-week Q4"
     },
     {
@@ -259,7 +259,7 @@
       "segment_keywords": [],
       "calendar": "nrf",
       "status": "confirmed",
-      "cik": null,
+      "cik": "0000027419",
       "notes": ""
     },
     {
@@ -271,7 +271,7 @@
       "segment_keywords": [],
       "calendar": "calendar",
       "status": "confirmed",
-      "cik": null,
+      "cik": "0001771515",
       "notes": ""
     },
     {
@@ -283,7 +283,7 @@
       "segment_keywords": [],
       "calendar": "nrf",
       "status": "to_confirm",
-      "cik": null,
+      "cik": "0000029534",
       "notes": ""
     },
     {
@@ -297,7 +297,7 @@
       ],
       "calendar": "nrf",
       "status": "to_confirm",
-      "cik": null,
+      "cik": "0000935703",
       "notes": ""
     },
     {
@@ -311,7 +311,7 @@
       ],
       "calendar": "nrf",
       "status": "confirmed",
-      "cik": null,
+      "cik": "0000354950",
       "notes": ""
     },
     {
@@ -325,7 +325,7 @@
       ],
       "calendar": "nrf",
       "status": "to_confirm",
-      "cik": null,
+      "cik": "0000060667",
       "notes": ""
     },
     {
@@ -337,7 +337,7 @@
       "segment_keywords": [],
       "calendar": "calendar",
       "status": "confirmed",
-      "cik": null,
+      "cik": "0001507079",
       "notes": "New in v2. Traffic/ticket are in the 10-Q"
     },
     {
@@ -351,7 +351,7 @@
       ],
       "calendar": "nrf",
       "status": "confirmed",
-      "cik": null,
+      "cik": "0001089063",
       "notes": ""
     },
     {
@@ -363,7 +363,7 @@
       "segment_keywords": [],
       "calendar": "nrf",
       "status": "to_confirm",
-      "cik": null,
+      "cik": "0001403568",
       "notes": ""
     },
     {
@@ -375,7 +375,7 @@
       "segment_keywords": [],
       "calendar": "nrf",
       "status": "to_confirm",
-      "cik": null,
+      "cik": "0001817358",
       "notes": ""
     },
     {
@@ -387,7 +387,7 @@
       "segment_keywords": [],
       "calendar": "calendar",
       "status": "to_confirm",
-      "cik": null,
+      "cik": "0000916365",
       "notes": ""
     },
     {
@@ -399,7 +399,7 @@
       "segment_keywords": [],
       "calendar": "nrf",
       "status": "to_confirm",
-      "cik": null,
+      "cik": "0001177609",
       "notes": ""
     },
     {
@@ -411,7 +411,7 @@
       "segment_keywords": [],
       "calendar": "calendar",
       "status": "to_confirm",
-      "cik": null,
+      "cik": "0000063908",
       "notes": ""
     },
     {
@@ -423,7 +423,7 @@
       "segment_keywords": [],
       "calendar": "calendar",
       "status": "to_confirm",
-      "cik": null,
+      "cik": "0000030697",
       "notes": ""
     },
     {
@@ -435,7 +435,7 @@
       "segment_keywords": [],
       "calendar": "calendar",
       "status": "to_confirm",
-      "cik": null,
+      "cik": "0001286681",
       "notes": ""
     },
     {
@@ -447,7 +447,7 @@
       "segment_keywords": [],
       "calendar": "fiscal_sep",
       "status": "to_confirm",
-      "cik": null,
+      "cik": "0000807882",
       "notes": ""
     },
     {
@@ -459,7 +459,7 @@
       "segment_keywords": [],
       "calendar": "calendar",
       "status": "to_confirm",
-      "cik": null,
+      "cik": "0001636222",
       "notes": ""
     },
     {
@@ -471,7 +471,7 @@
       "segment_keywords": [],
       "calendar": "calendar",
       "status": "to_confirm",
-      "cik": null,
+      "cik": "0000901491",
       "notes": ""
     },
     {
@@ -483,7 +483,7 @@
       "segment_keywords": [],
       "calendar": "fiscal_may",
       "status": "to_confirm",
-      "cik": null,
+      "cik": "0000940944",
       "notes": ""
     },
     {
@@ -495,7 +495,7 @@
       "segment_keywords": [],
       "calendar": "nrf",
       "status": "to_confirm",
-      "cik": null,
+      "cik": "0001525769",
       "notes": ""
     },
     {
@@ -507,7 +507,7 @@
       "segment_keywords": [],
       "calendar": "calendar",
       "status": "to_confirm",
-      "cik": null,
+      "cik": "0001275158",
       "notes": ""
     },
     {
@@ -519,7 +519,7 @@
       "segment_keywords": [],
       "calendar": "nrf",
       "status": "to_confirm",
-      "cik": null,
+      "cik": "0001531152",
       "notes": ""
     },
     {
@@ -531,7 +531,7 @@
       "segment_keywords": [],
       "calendar": "fiscal_jan",
       "status": "to_confirm",
-      "cik": null,
+      "cik": "0000056873",
       "notes": ""
     },
     {
@@ -543,7 +543,7 @@
       "segment_keywords": [],
       "calendar": "fiscal_feb",
       "status": "to_confirm",
-      "cik": null,
+      "cik": "0001646972",
       "notes": ""
     },
     {
@@ -555,7 +555,7 @@
       "segment_keywords": [],
       "calendar": "calendar",
       "status": "to_confirm",
-      "cik": null,
+      "cik": "0001575515",
       "notes": ""
     },
     {
@@ -567,7 +567,7 @@
       "segment_keywords": [],
       "calendar": "nrf",
       "status": "to_confirm",
-      "cik": null,
+      "cik": "0001639300",
       "notes": ""
     },
     {
@@ -579,7 +579,7 @@
       "segment_keywords": [],
       "calendar": "fiscal_aug",
       "status": "to_confirm",
-      "cik": null,
+      "cik": "0000866787",
       "notes": ""
     },
     {
@@ -591,7 +591,7 @@
       "segment_keywords": [],
       "calendar": "calendar",
       "status": "to_confirm",
-      "cik": null,
+      "cik": "0000898173",
       "notes": ""
     },
     {
@@ -603,7 +603,7 @@
       "segment_keywords": [],
       "calendar": "nrf",
       "status": "to_confirm",
-      "cik": null,
+      "cik": "0000109198",
       "notes": ""
     },
     {
@@ -615,7 +615,7 @@
       "segment_keywords": [],
       "calendar": "nrf",
       "status": "to_confirm",
-      "cik": null,
+      "cik": "0000745732",
       "notes": ""
     },
     {
@@ -627,7 +627,7 @@
       "segment_keywords": [],
       "calendar": "nrf",
       "status": "to_confirm",
-      "cik": null,
+      "cik": "0001579298",
       "notes": ""
     },
     {
@@ -639,7 +639,7 @@
       "segment_keywords": [],
       "calendar": "nrf",
       "status": "to_confirm",
-      "cik": null,
+      "cik": "0000764478",
       "notes": ""
     },
     {
@@ -651,7 +651,7 @@
       "segment_keywords": [],
       "calendar": "nrf",
       "status": "to_confirm",
-      "cik": null,
+      "cik": "0001018840",
       "notes": ""
     },
     {
@@ -663,7 +663,7 @@
       "segment_keywords": [],
       "calendar": "nrf",
       "status": "to_confirm",
-      "cik": null,
+      "cik": "0000919012",
       "notes": ""
     },
     {
@@ -675,7 +675,7 @@
       "segment_keywords": [],
       "calendar": "nrf",
       "status": "to_confirm",
-      "cik": null,
+      "cik": "0000701985",
       "notes": ""
     }
   ]
