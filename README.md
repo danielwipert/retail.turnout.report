@@ -9,6 +9,8 @@ A free, automated dashboard on the health of U.S. public restaurant and retail c
 
 Every number comes from SEC filings and traces back to its source. The full plan is in [`planning/`](planning/).
 
+**Everything runs in the cloud on GitHub Actions.** Nothing is ever run on a local computer.
+
 ---
 
 ## Status
@@ -25,72 +27,38 @@ Every number comes from SEC filings and traces back to its source. The full plan
 
 ---
 
-## Getting started (Phase 1)
+## One-time setup: add your SEC identity
 
-You need **Python 3.12 or newer**. Check with `python --version`.
+The SEC requires a name and email on every request. It's not a password.
 
-**1. Get the code**
-```bash
-git clone https://github.com/danielwipert/retail.turnout.report.git
-cd retail.turnout.report
-```
+1. In this repo on GitHub, go to **Settings → Secrets and variables → Actions**.
+2. Click **New repository secret**.
+3. Name: `SEC_USER_AGENT`
+4. Secret: your name and email, e.g. `Dan Wipert you@example.com`
+5. Click **Add secret**.
 
-**2. Make a virtual environment** (keeps this project's packages separate)
-```bash
-python -m venv .venv
-# Mac/Linux:
-source .venv/bin/activate
-# Windows (PowerShell):
-.venv\Scripts\Activate.ps1
-```
-
-**3. Install**
-```bash
-pip install -e ".[dev]"
-```
-
-**4. Add your SEC identity.** The SEC requires a name and email on every request. It's not a password.
-```bash
-cp .env.example .env        # Windows: copy .env.example .env
-```
-Open `.env` and set:
-```
-SEC_USER_AGENT="Dan Wipert your.email@example.com"
-```
-
-**5. Run the tests** (these use sample data, not the internet)
-```bash
-pytest
-```
-
-**6. Fetch real filings** for the three test chains (Texas Roadhouse, Walmart, Floor & Decor)
-```bash
-python -m turnout fetch
-```
-It looks up each company's CIK, finds the last 8 quarters of 10-Q/10-K reports and earnings press releases, and saves them. This takes a few minutes because the SEC asks us to go slowly.
-
-**7. See what you got**
-```bash
-python -m turnout status
-```
+(Later phases add `OPENROUTER_API_KEY` and `FRED_API_KEY` the same way.)
 
 ---
 
-## Commands
+## Workflows (the "buttons")
 
-| Command | What it does |
-|---|---|
-| `python -m turnout fetch` | Fetch the 3 test chains (8 quarters) |
-| `python -m turnout fetch --tickers CAKE SHAK` | Fetch specific chains |
-| `python -m turnout fetch --all` | Fetch every chain in `data/universe.json` |
-| `python -m turnout fetch --quarters 4` | Change how far back to go |
-| `python -m turnout fetch --force` | Re-download even if already saved |
-| `python -m turnout status` | List saved quarters and anything flagged |
-| `python -m turnout resolve-ciks` | Save each chain's SEC CIK number into `data/universe.json` |
+| Workflow | When it runs | What it does |
+|---|---|---|
+| **tests** | Automatically on every push | Runs the automated tests (sample data, no internet) |
+| **fetch filings** | When you click **Run workflow** | Downloads 10-Q/10-Ks and earnings releases from the SEC |
+
+**To fetch filings:**
+1. Open the **Actions** tab → **fetch filings** → **Run workflow**.
+2. Leave the boxes as they are for the 3 test chains (Texas Roadhouse, Walmart, Floor & Decor), or type other tickers, or `ALL`.
+3. Click the green **Run workflow** button. A run takes a few minutes, since the SEC asks scripts to go slowly.
+4. Open the finished run. The **Summary** shows every saved quarter and any flags. The saved files can be downloaded under **Artifacts → raw-filings**.
+
+Saved filings are reused by the next run, so nothing is downloaded twice.
 
 ---
 
-## Where things are saved
+## What gets saved
 
 ```
 data/raw/TXRH/2026-09-29/
@@ -100,13 +68,11 @@ data/raw/TXRH/2026-09-29/
   candidates/        every earnings 8-K considered for this quarter
 ```
 
-`data/raw/` isn't committed to git. It can always be rebuilt from the SEC.
-
-**Flags in `status`** tell you a quarter needs a quick look:
+**Flags in the Summary** tell you a quarter needs a quick look:
 
 | Flag | Meaning |
 |---|---|
-| `multiple_8k_candidates` | More than one earnings 8-K was found (e.g. a preliminary release); the pipeline picked one. Check `manifest.json` → `candidates`. |
+| `multiple_8k_candidates` | More than one earnings 8-K was found (e.g. a preliminary release); the pipeline picked one. |
 | `low_confidence_8k_choice` | The chosen press release didn't clearly look like quarterly results. |
 | `no_earnings_8k_found` | No Item 2.02 8-K in the window; only the 10-Q/10-K was saved. |
 | `earnings_8k_has_no_ex99` | The 8-K had no press-release exhibit. |
@@ -120,9 +86,10 @@ planning/      specs and build log (the source of truth)
 turnout/       Python package
   sources/     talking to outside data sources (SEC so far)
   filings.py   finding each quarter's 10-Q/10-K and earnings 8-K
-  cache.py     saving filings to data/raw/
+  cache.py     saving filings
   text.py      HTML → plain text
-  cli.py       the `python -m turnout` commands
-data/          universe.json (the chains we track) and saved data
-tests/         automated tests (no internet needed)
+  cli.py       the commands the workflows run
+data/          universe.json (the chains we track)
+tests/         automated tests
+.github/       the cloud workflows
 ```

@@ -1,0 +1,100 @@
+name: fetch filings
+
+# Run from GitHub: Actions tab → "fetch filings" → "Run workflow".
+on:
+  workflow_dispatch:
+    inputs:
+      tickers:
+        description: "Tickers, space-separated (leave blank for the 3 test chains; type ALL for every chain)"
+        required: false
+        default: "TXRH WMT FND"
+      quarters:
+        description: "How many quarters back"
+        required: false
+        default: "8"
+      force:
+        description: "Re-download even if already saved"
+        type: boolean
+        default: false
+
+permissions:
+  contents: write  # lets the run save looked-up CIKs back to data/universe.json
+
+concurrency:
+  group: fetch
+  cancel-in-progress: false
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    env:
+      SEC_USER_AGENT: ${{ secrets.SEC_USER_AGENT }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - run: pip install -e .
+
+      - name: Check setup
+        run: |
+          if [ -z "$SEC_USER_AGENT" ]; then
+            echo "::error::Add a repository secret named SEC_USER_AGENT (Settings → Secrets and variables → Actions)."
+            exit 1
+          fi
+
+      # Reuse filings saved by earlier runs so we don't re-download them.
+      - name: Restore saved filings
+        uses: actions/cache/restore@v4
+        with:
+          path: data/raw
+          key: raw-filings-${{ github.run_id }}
+          restore-keys: raw-filings-
+
+      - name: Fetch
+        run: |
+          TICKERS="${{ inputs.tickers }}"
+          ARGS="--quarters ${{ inputs.quarters }}"
+          if [ "$TICKERS" = "ALL" ]; then ARGS="$ARGS --all";
+          elif [ -n "$TICKERS" ]; then ARGS="$ARGS --tickers $TICKERS"; fi
+          if [ "${{ inputs.force }}" = "true" ]; then ARGS="$ARGS --force"; fi
+          python -m turnout fetch $ARGS
+
+      - name: Summary
+        if: always()
+        run: |
+          {
+            echo "## Saved filings"
+            echo '```'
+            python -m turnout status
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Save filings for the next run
+        if: always()
+        uses: actions/cache/save@v4
+        with:
+          path: data/raw
+          key: raw-filings-${{ github.run_id }}
+
+      - name: Upload filings (downloadable from this run's page)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: raw-filings
+          path: data/raw
+          retention-days: 30
+          if-no-files-found: ignore
+
+      - name: Commit CIK lookups
+        run: |
+          if ! git diff --quiet data/universe.json; then
+            git config user.name "turnout-bot"
+            git config user.email "actions@users.noreply.github.com"
+            git add data/universe.json
+            git commit -m "Save CIKs looked up by fetch run"
+            git push
+          fi
