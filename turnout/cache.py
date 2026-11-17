@@ -17,7 +17,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 from turnout.config import RAW_DIR
-from turnout.filings import Quarter, pick_earnings_release, score_release
+from turnout.filings import Quarter, headline, pick_earnings_release, score_release
 from turnout.sources.sec import Fetcher, archive_base
 from turnout.text import html_to_text
 
@@ -89,6 +89,7 @@ def fetch_quarter(ticker: str, cik: str, quarter: Quarter, fetcher: Fetcher,
             "accession": acc,
             "filing_date": cand.filing.filing_date,
             "score": score_release(texts[acc]),
+            "headline": headline(texts[acc]),
             "exhibits": exhibits,
             "folder": str(cand_dir.relative_to(folder)),
         })
@@ -130,7 +131,7 @@ def fetch_quarter(ticker: str, cik: str, quarter: Quarter, fetcher: Fetcher,
         },
         "earnings_8k": (
             {"accession": chosen_row["accession"], "filing_date": chosen_row["filing_date"],
-             "score": chosen_row["score"]}
+             "score": chosen_row["score"], "headline": chosen_row["headline"]}
             if chosen_row else None
         ),
         "exhibits": top_exhibits,

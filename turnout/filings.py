@@ -183,19 +183,30 @@ def attach_exhibits(quarter: Quarter, cik: str, fetcher: Fetcher) -> None:
 # ------------------------------------------------------------- picking the 8-K
 
 _QUARTER_RESULTS = re.compile(
-    r"\b(first|second|third|fourth|1st|2nd|3rd|4th|q[1-4])\b[^.\n]{0,40}\bquarter\b"
-    r"|\bquarter\b[^.\n]{0,60}\b(results|earnings)\b"
+    r"\b(first|second|third|fourth|1st|2nd|3rd|4th|q[1-4])\b[^.]{0,40}\bquarter\b"
+    r"|\bquarter(ly)?\b[^.]{0,60}\b(results|earnings)\b"
     r"|\b(fiscal )?(year|quarter)[- ]end(ed)?\b",
     re.IGNORECASE,
 )
 _PRELIMINARY = re.compile(r"\bpreliminar(y|ily)\b", re.IGNORECASE)
-_MONTHLY = re.compile(r"\b(month of|monthly sales|weeks ended)\b", re.IGNORECASE)
+# Monthly sales releases. ("thirteen weeks ended" is normal in quarterly releases, so not that.)
+_MONTHLY = re.compile(r"\b(month of|monthly sales|(four|five) weeks ended)\b", re.IGNORECASE)
 _COMPS_WORDS = re.compile(r"\b(comparable|same[- ](store|restaurant|shop|shack|club))\b", re.IGNORECASE)
+
+
+def headline(text: str, limit: int = 160) -> str:
+    """First meaningful line of a press release, for humans to eyeball."""
+    for line in text.splitlines():
+        line = line.strip()
+        if len(line) > 25 and not re.fullmatch(r"(exhibit\s*)?99[.\d]*", line, re.IGNORECASE):
+            return line[:limit]
+    return ""
 
 
 def score_release(text: str) -> int:
     """Higher = more likely to be the real quarterly results release."""
-    head = text[:4000]  # the headline and first paragraphs decide it
+    # The headline and first paragraphs decide it. Headlines often wrap across lines.
+    head = re.sub(r"\s+", " ", text[:4000])
     score = 0
     if _QUARTER_RESULTS.search(head):
         score += 3

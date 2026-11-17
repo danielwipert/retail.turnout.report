@@ -74,6 +74,16 @@ def test_scoring_prefers_real_results_over_preliminary_and_monthly():
     assert chosen == "f"
 
 
+def test_normal_quarterly_wording_is_confident():
+    # Real-world case: "weeks ended" and a headline split across lines.
+    text = (
+        "Exhibit 99.1\nTexas Roadhouse, Inc. Announces Third\nQuarter 2026 Results\n"
+        "Results for the thirteen weeks ended September 29, 2026. Comparable restaurant sales increased 4.3%."
+    )
+    assert score_release(text) >= 3
+    assert filings.headline(text) == "Texas Roadhouse, Inc. Announces Third"
+
+
 def test_tie_goes_to_latest_filing():
     text = "Announces Fourth Quarter Results."
     assert pick_earnings_release({"a": text, "b": text}, {"a": "2026-01-10", "b": "2026-02-20"}) == "b"

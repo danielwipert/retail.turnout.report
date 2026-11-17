@@ -90,6 +90,9 @@ def cmd_status(args: argparse.Namespace) -> int:
             m = json.loads(mpath.read_text())
             flags = f"  ! {', '.join(m['flags'])}" if m.get("flags") else ""
             print(f"  {qdir.name}  {m['periodic']['form']:<5}  ex-99: {len(m['exhibits'])}{flags}")
+            if m.get("earnings_8k"):
+                e = m["earnings_8k"]
+                print(f"      8-K {e['filing_date']} score {e.get('score')}: {e.get('headline', '')}")
     return 0
 
 
