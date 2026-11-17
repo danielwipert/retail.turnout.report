@@ -28,7 +28,9 @@ What each phase delivered, plus decisions made while building that refine the sp
 - `fetch.yml` is started with **Run workflow**. It needs a `SEC_USER_AGENT` repo secret. Filings are kept between runs with the Actions cache, uploaded as a downloadable artifact (30 days), and a run summary lists every saved quarter and its flags. Looked-up CIKs are committed back to `data/universe.json`.
 - Long-term storage for filings (beyond the Actions cache) is an open decision. Phase 2 needs to read them.
 
-**Not yet verified live:** the build workspace can't reach sec.gov, so the first real run is the `fetch filings` workflow. Things to check on that first run:
+**Live verification (2026-11-17, Actions run 44163075756):** TXRH, WMT and FND each got 8 quarters (2 10-Ks + 6 10-Qs) with one earnings 8-K per quarter, filed 2–6 weeks after the period end, and no flags. A first run flagged 18 quarters `low_confidence` because the "monthly sales" rule matched "thirteen weeks ended", which normal quarterly releases use. Fixed, and the release headline is now in the manifest and the run summary.
+
+Original checklist for the first live run:
 1. Every quarter for TXRH, WMT and FND has an `ex99_1.txt` that is clearly the quarterly results release.
 2. Any `multiple_8k_candidates` quarters picked the right release.
 3. FND's `periodic.txt` contains the "comparable transactions" sentence.

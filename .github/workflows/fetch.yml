@@ -66,10 +66,11 @@ jobs:
       - name: Summary
         if: always()
         run: |
+          python -m turnout status | tee status.txt
           {
             echo "## Saved filings"
             echo '```'
-            python -m turnout status
+            cat status.txt
             echo '```'
           } >> "$GITHUB_STEP_SUMMARY"
 
