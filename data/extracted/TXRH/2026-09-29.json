@@ -9,7 +9,7 @@
     "https://www.sec.gov/Archives/edgar/data/1289460/000162828026071018/txrhq32026november52026-ex.htm"
   ],
   "model": "google/gemini-2.5-flash",
-  "extracted_at": "2026-11-18T04:05:27+00:00",
+  "extracted_at": "2026-11-18T04:12:35+00:00",
   "fields": {
     "comp_sales_pct": {
       "value": 4.3,
@@ -36,12 +36,15 @@
       "pass": "snippets"
     },
     "ending_units": {
-      "value": 737,
-      "quote": "Total company restaurants | 737 | 702 | 35",
+      "value": 664,
+      "quote": "Company - Texas Roadhouse | 664 | 638 | 26",
       "source": "press_release",
-      "status": "verified",
-      "reasons": [],
-      "pass": "full_text"
+      "status": "flagged",
+      "reasons": [
+        "count_word_missing"
+      ],
+      "pass": "snippets",
+      "review_issue": 7
     },
     "margin_pct": {
       "value": 14.6,
@@ -49,14 +52,15 @@
       "source": "press_release",
       "status": "verified",
       "reasons": [],
-      "pass": "snippets"
+      "pass": "snippets",
+      "basis": "gaap"
     }
   },
   "flags": [],
   "usage": {
-    "prompt_tokens": 42352,
-    "completion_tokens": 319,
-    "cost_usd": 0.013503099999999999,
-    "calls": 2
+    "prompt_tokens": 10742,
+    "completion_tokens": 286,
+    "cost_usd": 0.0039376,
+    "calls": 1
   }
 }

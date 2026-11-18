@@ -10,7 +10,7 @@
     "https://www.sec.gov/Archives/edgar/data/104169/000010416926000095/earningspresentationfy27.htm"
   ],
   "model": "google/gemini-2.5-flash",
-  "extracted_at": "2026-11-18T04:05:52+00:00",
+  "extracted_at": "2026-11-18T04:12:59+00:00",
   "fields": {
     "comp_sales_pct": {
       "value": 4.1,
@@ -21,7 +21,7 @@
       "pass": "snippets"
     },
     "comp_traffic_pct": {
-      "value": 3,
+      "value": 3.0,
       "quote": "Transactions | 3.0% | 1.6% | NP | NP",
       "source": "press_release",
       "status": "verified",
@@ -46,21 +46,19 @@
     },
     "margin_pct": {
       "value": 24.3,
-      "quote": "Gross profit rate 24.2% 24.5% 24.2% 24.0% 24.3% Q1 FY26 Q2 FY26 Q3 FY26 Q4 FY26 Q1 FY27 4",
+      "quote": "Gross profit rate 24.2% 24.5% 24.2% 24.0% 24.3% Q1 FY26 Q2 FY26 Q3 FY26 Q4 FY26 Q1 FY27 Gross profit rate +6 bps to 24.3% 4",
       "source": "press_release",
-      "status": "flagged",
-      "reasons": [
-        "quote_not_in_filing"
-      ],
+      "status": "verified",
+      "reasons": [],
       "pass": "snippets",
-      "review_issue": 6
+      "basis": "gaap"
     }
   },
   "flags": [],
   "usage": {
-    "prompt_tokens": 56123,
-    "completion_tokens": 368,
-    "cost_usd": 0.01749635,
+    "prompt_tokens": 56163,
+    "completion_tokens": 322,
+    "cost_usd": 0.01739308,
     "calls": 2
   }
 }

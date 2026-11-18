@@ -10,7 +10,7 @@
     "https://www.sec.gov/Archives/edgar/data/104169/000010416924000170/earningspresentationfy25.htm"
   ],
   "model": "google/gemini-2.5-flash",
-  "extracted_at": "2026-11-18T04:06:09+00:00",
+  "extracted_at": "2026-11-18T04:13:16+00:00",
   "fields": {
     "comp_sales_pct": {
       "value": 5.3,
@@ -50,14 +50,15 @@
       "source": "periodic",
       "status": "verified",
       "reasons": [],
-      "pass": "snippets"
+      "pass": "snippets",
+      "basis": "gaap"
     }
   },
   "flags": [],
   "usage": {
-    "prompt_tokens": 60038,
-    "completion_tokens": 317,
-    "cost_usd": 0.01854146,
+    "prompt_tokens": 60078,
+    "completion_tokens": 259,
+    "cost_usd": 0.01840846,
     "calls": 2
   }
 }

@@ -9,7 +9,7 @@
     "https://www.sec.gov/Archives/edgar/data/1289460/000155837025006967/txrh-20250507xex99d1.htm"
   ],
   "model": "google/gemini-2.5-flash",
-  "extracted_at": "2026-11-18T04:05:43+00:00",
+  "extracted_at": "2026-11-18T04:12:50+00:00",
   "fields": {
     "comp_sales_pct": {
       "value": 3.5,
@@ -49,14 +49,15 @@
       "source": "press_release",
       "status": "verified",
       "reasons": [],
-      "pass": "snippets"
+      "pass": "snippets",
+      "basis": "gaap"
     }
   },
   "flags": [],
   "usage": {
-    "prompt_tokens": 39612,
+    "prompt_tokens": 39652,
     "completion_tokens": 289,
-    "cost_usd": 0.012606099999999999,
+    "cost_usd": 0.0126181,
     "calls": 2
   }
 }

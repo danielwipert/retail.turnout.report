@@ -10,7 +10,7 @@
     "https://www.sec.gov/Archives/edgar/data/104169/000010416925000069/earningspresentationfy26.htm"
   ],
   "model": "google/gemini-2.5-flash",
-  "extracted_at": "2026-11-18T04:06:03+00:00",
+  "extracted_at": "2026-11-18T04:13:11+00:00",
   "fields": {
     "comp_sales_pct": {
       "value": 4.5,
@@ -46,18 +46,19 @@
     },
     "margin_pct": {
       "value": 24.2,
-      "quote": "Gross profit rate +12 bps to 24.2% 4",
+      "quote": "Gross profit rate 24.1% 24.4% 24.2% 23.9% 24.2% Q1 FY25 Q2 FY25 Q3 FY25 Q4 FY25 Q1 FY26 Gross profit rate +12 bps to 24.2% 4",
       "source": "press_release",
       "status": "verified",
       "reasons": [],
-      "pass": "snippets"
+      "pass": "snippets",
+      "basis": "gaap"
     }
   },
   "flags": [],
   "usage": {
-    "prompt_tokens": 56437,
-    "completion_tokens": 322,
-    "cost_usd": 0.01747528,
+    "prompt_tokens": 56477,
+    "completion_tokens": 364,
+    "cost_usd": 0.017592280000000002,
     "calls": 2
   }
 }

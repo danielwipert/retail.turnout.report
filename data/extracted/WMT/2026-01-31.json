@@ -10,7 +10,7 @@
     "https://www.sec.gov/Archives/edgar/data/104169/000010416926000032/earningspresentationfy26.htm"
   ],
   "model": "google/gemini-2.5-flash",
-  "extracted_at": "2026-11-18T04:05:55+00:00",
+  "extracted_at": "2026-11-18T04:13:02+00:00",
   "fields": {
     "comp_sales_pct": {
       "value": 4.6,
@@ -42,8 +42,7 @@
       "source": "periodic",
       "status": "verified",
       "reasons": [],
-      "pass": "full_text",
-      "review_issue": 5
+      "pass": "full_text"
     },
     "margin_pct": {
       "value": 24.0,
@@ -51,14 +50,15 @@
       "source": "press_release",
       "status": "verified",
       "reasons": [],
-      "pass": "snippets"
+      "pass": "snippets",
+      "basis": "gaap"
     }
   },
   "flags": [],
   "usage": {
-    "prompt_tokens": 51836,
+    "prompt_tokens": 51876,
     "completion_tokens": 377,
-    "cost_usd": 0.01623302,
+    "cost_usd": 0.01624502,
     "calls": 2
   }
 }

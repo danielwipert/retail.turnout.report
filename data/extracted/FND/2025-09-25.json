@@ -9,7 +9,7 @@
     "https://www.sec.gov/Archives/edgar/data/1507079/000162828025047536/fnd-20250925x8kxex991.htm"
   ],
   "model": "google/gemini-2.5-flash",
-  "extracted_at": "2026-11-18T04:06:19+00:00",
+  "extracted_at": "2026-11-18T04:13:26+00:00",
   "fields": {
     "comp_sales_pct": {
       "value": -1.2,
@@ -21,7 +21,7 @@
     },
     "comp_traffic_pct": {
       "value": -3.0,
-      "quote": "The comparable store sales decline during the period of 1.2%, or $12.4 million, was due to a 3.0% decrease in comparable transactions, partially offset by a 1.8% increase in comparable average ticket.",
+      "quote": "Comparable transactions | (3.0) | % | (4.1) | % | (3.3) | % | (5.6) | %",
       "source": "periodic",
       "status": "verified",
       "reasons": [],
@@ -29,7 +29,7 @@
     },
     "comp_ticket_pct": {
       "value": 1.8,
-      "quote": "The comparable store sales decline during the period of 1.2%, or $12.4 million, was due to a 3.0% decrease in comparable transactions, partially offset by a 1.8% increase in comparable average ticket.",
+      "quote": "Comparable average ticket | 1.8 | % | (2.4) | % | 2.6 | % | (3.7) | %",
       "source": "periodic",
       "status": "verified",
       "reasons": [],
@@ -49,14 +49,15 @@
       "source": "periodic",
       "status": "verified",
       "reasons": [],
-      "pass": "snippets"
+      "pass": "snippets",
+      "basis": "gaap"
     }
   },
   "flags": [],
   "usage": {
-    "prompt_tokens": 7400,
-    "completion_tokens": 326,
-    "cost_usd": 0.00278417,
+    "prompt_tokens": 7440,
+    "completion_tokens": 293,
+    "cost_usd": 0.00271367,
     "calls": 1
   }
 }

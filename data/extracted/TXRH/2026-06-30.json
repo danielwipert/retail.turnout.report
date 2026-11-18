@@ -9,7 +9,7 @@
     "https://www.sec.gov/Archives/edgar/data/1289460/000110465926091980/txrh-20260805xex99d1.htm"
   ],
   "model": "google/gemini-2.5-flash",
-  "extracted_at": "2026-11-18T04:05:30+00:00",
+  "extracted_at": "2026-11-18T04:12:37+00:00",
   "fields": {
     "comp_sales_pct": {
       "value": 6.2,
@@ -21,7 +21,7 @@
     },
     "comp_traffic_pct": {
       "value": 3.0,
-      "quote": "Guest traffic counts | 3.0 | % | \n | 4.0 | % | \n | 3.8 | % | \n | 2.6 | %",
+      "quote": "Guest traffic counts | 3.0 | % | \n",
       "source": "periodic",
       "status": "verified",
       "reasons": [],
@@ -29,7 +29,7 @@
     },
     "comp_ticket_pct": {
       "value": 3.2,
-      "quote": "Per person average check | 3.2 | % | \n | 1.8 | % | \n | 2.9 | % | \n | 2.1 | %",
+      "quote": "Per person average check | 3.2 | % | \n",
       "source": "periodic",
       "status": "verified",
       "reasons": [],
@@ -49,14 +49,15 @@
       "source": "press_release",
       "status": "verified",
       "reasons": [],
-      "pass": "snippets"
+      "pass": "snippets",
+      "basis": "gaap"
     }
   },
   "flags": [],
   "usage": {
-    "prompt_tokens": 47120,
-    "completion_tokens": 369,
-    "cost_usd": 0.015058499999999999,
+    "prompt_tokens": 47160,
+    "completion_tokens": 316,
+    "cost_usd": 0.014938,
     "calls": 2
   }
 }

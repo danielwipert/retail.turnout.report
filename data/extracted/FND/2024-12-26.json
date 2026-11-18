@@ -9,7 +9,7 @@
     "https://www.sec.gov/Archives/edgar/data/1507079/000150707925000012/fnd-2024earningsreleaseex9.htm"
   ],
   "model": "google/gemini-2.5-flash",
-  "extracted_at": "2026-11-18T04:06:25+00:00",
+  "extracted_at": "2026-11-18T04:13:31+00:00",
   "fields": {
     "comp_sales_pct": {
       "value": -0.8,
@@ -49,14 +49,15 @@
       "source": "press_release",
       "status": "verified",
       "reasons": [],
-      "pass": "full_text"
+      "pass": "full_text",
+      "basis": "gaap"
     }
   },
   "flags": [],
   "usage": {
-    "prompt_tokens": 31809,
+    "prompt_tokens": 31889,
     "completion_tokens": 299,
-    "cost_usd": 0.010036940000000001,
+    "cost_usd": 0.01006094,
     "calls": 2
   }
 }

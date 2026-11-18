@@ -9,19 +9,19 @@
     "https://www.sec.gov/Archives/edgar/data/1289460/000110465925107724/txrh-20251105xex99d1.htm"
   ],
   "model": "google/gemini-2.5-flash",
-  "extracted_at": "2026-11-18T04:05:38+00:00",
+  "extracted_at": "2026-11-18T04:12:46+00:00",
   "fields": {
     "comp_sales_pct": {
       "value": 6.1,
-      "quote": "Comparable restaurant sales increased 6.1% at company restaurants;",
-      "source": "press_release",
+      "quote": "Comparable restaurant sales growth | 6.1 | % | \n",
+      "source": "periodic",
       "status": "verified",
       "reasons": [],
       "pass": "snippets"
     },
     "comp_traffic_pct": {
       "value": 4.3,
-      "quote": "Guest traffic counts 4.3 %",
+      "quote": "Guest traffic counts | 4.3 | % | \n",
       "source": "periodic",
       "status": "verified",
       "reasons": [],
@@ -29,7 +29,7 @@
     },
     "comp_ticket_pct": {
       "value": 1.8,
-      "quote": "Per person average check 1.8 %",
+      "quote": "Per person average check | 1.8 | % | \n",
       "source": "periodic",
       "status": "verified",
       "reasons": [],
@@ -45,18 +45,19 @@
     },
     "margin_pct": {
       "value": 14.3,
-      "quote": "Restaurant margin, as a percentage of restaurant and other sales, decreased 168 basis points to 14.3% as commodity inflation of 7.9% and wage and other labor inflation of 3.9% were partially offset by higher sales;",
-      "source": "press_release",
+      "quote": "Restaurant margin (as a percentage of restaurant and other sales) | \n | 14.3% | \n",
+      "source": "periodic",
       "status": "verified",
       "reasons": [],
-      "pass": "snippets"
+      "pass": "snippets",
+      "basis": "gaap"
     }
   },
   "flags": [],
   "usage": {
-    "prompt_tokens": 47601,
-    "completion_tokens": 295,
-    "cost_usd": 0.0150178,
+    "prompt_tokens": 47641,
+    "completion_tokens": 275,
+    "cost_usd": 0.01472114,
     "calls": 2
   }
 }
