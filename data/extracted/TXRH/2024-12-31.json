@@ -39,10 +39,8 @@
       "value": 666,
       "quote": "As of December 31, 2024, we owned and operated 666 restaurants and franchised an additional 118 restaurants.",
       "source": "periodic",
-      "status": "flagged",
-      "reasons": [
-        "required_words_missing"
-      ],
+      "status": "verified",
+      "reasons": [],
       "pass": "snippets",
       "review_issue": 3
     },

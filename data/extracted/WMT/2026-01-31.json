@@ -40,10 +40,8 @@
       "value": 4611,
       "quote": "Walmart U.S. is our largest segment and operates 4,611 stores in the U.S., including in all 50 states, Washington D.C. and Puerto Rico.",
       "source": "periodic",
-      "status": "flagged",
-      "reasons": [
-        "required_words_missing"
-      ],
+      "status": "verified",
+      "reasons": [],
       "pass": "full_text",
       "review_issue": 5
     },
