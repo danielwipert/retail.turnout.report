@@ -154,7 +154,8 @@
       },
       "quote_must_include": {
         "ending_units": [
-          "company"
+          "company",
+          "owned and operated"
         ]
       }
     },
@@ -286,7 +287,8 @@
       },
       "quote_must_include": {
         "ending_units": [
-          "unit count"
+          "unit count",
+          "Walmart U.S."
         ]
       }
     },
