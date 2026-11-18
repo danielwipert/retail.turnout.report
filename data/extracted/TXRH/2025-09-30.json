@@ -1,0 +1,62 @@
+{
+  "ticker": "TXRH",
+  "tier": "core",
+  "period_end": "2025-09-30",
+  "periodic_accession": "0001104659-25-108178",
+  "periodic_url": "https://www.sec.gov/Archives/edgar/data/1289460/000110465925108178/txrh-20250930x10q.htm",
+  "earnings_8k_accession": "0001104659-25-107724",
+  "press_release_urls": [
+    "https://www.sec.gov/Archives/edgar/data/1289460/000110465925107724/txrh-20251105xex99d1.htm"
+  ],
+  "model": "google/gemini-2.5-flash",
+  "extracted_at": "2026-11-18T03:59:45+00:00",
+  "fields": {
+    "comp_sales_pct": {
+      "value": 6.1,
+      "quote": "Comparable restaurant sales increased 6.1% at company restaurants;",
+      "source": "press_release",
+      "status": "verified",
+      "reasons": [],
+      "pass": "snippets"
+    },
+    "comp_traffic_pct": {
+      "value": 4.3,
+      "quote": "Guest traffic counts | 4.3 | % | \n",
+      "source": "periodic",
+      "status": "verified",
+      "reasons": [],
+      "pass": "snippets"
+    },
+    "comp_ticket_pct": {
+      "value": 1.8,
+      "quote": "Per person average check | 1.8 | % | \n",
+      "source": "periodic",
+      "status": "verified",
+      "reasons": [],
+      "pass": "snippets"
+    },
+    "ending_units": {
+      "value": 806,
+      "quote": "Total restaurants | 806 | \n",
+      "source": "press_release",
+      "status": "verified",
+      "reasons": [],
+      "pass": "snippets"
+    },
+    "margin_pct": {
+      "value": 14.3,
+      "quote": "Restaurant margin, as a percentage of restaurant and other sales, decreased 168 basis points to 14.3% as commodity inflation of 7.9% and wage and other labor inflation of 3.9% were partially offset by higher sales;",
+      "source": "press_release",
+      "status": "verified",
+      "reasons": [],
+      "pass": "snippets"
+    }
+  },
+  "flags": [],
+  "usage": {
+    "prompt_tokens": 11024,
+    "completion_tokens": 235,
+    "cost_usd": 0.0038947,
+    "calls": 1
+  }
+}

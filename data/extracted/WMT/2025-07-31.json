@@ -1,0 +1,66 @@
+{
+  "ticker": "WMT",
+  "tier": "core",
+  "period_end": "2025-07-31",
+  "periodic_accession": "0000104169-25-000137",
+  "periodic_url": "https://www.sec.gov/Archives/edgar/data/104169/000010416925000137/wmt-20250731.htm",
+  "earnings_8k_accession": "0000104169-25-000120",
+  "press_release_urls": [
+    "https://www.sec.gov/Archives/edgar/data/104169/000010416925000120/earningsreleasefy26q2.htm",
+    "https://www.sec.gov/Archives/edgar/data/104169/000010416925000120/earningspresentationfy26.htm"
+  ],
+  "model": "google/gemini-2.5-flash",
+  "extracted_at": "2026-11-18T04:00:07+00:00",
+  "fields": {
+    "comp_sales_pct": {
+      "value": 4.6,
+      "quote": "Comp sales (ex. fuel) 2 | 4.6% | 4.2% | NP | NP",
+      "source": "press_release",
+      "status": "verified",
+      "reasons": [],
+      "pass": "snippets"
+    },
+    "comp_traffic_pct": {
+      "value": 1.5,
+      "quote": "Transactions | 1.5% | 3.6% | NP | NP",
+      "source": "press_release",
+      "status": "verified",
+      "reasons": [],
+      "pass": "snippets"
+    },
+    "comp_ticket_pct": {
+      "value": 3.1,
+      "quote": "Average ticket | 3.1% | 0.6% | NP | NP",
+      "source": "press_release",
+      "status": "verified",
+      "reasons": [],
+      "pass": "snippets"
+    },
+    "ending_units": {
+      "value": null,
+      "quote": null,
+      "source": null,
+      "status": "missing",
+      "reasons": [],
+      "pass": "snippets"
+    },
+    "margin_pct": {
+      "value": 24.5,
+      "quote": "Gross profit (2) | 42,979 | 40,957 | 82,657 | 79,464",
+      "source": "periodic",
+      "status": "flagged",
+      "reasons": [
+        "number_not_in_quote"
+      ],
+      "pass": "full_text",
+      "review_issue": 1
+    }
+  },
+  "flags": [],
+  "usage": {
+    "prompt_tokens": 58694,
+    "completion_tokens": 353,
+    "cost_usd": 0.018230419999999997,
+    "calls": 2
+  }
+}

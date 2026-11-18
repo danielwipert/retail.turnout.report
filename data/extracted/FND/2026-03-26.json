@@ -1,0 +1,62 @@
+{
+  "ticker": "FND",
+  "tier": "core",
+  "period_end": "2026-03-26",
+  "periodic_accession": "0001628280-26-028915",
+  "periodic_url": "https://www.sec.gov/Archives/edgar/data/1507079/000162828026028915/fnd-20260326.htm",
+  "earnings_8k_accession": "0001628280-26-028899",
+  "press_release_urls": [
+    "https://www.sec.gov/Archives/edgar/data/1507079/000162828026028899/fnd-20260326x8kxex991.htm"
+  ],
+  "model": "google/gemini-2.5-flash",
+  "extracted_at": "2026-11-18T04:00:22+00:00",
+  "fields": {
+    "comp_sales_pct": {
+      "value": -3.7,
+      "quote": "Comparable store sales decreased 3.7%.",
+      "source": "press_release",
+      "status": "verified",
+      "reasons": [],
+      "pass": "snippets"
+    },
+    "comp_traffic_pct": {
+      "value": -5.5,
+      "quote": "The comparable store sales decline during the period of 3.7%, or $40.8 million, was due to a 5.5% decrease in comparable transactions, partially offset by a 1.9% increase in comparable average ticket.",
+      "source": "periodic",
+      "status": "verified",
+      "reasons": [],
+      "pass": "snippets"
+    },
+    "comp_ticket_pct": {
+      "value": 1.9,
+      "quote": "The comparable store sales decline during the period of 3.7%, or $40.8 million, was due to a 5.5% decrease in comparable transactions, partially offset by a 1.9% increase in comparable average ticket.",
+      "source": "periodic",
+      "status": "verified",
+      "reasons": [],
+      "pass": "snippets"
+    },
+    "ending_units": {
+      "value": 276,
+      "quote": "We opened six new warehouse stores, ending the quarter with 276 warehouse stores, five design studios, and five distribution centers.",
+      "source": "press_release",
+      "status": "verified",
+      "reasons": [],
+      "pass": "snippets"
+    },
+    "margin_pct": {
+      "value": 44.0,
+      "quote": "The decrease in gross profit was primarily driven by the 0.7% decrease in net sales, partially offset by an increase in gross margin to 44.0%, up approximately 20 basis points from 43.8% in the corresponding prior year period.",
+      "source": "periodic",
+      "status": "verified",
+      "reasons": [],
+      "pass": "snippets"
+    }
+  },
+  "flags": [],
+  "usage": {
+    "prompt_tokens": 6833,
+    "completion_tokens": 320,
+    "cost_usd": 0.0028499,
+    "calls": 1
+  }
+}

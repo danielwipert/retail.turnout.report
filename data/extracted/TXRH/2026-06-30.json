@@ -1,0 +1,62 @@
+{
+  "ticker": "TXRH",
+  "tier": "core",
+  "period_end": "2026-06-30",
+  "periodic_accession": "0001104659-26-092408",
+  "periodic_url": "https://www.sec.gov/Archives/edgar/data/1289460/000110465926092408/txrh-20260630x10q.htm",
+  "earnings_8k_accession": "0001104659-26-091980",
+  "press_release_urls": [
+    "https://www.sec.gov/Archives/edgar/data/1289460/000110465926091980/txrh-20260805xex99d1.htm"
+  ],
+  "model": "google/gemini-2.5-flash",
+  "extracted_at": "2026-11-18T03:59:39+00:00",
+  "fields": {
+    "comp_sales_pct": {
+      "value": 6.2,
+      "quote": "Comparable restaurant sales and store weeks increased 6.2% and 5.0%, respectively, at company restaurants in Q2 2026 compared to Q2 2025.",
+      "source": "periodic",
+      "status": "verified",
+      "reasons": [],
+      "pass": "snippets"
+    },
+    "comp_traffic_pct": {
+      "value": 3.0,
+      "quote": "Guest traffic counts | 3.0 | % | \n",
+      "source": "periodic",
+      "status": "verified",
+      "reasons": [],
+      "pass": "snippets"
+    },
+    "comp_ticket_pct": {
+      "value": 3.2,
+      "quote": "Per person average check | 3.2 | % | \n",
+      "source": "periodic",
+      "status": "verified",
+      "reasons": [],
+      "pass": "snippets"
+    },
+    "ending_units": {
+      "value": 832,
+      "quote": "Total restaurants | 832 | 797 | 35 | \n",
+      "source": "press_release",
+      "status": "verified",
+      "reasons": [],
+      "pass": "snippets"
+    },
+    "margin_pct": {
+      "value": 16.4,
+      "quote": "Restaurant margin, as a percentage of restaurant and other sales, decreased 66 basis points to 16.4% as commodity inflation of 7.0% and wage and other labor inflation of 3.9% were partially offset by higher sales;",
+      "source": "press_release",
+      "status": "verified",
+      "reasons": [],
+      "pass": "snippets"
+    }
+  },
+  "flags": [],
+  "usage": {
+    "prompt_tokens": 10678,
+    "completion_tokens": 269,
+    "cost_usd": 0.0038759,
+    "calls": 1
+  }
+}

@@ -1,0 +1,62 @@
+{
+  "ticker": "FND",
+  "tier": "core",
+  "period_end": "2025-06-26",
+  "periodic_accession": "0001628280-25-037017",
+  "periodic_url": "https://www.sec.gov/Archives/edgar/data/1507079/000162828025037017/fnd-20250626.htm",
+  "earnings_8k_accession": "0001628280-25-037011",
+  "press_release_urls": [
+    "https://www.sec.gov/Archives/edgar/data/1507079/000162828025037011/fnd-20250626x8kxex991.htm"
+  ],
+  "model": "google/gemini-2.5-flash",
+  "extracted_at": "2026-11-18T04:00:29+00:00",
+  "fields": {
+    "comp_sales_pct": {
+      "value": 0.4,
+      "quote": "Comparable store sales increased 0.4%.",
+      "source": "press_release",
+      "status": "verified",
+      "reasons": [],
+      "pass": "snippets"
+    },
+    "comp_traffic_pct": {
+      "value": -3.3,
+      "quote": "Comparable transactions | (3.3) | % | (4.9) | % | (3.5) | % | (6.3) | %",
+      "source": "periodic",
+      "status": "verified",
+      "reasons": [],
+      "pass": "snippets"
+    },
+    "comp_ticket_pct": {
+      "value": 3.8,
+      "quote": "Comparable average ticket | 3.8 | % | (4.3) | % | 3.0 | % | (4.3) | %",
+      "source": "periodic",
+      "status": "verified",
+      "reasons": [],
+      "pass": "snippets"
+    },
+    "ending_units": {
+      "value": 257,
+      "quote": "We opened three new warehouse stores, ending the quarter with 257 warehouse stores and five design studios.",
+      "source": "press_release",
+      "status": "verified",
+      "reasons": [],
+      "pass": "snippets"
+    },
+    "margin_pct": {
+      "value": 43.9,
+      "quote": "The increase in gross profit was primarily driven by the 7.1% increase in net sales and an increase in gross margin to 43.9%, up approximately 60 basis points from 43.3% in the corresponding prior year period.",
+      "source": "periodic",
+      "status": "verified",
+      "reasons": [],
+      "pass": "snippets"
+    }
+  },
+  "flags": [],
+  "usage": {
+    "prompt_tokens": 7619,
+    "completion_tokens": 280,
+    "cost_usd": 0.00273433,
+    "calls": 1
+  }
+}
