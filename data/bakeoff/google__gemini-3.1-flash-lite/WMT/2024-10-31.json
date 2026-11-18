@@ -1,0 +1,63 @@
+{
+  "ticker": "WMT",
+  "tier": "core",
+  "period_end": "2024-10-31",
+  "periodic_accession": "0000104169-24-000178",
+  "periodic_url": "https://www.sec.gov/Archives/edgar/data/104169/000010416924000178/wmt-20241031.htm",
+  "earnings_8k_accession": "0000104169-24-000170",
+  "press_release_urls": [
+    "https://www.sec.gov/Archives/edgar/data/104169/000010416924000170/earningsreleasefy25q3.htm",
+    "https://www.sec.gov/Archives/edgar/data/104169/000010416924000170/earningspresentationfy25.htm"
+  ],
+  "model": "google/gemini-3.1-flash-lite",
+  "extracted_at": "2026-11-18T02:25:58+00:00",
+  "fields": {
+    "comp_sales_pct": {
+      "value": 5.1,
+      "quote": "The increases were due to comparable sales of 5.1% and 4.7% for the three and nine months ended October 31, 2024, respectively, driven by growth in transactions and unit volumes, with strong sales in grocery and health and wellness.",
+      "source": "periodic",
+      "status": "verified",
+      "reasons": [],
+      "pass": "snippets"
+    },
+    "comp_traffic_pct": {
+      "value": 3.1,
+      "quote": "Transactions | 3.1% | 3.4% | NP | NP",
+      "source": "press_release",
+      "status": "verified",
+      "reasons": [],
+      "pass": "full_text"
+    },
+    "comp_ticket_pct": {
+      "value": 2.1,
+      "quote": "Average Ticket | 2.1% | 1.5% | NP | NP",
+      "source": "press_release",
+      "status": "verified",
+      "reasons": [],
+      "pass": "full_text"
+    },
+    "ending_units": {
+      "value": 4606,
+      "quote": "Unit counts at period end | 4,606 | 4,616 | 4,606 | 4,616",
+      "source": "periodic",
+      "status": "verified",
+      "reasons": [],
+      "pass": "full_text"
+    },
+    "margin_pct": {
+      "value": 24.2,
+      "quote": "Gross profit as a percentage of net sales | 24.2 | % | 24.0 | % | 24.2 | % | 23.9%",
+      "source": "periodic",
+      "status": "verified",
+      "reasons": [],
+      "pass": "full_text"
+    }
+  },
+  "flags": [],
+  "usage": {
+    "prompt_tokens": 78174,
+    "completion_tokens": 489,
+    "cost_usd": 0.020277,
+    "calls": 2
+  }
+}

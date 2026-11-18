@@ -1,0 +1,63 @@
+{
+  "ticker": "WMT",
+  "tier": "core",
+  "period_end": "2025-07-31",
+  "periodic_accession": "0000104169-25-000137",
+  "periodic_url": "https://www.sec.gov/Archives/edgar/data/104169/000010416925000137/wmt-20250731.htm",
+  "earnings_8k_accession": "0000104169-25-000120",
+  "press_release_urls": [
+    "https://www.sec.gov/Archives/edgar/data/104169/000010416925000120/earningsreleasefy26q2.htm",
+    "https://www.sec.gov/Archives/edgar/data/104169/000010416925000120/earningspresentationfy26.htm"
+  ],
+  "model": "google/gemini-3.1-flash-lite",
+  "extracted_at": "2026-11-18T02:25:47+00:00",
+  "fields": {
+    "comp_sales_pct": {
+      "value": 4.6,
+      "quote": "Walmart U.S. comp sales 2 up 4.6% with strong growth in grocery and health & wellness.",
+      "source": "press_release",
+      "status": "verified",
+      "reasons": [],
+      "pass": "snippets"
+    },
+    "comp_traffic_pct": {
+      "value": 1.5,
+      "quote": "Transactions | 1.5% | 3.6% | NP | NP",
+      "source": "press_release",
+      "status": "verified",
+      "reasons": [],
+      "pass": "snippets"
+    },
+    "comp_ticket_pct": {
+      "value": 3.1,
+      "quote": "Average ticket | 3.1% | 0.6% | NP | NP",
+      "source": "press_release",
+      "status": "verified",
+      "reasons": [],
+      "pass": "snippets"
+    },
+    "ending_units": {
+      "value": 4606,
+      "quote": "Unit counts at period end | 4,606 | 4,606 | 4,606 | 4,606",
+      "source": "periodic",
+      "status": "verified",
+      "reasons": [],
+      "pass": "full_text"
+    },
+    "margin_pct": {
+      "value": 24.5,
+      "quote": "Gross profit rate +4 bps1 to 24.5%",
+      "source": "press_release",
+      "status": "verified",
+      "reasons": [],
+      "pass": "snippets"
+    }
+  },
+  "flags": [],
+  "usage": {
+    "prompt_tokens": 79175,
+    "completion_tokens": 338,
+    "cost_usd": 0.02030075,
+    "calls": 2
+  }
+}

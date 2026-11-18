@@ -1,0 +1,65 @@
+{
+  "ticker": "WMT",
+  "tier": "core",
+  "period_end": "2025-04-30",
+  "periodic_accession": "0000104169-25-000090",
+  "periodic_url": "https://www.sec.gov/Archives/edgar/data/104169/000010416925000090/wmt-20250430.htm",
+  "earnings_8k_accession": "0000104169-25-000069",
+  "press_release_urls": [
+    "https://www.sec.gov/Archives/edgar/data/104169/000010416925000069/earningsreleasefy26q1.htm",
+    "https://www.sec.gov/Archives/edgar/data/104169/000010416925000069/earningspresentationfy26.htm"
+  ],
+  "model": "google/gemini-3.1-flash-lite",
+  "extracted_at": "2026-11-18T02:25:51+00:00",
+  "fields": {
+    "comp_sales_pct": {
+      "value": 3.1,
+      "quote": "The Walmart U.S. segment had comparable sales growth of 3.1% for the three months ended April 30, 2025 driven by growth in transactions and unit volumes, with strong sales in health and wellness and grocery.",
+      "source": "periodic",
+      "status": "verified",
+      "reasons": [],
+      "pass": "snippets"
+    },
+    "comp_traffic_pct": {
+      "value": 1.6,
+      "quote": "Transactions | 1.6% | 3.8% | NP | NP",
+      "source": "press_release",
+      "status": "verified",
+      "reasons": [],
+      "pass": "snippets"
+    },
+    "comp_ticket_pct": {
+      "value": 2.8,
+      "quote": "Average ticket | 2.8% | flat | NP | NP",
+      "source": "press_release",
+      "status": "verified",
+      "reasons": [],
+      "pass": "snippets"
+    },
+    "ending_units": {
+      "value": null,
+      "quote": null,
+      "source": null,
+      "status": "missing",
+      "reasons": [],
+      "pass": "snippets"
+    },
+    "margin_pct": {
+      "value": 27.5,
+      "quote": "Gross profit 3 | 30,811 | 27.5% | 29,575 | 27.2% | 4.2%",
+      "source": "press_release",
+      "status": "verified",
+      "reasons": [],
+      "pass": "full_text"
+    }
+  },
+  "flags": [
+    "comp_not_equal_traffic_plus_ticket"
+  ],
+  "usage": {
+    "prompt_tokens": 72596,
+    "completion_tokens": 376,
+    "cost_usd": 0.018713,
+    "calls": 2
+  }
+}

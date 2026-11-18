@@ -1,0 +1,63 @@
+{
+  "ticker": "WMT",
+  "tier": "core",
+  "period_end": "2024-10-31",
+  "periodic_accession": "0000104169-24-000178",
+  "periodic_url": "https://www.sec.gov/Archives/edgar/data/104169/000010416924000178/wmt-20241031.htm",
+  "earnings_8k_accession": "0000104169-24-000170",
+  "press_release_urls": [
+    "https://www.sec.gov/Archives/edgar/data/104169/000010416924000170/earningsreleasefy25q3.htm",
+    "https://www.sec.gov/Archives/edgar/data/104169/000010416924000170/earningspresentationfy25.htm"
+  ],
+  "model": "openai/gpt-oss-20b",
+  "extracted_at": "2026-11-18T02:23:17+00:00",
+  "fields": {
+    "comp_sales_pct": {
+      "quote": "Comp sales (ex. fuel) 2 | 5.3% | 4.9% | NP | NP",
+      "source": "press_release",
+      "value": 5.3,
+      "status": "verified",
+      "reasons": [],
+      "pass": "snippets"
+    },
+    "comp_traffic_pct": {
+      "quote": "Transactions | 3.1% | 3.4% | NP | NP",
+      "source": "press_release",
+      "value": 3.1,
+      "status": "verified",
+      "reasons": [],
+      "pass": "snippets"
+    },
+    "comp_ticket_pct": {
+      "quote": "Average Ticket | 2.1% | 1.5% | NP | NP",
+      "source": "press_release",
+      "value": 2.1,
+      "status": "verified",
+      "reasons": [],
+      "pass": "snippets"
+    },
+    "ending_units": {
+      "quote": "Retail square feet at period end | 1,050 | 1,050 | 1,050 | 1,050",
+      "source": "periodic",
+      "value": 1050,
+      "status": "verified",
+      "reasons": [],
+      "pass": "snippets"
+    },
+    "margin_pct": {
+      "quote": "Gross profit as a percentage of net sales | 24.2 | % | 24.0 | % | 24.2 | % | 23.9 | %",
+      "source": "periodic",
+      "value": 24.2,
+      "status": "verified",
+      "reasons": [],
+      "pass": "snippets"
+    }
+  },
+  "flags": [],
+  "usage": {
+    "prompt_tokens": 13569,
+    "completion_tokens": 2430,
+    "cost_usd": 0.000462942,
+    "calls": 1
+  }
+}

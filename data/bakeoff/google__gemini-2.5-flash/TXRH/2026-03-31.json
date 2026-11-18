@@ -9,7 +9,7 @@
     "https://www.sec.gov/Archives/edgar/data/1289460/000110465926057105/txrh-20260506xex99d1.htm"
   ],
   "model": "google/gemini-2.5-flash",
-  "extracted_at": "2026-11-18T01:46:52+00:00",
+  "extracted_at": "2026-11-18T02:26:24+00:00",
   "fields": {
     "comp_sales_pct": {
       "value": 7.1,

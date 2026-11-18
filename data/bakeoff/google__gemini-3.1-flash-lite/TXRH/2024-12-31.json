@@ -1,0 +1,62 @@
+{
+  "ticker": "TXRH",
+  "tier": "core",
+  "period_end": "2024-12-31",
+  "periodic_accession": "0001558370-25-001904",
+  "periodic_url": "https://www.sec.gov/Archives/edgar/data/1289460/000155837025001904/txrh-20241231x10k.htm",
+  "earnings_8k_accession": "0001558370-25-001213",
+  "press_release_urls": [
+    "https://www.sec.gov/Archives/edgar/data/1289460/000155837025001213/txrh-20250219xex99d1.htm"
+  ],
+  "model": "google/gemini-3.1-flash-lite",
+  "extracted_at": "2026-11-18T02:25:27+00:00",
+  "fields": {
+    "comp_sales_pct": {
+      "value": 7.7,
+      "quote": "Comparable restaurant sales increased 7.7% at company restaurants and increased 6.3% at domestic franchise restaurants;",
+      "source": "press_release",
+      "status": "verified",
+      "reasons": [],
+      "pass": "snippets"
+    },
+    "comp_traffic_pct": {
+      "value": null,
+      "quote": null,
+      "source": null,
+      "status": "missing",
+      "reasons": [],
+      "pass": "snippets"
+    },
+    "comp_ticket_pct": {
+      "value": null,
+      "quote": null,
+      "source": null,
+      "status": "missing",
+      "reasons": [],
+      "pass": "snippets"
+    },
+    "ending_units": {
+      "value": 608,
+      "quote": "Of the 666 restaurants we owned and operated, we operated 608 as Texas Roadhouse restaurants, 49 as Bubba\u2019s 33 restaurants, and nine as Jaggers restaurants.",
+      "source": "periodic",
+      "status": "verified",
+      "reasons": [],
+      "pass": "snippets"
+    },
+    "margin_pct": {
+      "value": 17.0,
+      "quote": "Restaurant margin, as a percentage of restaurant and other sales, increased to 17.0% from 15.3% in the prior year driven primarily by higher sales.",
+      "source": "press_release",
+      "status": "verified",
+      "reasons": [],
+      "pass": "snippets"
+    }
+  },
+  "flags": [],
+  "usage": {
+    "prompt_tokens": 48422,
+    "completion_tokens": 355,
+    "cost_usd": 0.012638,
+    "calls": 2
+  }
+}

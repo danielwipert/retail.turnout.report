@@ -1,0 +1,63 @@
+{
+  "ticker": "FND",
+  "tier": "core",
+  "period_end": "2026-09-24",
+  "periodic_accession": "0001628280-26-068259",
+  "periodic_url": "https://www.sec.gov/Archives/edgar/data/1507079/000162828026068259/fnd-20260924.htm",
+  "earnings_8k_accession": "0001628280-26-068242",
+  "press_release_urls": [
+    "https://www.sec.gov/Archives/edgar/data/1507079/000162828026068242/fnd-20260924x8kxex991.htm",
+    "https://www.sec.gov/Archives/edgar/data/1507079/000162828026068242/fnd-20260924x8kex992.htm"
+  ],
+  "model": "google/gemini-3.1-flash-lite",
+  "extracted_at": "2026-11-18T02:26:01+00:00",
+  "fields": {
+    "comp_sales_pct": {
+      "value": -1.4,
+      "quote": "Comparable store sales decreased 1.4%",
+      "source": "press_release",
+      "status": "verified",
+      "reasons": [],
+      "pass": "snippets"
+    },
+    "comp_traffic_pct": {
+      "value": -2.9,
+      "quote": "The comparable store sales decline during the period of 1.4%, or $15.2 million, was due to a 2.9% decrease in comparable transactions, partially offset by a 1.6% increase in comparable average ticket.",
+      "source": "periodic",
+      "status": "verified",
+      "reasons": [],
+      "pass": "snippets"
+    },
+    "comp_ticket_pct": {
+      "value": 1.6,
+      "quote": "The comparable store sales decline during the period of 1.4%, or $15.2 million, was due to a 2.9% decrease in comparable transactions, partially offset by a 1.6% increase in comparable average ticket.",
+      "source": "periodic",
+      "status": "verified",
+      "reasons": [],
+      "pass": "snippets"
+    },
+    "ending_units": {
+      "value": 282,
+      "quote": "As of September 24, 2026, the Company operated 282 warehouse-format stores and five design studios across 39 states.",
+      "source": "press_release",
+      "status": "verified",
+      "reasons": [],
+      "pass": "snippets"
+    },
+    "margin_pct": {
+      "value": 43.7,
+      "quote": "Gross margin (GAAP): | 43.7 % | 43.4 % | 45.4 % | 43.7 %",
+      "source": "periodic",
+      "status": "verified",
+      "reasons": [],
+      "pass": "snippets"
+    }
+  },
+  "flags": [],
+  "usage": {
+    "prompt_tokens": 10161,
+    "completion_tokens": 368,
+    "cost_usd": 0.00309225,
+    "calls": 1
+  }
+}

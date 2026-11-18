@@ -1,0 +1,70 @@
+{
+  "ticker": "TXRH",
+  "tier": "core",
+  "period_end": "2026-06-30",
+  "periodic_accession": "0001104659-26-092408",
+  "periodic_url": "https://www.sec.gov/Archives/edgar/data/1289460/000110465926092408/txrh-20260630x10q.htm",
+  "earnings_8k_accession": "0001104659-26-091980",
+  "press_release_urls": [
+    "https://www.sec.gov/Archives/edgar/data/1289460/000110465926091980/txrh-20260805xex99d1.htm"
+  ],
+  "model": "google/gemini-3.1-flash-lite",
+  "extracted_at": "2026-11-18T02:25:13+00:00",
+  "fields": {
+    "comp_sales_pct": {
+      "value": 6.2,
+      "quote": "Comparable restaurant sales increased 6.2% and store weeks increased 5.0%;",
+      "source": "press_release",
+      "status": "verified",
+      "reasons": [],
+      "pass": "snippets"
+    },
+    "comp_traffic_pct": {
+      "value": 3.0,
+      "quote": "Guest traffic counts | 3.0 | % | | 4.0 | % | | 3.8 | % | | 2.6 | %",
+      "source": "periodic",
+      "status": "flagged",
+      "reasons": [
+        "quote_not_in_filing"
+      ],
+      "pass": "snippets"
+    },
+    "comp_ticket_pct": {
+      "value": 3.2,
+      "quote": "Per person average check | 3.2 | % | | 1.8 | % | | 2.9 | % | | 2.1 | %",
+      "source": "periodic",
+      "status": "flagged",
+      "reasons": [
+        "quote_not_in_filing"
+      ],
+      "pass": "snippets"
+    },
+    "ending_units": {
+      "value": 662,
+      "quote": "Company - Texas Roadhouse | | 662 | 634 | 28 | | | | |",
+      "source": "press_release",
+      "status": "flagged",
+      "reasons": [
+        "quote_not_in_filing"
+      ],
+      "pass": "snippets"
+    },
+    "margin_pct": {
+      "value": 16.5,
+      "quote": "In our Texas Roadhouse reportable segment, restaurant margin dollars increased $17.0 million or 7.1% in Q2 2026 and increased $40.9 million or 8.8% in 2026 YTD.",
+      "source": "periodic",
+      "status": "flagged",
+      "reasons": [
+        "number_not_in_quote"
+      ],
+      "pass": "snippets"
+    }
+  },
+  "flags": [],
+  "usage": {
+    "prompt_tokens": 11110,
+    "completion_tokens": 361,
+    "cost_usd": 0.003319,
+    "calls": 1
+  }
+}

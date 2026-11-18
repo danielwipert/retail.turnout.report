@@ -1,0 +1,62 @@
+{
+  "ticker": "FND",
+  "tier": "core",
+  "period_end": "2025-09-25",
+  "periodic_accession": "0001628280-25-047547",
+  "periodic_url": "https://www.sec.gov/Archives/edgar/data/1507079/000162828025047547/fnd-20250925.htm",
+  "earnings_8k_accession": "0001628280-25-047536",
+  "press_release_urls": [
+    "https://www.sec.gov/Archives/edgar/data/1507079/000162828025047536/fnd-20250925x8kxex991.htm"
+  ],
+  "model": "openai/gpt-oss-20b",
+  "extracted_at": "2026-11-18T02:24:06+00:00",
+  "fields": {
+    "comp_sales_pct": {
+      "value": -1.2,
+      "quote": "Comparable store sales decreased 1.2%.",
+      "source": "press_release",
+      "status": "verified",
+      "reasons": [],
+      "pass": "snippets"
+    },
+    "comp_traffic_pct": {
+      "value": -3.0,
+      "quote": "Comparable transactions | (3.0) | %",
+      "source": "periodic",
+      "status": "verified",
+      "reasons": [],
+      "pass": "snippets"
+    },
+    "comp_ticket_pct": {
+      "value": 1.8,
+      "quote": "Comparable average ticket | 1.8 | %",
+      "source": "periodic",
+      "status": "verified",
+      "reasons": [],
+      "pass": "snippets"
+    },
+    "ending_units": {
+      "value": 262,
+      "quote": "Number of warehouse-format stores | 262 | 241",
+      "source": "periodic",
+      "status": "verified",
+      "reasons": [],
+      "pass": "snippets"
+    },
+    "margin_pct": {
+      "value": 43.4,
+      "quote": "Gross margin to 43.4%, down approximately 10 basis points from 43.5%",
+      "source": "periodic",
+      "status": "verified",
+      "reasons": [],
+      "pass": "snippets"
+    }
+  },
+  "flags": [],
+  "usage": {
+    "prompt_tokens": 7356,
+    "completion_tokens": 942,
+    "cost_usd": 0.0008343,
+    "calls": 1
+  }
+}

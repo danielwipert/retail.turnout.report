@@ -1,0 +1,63 @@
+{
+  "ticker": "WMT",
+  "tier": "core",
+  "period_end": "2025-01-31",
+  "periodic_accession": "0000104169-25-000021",
+  "periodic_url": "https://www.sec.gov/Archives/edgar/data/104169/000010416925000021/wmt-20250131.htm",
+  "earnings_8k_accession": "0000104169-25-000010",
+  "press_release_urls": [
+    "https://www.sec.gov/Archives/edgar/data/104169/000010416925000010/earningsreleasefy25q4.htm",
+    "https://www.sec.gov/Archives/edgar/data/104169/000010416925000010/earningspresentationfy25.htm"
+  ],
+  "model": "google/gemini-3.1-flash-lite",
+  "extracted_at": "2026-11-18T02:25:54+00:00",
+  "fields": {
+    "comp_sales_pct": {
+      "value": 4.6,
+      "quote": "Walmart U.S. comp sales up 4.6% 2 with positive growth in general merchandise.",
+      "source": "press_release",
+      "status": "verified",
+      "reasons": [],
+      "pass": "snippets"
+    },
+    "comp_traffic_pct": {
+      "value": 2.8,
+      "quote": "Transactions | 2.8% | 4.3% | NP | NP | NP | NP | NP | NP",
+      "source": "press_release",
+      "status": "verified",
+      "reasons": [],
+      "pass": "snippets"
+    },
+    "comp_ticket_pct": {
+      "value": 1.8,
+      "quote": "Average ticket | 1.8% | -0.3% | NP | NP | NP | NP | NP | NP",
+      "source": "press_release",
+      "status": "verified",
+      "reasons": [],
+      "pass": "snippets"
+    },
+    "ending_units": {
+      "value": 4605,
+      "quote": "Walmart U.S. is our largest segment and operates 4,605 stores in the U.S., including in all 50 states, Washington D.C. and Puerto Rico.",
+      "source": "periodic",
+      "status": "verified",
+      "reasons": [],
+      "pass": "full_text"
+    },
+    "margin_pct": {
+      "value": 23.9,
+      "quote": "Gross profit rate 23.3% 24.1% 24.4% 24.2% 23.9% Q4 FY24 Q1 FY25 Q2 FY25 Q3 FY25 Q4 FY25 Gross profit rate +53 bps to 23.9%",
+      "source": "press_release",
+      "status": "verified",
+      "reasons": [],
+      "pass": "snippets"
+    }
+  },
+  "flags": [],
+  "usage": {
+    "prompt_tokens": 72673,
+    "completion_tokens": 416,
+    "cost_usd": 0.01879225,
+    "calls": 2
+  }
+}

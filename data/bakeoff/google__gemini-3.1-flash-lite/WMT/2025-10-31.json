@@ -1,0 +1,66 @@
+{
+  "ticker": "WMT",
+  "tier": "core",
+  "period_end": "2025-10-31",
+  "periodic_accession": "0000104169-25-000191",
+  "periodic_url": "https://www.sec.gov/Archives/edgar/data/104169/000010416925000191/wmt-20251031.htm",
+  "earnings_8k_accession": "0000104169-25-000177",
+  "press_release_urls": [
+    "https://www.sec.gov/Archives/edgar/data/104169/000010416925000177/earningsreleasefy26q3.htm",
+    "https://www.sec.gov/Archives/edgar/data/104169/000010416925000177/earningspresentationfy26.htm",
+    "https://www.sec.gov/Archives/edgar/data/104169/000010416925000177/pressrelease-transfertonas.htm"
+  ],
+  "model": "google/gemini-3.1-flash-lite",
+  "extracted_at": "2026-11-18T02:25:42+00:00",
+  "fields": {
+    "comp_sales_pct": {
+      "value": 4.5,
+      "quote": "Comp sales (ex. fuel) 2 | 4.5% | 5.3% | NP | NP",
+      "source": "press_release",
+      "status": "verified",
+      "reasons": [],
+      "pass": "snippets"
+    },
+    "comp_traffic_pct": {
+      "value": 1.8,
+      "quote": "Transactions | 1.8% | 3.1% | NP | NP",
+      "source": "press_release",
+      "status": "verified",
+      "reasons": [],
+      "pass": "snippets"
+    },
+    "comp_ticket_pct": {
+      "value": 2.7,
+      "quote": "Average ticket | 2.7% | 2.1% | NP | NP",
+      "source": "press_release",
+      "status": "verified",
+      "reasons": [],
+      "pass": "snippets"
+    },
+    "ending_units": {
+      "value": 4606,
+      "quote": "Unit counts at period end | 4,606 | 4,606 | 4,606 | 4,606",
+      "source": "periodic",
+      "status": "verified",
+      "reasons": [],
+      "pass": "full_text"
+    },
+    "margin_pct": {
+      "value": 27.6,
+      "quote": "Gross profit | 33,312 | 27.6 | % | 31,491 | 27.4 | % | 5.8 | % | 97,797 | 27.6 | % | 92,893 | 27.4 | % | 5.3 | %",
+      "source": "periodic",
+      "status": "flagged",
+      "reasons": [
+        "quote_not_in_filing"
+      ],
+      "pass": "full_text"
+    }
+  },
+  "flags": [],
+  "usage": {
+    "prompt_tokens": 81774,
+    "completion_tokens": 435,
+    "cost_usd": 0.021096,
+    "calls": 2
+  }
+}

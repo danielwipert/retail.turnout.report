@@ -1,0 +1,64 @@
+{
+  "ticker": "TXRH",
+  "tier": "core",
+  "period_end": "2026-06-30",
+  "periodic_accession": "0001104659-26-092408",
+  "periodic_url": "https://www.sec.gov/Archives/edgar/data/1289460/000110465926092408/txrh-20260630x10q.htm",
+  "earnings_8k_accession": "0001104659-26-091980",
+  "press_release_urls": [
+    "https://www.sec.gov/Archives/edgar/data/1289460/000110465926091980/txrh-20260805xex99d1.htm"
+  ],
+  "model": "openai/gpt-oss-20b",
+  "extracted_at": "2026-11-18T02:11:29+00:00",
+  "fields": {
+    "comp_sales_pct": {
+      "value": 6.2,
+      "quote": "Comparable restaurant sales increased 6.2% and store weeks increased 5.0%;",
+      "source": "press_release",
+      "status": "verified",
+      "reasons": [],
+      "pass": "snippets"
+    },
+    "comp_traffic_pct": {
+      "value": 3.0,
+      "quote": "Guest traffic counts | 3.0 | % | \u200b | 4.0 | % | \u200b | 3.8 | % | \u200b | 2.6 | %",
+      "source": "press_release",
+      "status": "verified",
+      "reasons": [],
+      "pass": "snippets"
+    },
+    "comp_ticket_pct": {
+      "value": 3.2,
+      "quote": "Per person average check | 3.2 | % | \u200b | 1.8 | % | \u200b | 2.9 | % | \u200b | 2.1 | %",
+      "source": "press_release",
+      "status": "verified",
+      "reasons": [],
+      "pass": "snippets"
+    },
+    "ending_units": {
+      "value": 662,
+      "quote": "Company - Texas Roadhouse | \u200b | 662 | 634 | 28 |",
+      "source": "periodic",
+      "status": "verified",
+      "reasons": [],
+      "pass": "snippets"
+    },
+    "margin_pct": {
+      "value": 16.4,
+      "quote": "Restaurant margin, as a percentage of restaurant and other sales, decreased 66 basis points to 16.4%;",
+      "source": "press_release",
+      "status": "flagged",
+      "reasons": [
+        "quote_not_in_filing"
+      ],
+      "pass": "snippets"
+    }
+  },
+  "flags": [],
+  "usage": {
+    "prompt_tokens": 9841,
+    "completion_tokens": 1503,
+    "cost_usd": 0.001188975,
+    "calls": 1
+  }
+}

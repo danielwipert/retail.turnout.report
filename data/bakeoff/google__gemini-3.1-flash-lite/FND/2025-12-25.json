@@ -1,0 +1,64 @@
+{
+  "ticker": "FND",
+  "tier": "core",
+  "period_end": "2025-12-25",
+  "periodic_accession": "0001628280-26-009770",
+  "periodic_url": "https://www.sec.gov/Archives/edgar/data/1507079/000162828026009770/fnd-20251225.htm",
+  "earnings_8k_accession": "0001628280-26-009760",
+  "press_release_urls": [
+    "https://www.sec.gov/Archives/edgar/data/1507079/000162828026009760/fnd-2025earningsreleaseex9.htm"
+  ],
+  "model": "google/gemini-3.1-flash-lite",
+  "extracted_at": "2026-11-18T02:26:08+00:00",
+  "fields": {
+    "comp_sales_pct": {
+      "value": -4.8,
+      "quote": "Comparable store sales decreased 4.8%",
+      "source": "press_release",
+      "status": "verified",
+      "reasons": [],
+      "pass": "snippets"
+    },
+    "comp_traffic_pct": {
+      "value": -3.5,
+      "quote": "The comparable store sales decline during the period of 1.8%, or $77.4 million, was due to a 3.5% decrease in comparable transactions, partially offset by a 1.8% increase in comparable average ticket.",
+      "source": "periodic",
+      "status": "verified",
+      "reasons": [],
+      "pass": "full_text"
+    },
+    "comp_ticket_pct": {
+      "value": 1.8,
+      "quote": "The comparable store sales decline during the period of 1.8%, or $77.4 million, was due to a 3.5% decrease in comparable transactions, partially offset by a 1.8% increase in comparable average ticket.",
+      "source": "periodic",
+      "status": "verified",
+      "reasons": [],
+      "pass": "full_text"
+    },
+    "ending_units": {
+      "value": 270,
+      "quote": "We opened eight new warehouse stores, ending the quarter with 270 warehouse stores, five design studios, and five distribution centers.",
+      "source": "press_release",
+      "status": "verified",
+      "reasons": [],
+      "pass": "snippets"
+    },
+    "margin_pct": {
+      "value": 43.5,
+      "quote": "Gross profit | 491,096 | 43.5 | 481,321 | 43.5 | 2.0 | %",
+      "source": "periodic",
+      "status": "verified",
+      "reasons": [],
+      "pass": "full_text"
+    }
+  },
+  "flags": [
+    "comp_not_equal_traffic_plus_ticket"
+  ],
+  "usage": {
+    "prompt_tokens": 46701,
+    "completion_tokens": 467,
+    "cost_usd": 0.012375750000000001,
+    "calls": 2
+  }
+}

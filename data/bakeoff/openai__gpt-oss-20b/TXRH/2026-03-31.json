@@ -1,0 +1,68 @@
+{
+  "ticker": "TXRH",
+  "tier": "core",
+  "period_end": "2026-03-31",
+  "periodic_accession": "0001104659-26-057604",
+  "periodic_url": "https://www.sec.gov/Archives/edgar/data/1289460/000110465926057604/txrh-20260331x10q.htm",
+  "earnings_8k_accession": "0001104659-26-057105",
+  "press_release_urls": [
+    "https://www.sec.gov/Archives/edgar/data/1289460/000110465926057105/txrh-20260506xex99d1.htm"
+  ],
+  "model": "openai/gpt-oss-20b",
+  "extracted_at": "2026-11-18T02:11:47+00:00",
+  "fields": {
+    "comp_sales_pct": {
+      "quote": "Comparable restaurant sales increased 7.1%",
+      "source": "press_release",
+      "value": 7.1,
+      "status": "verified",
+      "reasons": [],
+      "pass": "snippets"
+    },
+    "comp_traffic_pct": {
+      "quote": "Guest traffic counts increased 4.5%",
+      "source": "press_release",
+      "value": 4.5,
+      "status": "flagged",
+      "reasons": [
+        "quote_not_in_filing"
+      ],
+      "pass": "snippets"
+    },
+    "comp_ticket_pct": {
+      "quote": "Per person average check increased 2.6%",
+      "source": "press_release",
+      "value": 2.6,
+      "status": "flagged",
+      "reasons": [
+        "quote_not_in_filing"
+      ],
+      "pass": "snippets"
+    },
+    "ending_units": {
+      "quote": "Restaurants open at the end of the quarter | Company - Texas Roadhouse | 657",
+      "source": "press_release",
+      "value": 657,
+      "status": "flagged",
+      "reasons": [
+        "quote_not_in_filing"
+      ],
+      "pass": "snippets"
+    },
+    "margin_pct": {
+      "quote": "Restaurant margin, as a percentage of restaurant and other sales, decreased 36 basis points to 16.3%",
+      "source": "press_release",
+      "value": 16.3,
+      "status": "verified",
+      "reasons": [],
+      "pass": "snippets"
+    }
+  },
+  "flags": [],
+  "usage": {
+    "prompt_tokens": 8527,
+    "completion_tokens": 846,
+    "cost_usd": 0.000229626,
+    "calls": 1
+  }
+}

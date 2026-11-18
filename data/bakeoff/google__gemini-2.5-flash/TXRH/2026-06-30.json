@@ -9,7 +9,7 @@
     "https://www.sec.gov/Archives/edgar/data/1289460/000110465926091980/txrh-20260805xex99d1.htm"
   ],
   "model": "google/gemini-2.5-flash",
-  "extracted_at": "2026-11-18T01:46:51+00:00",
+  "extracted_at": "2026-11-18T02:26:22+00:00",
   "fields": {
     "comp_sales_pct": {
       "value": 6.2,
@@ -23,20 +23,16 @@
       "value": 3.0,
       "quote": "Guest traffic counts | 3.0 | % | \n",
       "source": "periodic",
-      "status": "flagged",
-      "reasons": [
-        "segment_unconfirmed"
-      ],
+      "status": "verified",
+      "reasons": [],
       "pass": "snippets"
     },
     "comp_ticket_pct": {
       "value": 3.2,
       "quote": "Per person average check | 3.2 | % | \n",
       "source": "periodic",
-      "status": "flagged",
-      "reasons": [
-        "segment_unconfirmed"
-      ],
+      "status": "verified",
+      "reasons": [],
       "pass": "snippets"
     },
     "ending_units": {

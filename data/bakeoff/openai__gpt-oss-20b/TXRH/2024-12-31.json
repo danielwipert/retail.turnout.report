@@ -1,0 +1,64 @@
+{
+  "ticker": "TXRH",
+  "tier": "core",
+  "period_end": "2024-12-31",
+  "periodic_accession": "0001558370-25-001904",
+  "periodic_url": "https://www.sec.gov/Archives/edgar/data/1289460/000155837025001904/txrh-20241231x10k.htm",
+  "earnings_8k_accession": "0001558370-25-001213",
+  "press_release_urls": [
+    "https://www.sec.gov/Archives/edgar/data/1289460/000155837025001213/txrh-20250219xex99d1.htm"
+  ],
+  "model": "openai/gpt-oss-20b",
+  "extracted_at": "2026-11-18T02:14:29+00:00",
+  "fields": {
+    "comp_sales_pct": {
+      "value": 7.7,
+      "quote": "Comparable restaurant sales increased 7.7% at company restaurants and increased 6.3% at domestic franchise restaurants;",
+      "source": "press_release",
+      "status": "verified",
+      "reasons": [],
+      "pass": "snippets"
+    },
+    "comp_traffic_pct": {
+      "value": 7.7,
+      "quote": "Comparable restaurant sales increased 7.7% at company restaurants",
+      "source": "press_release",
+      "status": "verified",
+      "reasons": [],
+      "pass": "full_text"
+    },
+    "comp_ticket_pct": {
+      "value": 0.0,
+      "quote": null,
+      "source": null,
+      "status": "derived",
+      "reasons": [
+        "ticket = comp - traffic"
+      ],
+      "pass": "derived"
+    },
+    "ending_units": {
+      "value": 608,
+      "quote": "Of the 666 restaurants we owned and operated, we operated 608 as Texas Roadhouse restaurants",
+      "source": "periodic",
+      "status": "verified",
+      "reasons": [],
+      "pass": "snippets"
+    },
+    "margin_pct": {
+      "value": 17.0,
+      "quote": "Restaurant margin, as a percentage of restaurant and other sales, increased to 17.0% from 15.3%",
+      "source": "press_release",
+      "status": "verified",
+      "reasons": [],
+      "pass": "snippets"
+    }
+  },
+  "flags": [],
+  "usage": {
+    "prompt_tokens": 45155,
+    "completion_tokens": 1556,
+    "cost_usd": 0.00095283,
+    "calls": 2
+  }
+}

@@ -1,0 +1,62 @@
+{
+  "ticker": "FND",
+  "tier": "core",
+  "period_end": "2025-09-25",
+  "periodic_accession": "0001628280-25-047547",
+  "periodic_url": "https://www.sec.gov/Archives/edgar/data/1507079/000162828025047547/fnd-20250925.htm",
+  "earnings_8k_accession": "0001628280-25-047536",
+  "press_release_urls": [
+    "https://www.sec.gov/Archives/edgar/data/1507079/000162828025047536/fnd-20250925x8kxex991.htm"
+  ],
+  "model": "google/gemini-3.1-flash-lite",
+  "extracted_at": "2026-11-18T02:26:10+00:00",
+  "fields": {
+    "comp_sales_pct": {
+      "value": -1.2,
+      "quote": "Comparable store sales decreased 1.2%.",
+      "source": "periodic",
+      "status": "verified",
+      "reasons": [],
+      "pass": "snippets"
+    },
+    "comp_traffic_pct": {
+      "value": -3.0,
+      "quote": "The comparable store sales decline during the period of 1.2%, or $12.4 million, was due to a 3.0% decrease in comparable transactions, partially offset by a 1.8% increase in comparable average ticket.",
+      "source": "periodic",
+      "status": "verified",
+      "reasons": [],
+      "pass": "snippets"
+    },
+    "comp_ticket_pct": {
+      "value": 1.8,
+      "quote": "The comparable store sales decline during the period of 1.2%, or $12.4 million, was due to a 3.0% decrease in comparable transactions, partially offset by a 1.8% increase in comparable average ticket.",
+      "source": "periodic",
+      "status": "verified",
+      "reasons": [],
+      "pass": "snippets"
+    },
+    "ending_units": {
+      "value": 262,
+      "quote": "We opened five new warehouse stores and a new distribution center, ending the quarter with 262 warehouse stores, five design studios, and five distribution centers.",
+      "source": "periodic",
+      "status": "verified",
+      "reasons": [],
+      "pass": "snippets"
+    },
+    "margin_pct": {
+      "value": 43.4,
+      "quote": "The increase in gross profit was primarily driven by the 5.5% increase in net sales, partially offset by a decrease in gross margin to 43.4%, down approximately 10 basis points from 43.5% in the corresponding prior year period.",
+      "source": "periodic",
+      "status": "verified",
+      "reasons": [],
+      "pass": "snippets"
+    }
+  },
+  "flags": [],
+  "usage": {
+    "prompt_tokens": 7911,
+    "completion_tokens": 385,
+    "cost_usd": 0.00255525,
+    "calls": 1
+  }
+}

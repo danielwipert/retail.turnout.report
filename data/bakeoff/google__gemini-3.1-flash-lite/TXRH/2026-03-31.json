@@ -1,0 +1,64 @@
+{
+  "ticker": "TXRH",
+  "tier": "core",
+  "period_end": "2026-03-31",
+  "periodic_accession": "0001104659-26-057604",
+  "periodic_url": "https://www.sec.gov/Archives/edgar/data/1289460/000110465926057604/txrh-20260331x10q.htm",
+  "earnings_8k_accession": "0001104659-26-057105",
+  "press_release_urls": [
+    "https://www.sec.gov/Archives/edgar/data/1289460/000110465926057105/txrh-20260506xex99d1.htm"
+  ],
+  "model": "google/gemini-3.1-flash-lite",
+  "extracted_at": "2026-11-18T02:25:15+00:00",
+  "fields": {
+    "comp_sales_pct": {
+      "value": 7.1,
+      "quote": "Comparable restaurant sales | 7.1 | % | \u200b | 3.5 | %",
+      "source": "press_release",
+      "status": "flagged",
+      "reasons": [
+        "quote_not_in_filing"
+      ],
+      "pass": "snippets"
+    },
+    "comp_traffic_pct": {
+      "value": 4.5,
+      "quote": "Guest traffic counts | \u200b | 4.5 | % | \u200b | 1.1 | %",
+      "source": "press_release",
+      "status": "verified",
+      "reasons": [],
+      "pass": "snippets"
+    },
+    "comp_ticket_pct": {
+      "value": 2.6,
+      "quote": "Per person average check | \u200b | 2.6 | % | \u200b | 2.4 | %",
+      "source": "press_release",
+      "status": "verified",
+      "reasons": [],
+      "pass": "snippets"
+    },
+    "ending_units": {
+      "value": 657,
+      "quote": "Company - Texas Roadhouse | \u200b | 657 | 629 | 28",
+      "source": "press_release",
+      "status": "verified",
+      "reasons": [],
+      "pass": "snippets"
+    },
+    "margin_pct": {
+      "value": 16.3,
+      "quote": "In our Texas Roadhouse reportable segment, restaurant margin dollars increased $23.9 million or 10.6% in Q1 2026. The increase was due to higher sales partially offset by higher food and beverage costs due to commodity inflation. In addition, restaurant margin, as a percentage of restaurant and other sales, decreased to 16.3% in Q1 2026 from 16.7% in Q1 2025.",
+      "source": "press_release",
+      "status": "verified",
+      "reasons": [],
+      "pass": "snippets"
+    }
+  },
+  "flags": [],
+  "usage": {
+    "prompt_tokens": 9556,
+    "completion_tokens": 384,
+    "cost_usd": 0.002965,
+    "calls": 1
+  }
+}
