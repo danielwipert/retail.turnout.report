@@ -121,14 +121,16 @@ def _targets(args: argparse.Namespace) -> list:
     return select(chains, tickers)
 
 
-def _run_model(model: str, targets: list, out_dir: Path | None, force: bool) -> list[dict]:
+def _run_model(model: str, targets: list, out_dir: Path | None, force: bool,
+               max_quarters: int | None = None) -> list[dict]:
     from turnout.extract.llm import OpenRouterExtractor
     from turnout.extract.run import extract_quarter, quarter_dirs, result_path
 
     extractor = OpenRouterExtractor(model)
     results = []
     for chain in targets:
-        for qdir in quarter_dirs(chain.ticker):
+        for qdir in quarter_dirs(chain.ticker)[:max_quarters]:
+            print(f"  {chain.ticker} {qdir.name} ...", flush=True)
             path = result_path(chain.ticker, qdir.name, out_dir) if out_dir else result_path(chain.ticker, qdir.name)
             if not force and path.exists() and json.loads(path.read_text()).get("model") == model:
                 results.append(json.loads(path.read_text()))
@@ -156,7 +158,7 @@ def cmd_extract(args: argparse.Namespace) -> int:
         print("No extraction model set yet. Run the bake-off first, or pass --model.")
         return 2
     print(f"Extracting with {model}")
-    results = _run_model(model, _targets(args), None, args.force)
+    results = _run_model(model, _targets(args), None, args.force, args.quarters)
     return 1 if any("error" in r for r in results) else 0
 
 
@@ -169,7 +171,7 @@ def cmd_bakeoff(args: argparse.Namespace) -> int:
     for model in models:
         print(f"\n=== {model} ===")
         out = DATA_DIR / "bakeoff" / model.replace("/", "__")
-        all_results[model] = _run_model(model, targets, out, args.force)
+        all_results[model] = _run_model(model, targets, out, args.force, args.quarters)
     n = max((len(v) for v in all_results.values()), default=0)
     report = bakeoff.report_markdown(bakeoff.compare(all_results), n)
     (DATA_DIR / "bakeoff").mkdir(parents=True, exist_ok=True)
@@ -225,6 +227,7 @@ def build_parser() -> argparse.ArgumentParser:
         p.add_argument("--tickers", nargs="+", help="Tickers (default: TXRH WMT FND)")
         p.add_argument("--all", action="store_true", help="Every chain")
         p.add_argument("--force", action="store_true", help="Redo even if already extracted")
+        p.add_argument("--quarters", type=int, default=None, help="Only the latest N quarters per chain (quick tests)")
         if name == "extract":
             p.add_argument("--model", help="OpenRouter model id (default: data/settings.json)")
         else:

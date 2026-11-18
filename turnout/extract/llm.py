@@ -57,7 +57,7 @@ class Extractor(Protocol):
 
 
 class OpenRouterExtractor:
-    def __init__(self, model: str, api_key: str | None = None, timeout: float = 180.0):
+    def __init__(self, model: str, api_key: str | None = None, timeout: float = 90.0):
         self.model = model
         self.api_key = api_key or os.environ.get("OPENROUTER_API_KEY", "")
         if not self.api_key:
@@ -87,10 +87,14 @@ class OpenRouterExtractor:
         }
         last_error = None
         for attempt in range(3):
+            started = time.monotonic()
             try:
                 resp = self._client.post(OPENROUTER_URL, json=body, headers=headers)
                 if resp.status_code in (429, 500, 502, 503, 504):
                     raise httpx.HTTPStatusError("retryable", request=resp.request, response=resp)
+                if resp.status_code >= 400:
+                    # Bad key, unknown model, unsupported schema...: retrying won't help.
+                    raise RuntimeError(f"{self.model}: HTTP {resp.status_code}: {resp.text[:500]}")
                 resp.raise_for_status()
                 payload = resp.json()
                 content = payload["choices"][0]["message"]["content"]
@@ -102,8 +106,12 @@ class OpenRouterExtractor:
                     cost_usd=float(u.get("cost", 0) or 0),
                     calls=1,
                 )
+                print(f"    llm call ok: {len(user_prompt):,} chars in, "
+                      f"{time.monotonic() - started:.1f}s, ${usage.cost_usd:.4f}", flush=True)
                 return Answer(data=data, usage=usage)
             except (httpx.HTTPError, json.JSONDecodeError, KeyError, IndexError) as exc:
+                print(f"    llm call failed (try {attempt + 1}/3) after "
+                      f"{time.monotonic() - started:.1f}s: {type(exc).__name__}: {str(exc)[:200]}", flush=True)
                 last_error = exc
                 time.sleep(2 ** attempt * 2)
         raise RuntimeError(f"{self.model}: extraction failed after retries: {last_error}")

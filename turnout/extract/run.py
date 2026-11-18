@@ -18,7 +18,7 @@ from turnout.extract.snippets import snippets
 from turnout.universe import Chain
 
 EXTRACTED_DIR = DATA_DIR / "extracted"
-FULL_TEXT_LIMIT = 400_000  # characters per document on the full-text retry
+FULL_TEXT_LIMIT = 150_000  # characters per document on the full-text retry (~40k tokens)
 
 
 def load_documents(quarter_dir: Path) -> tuple[dict, dict[str, str]]:
