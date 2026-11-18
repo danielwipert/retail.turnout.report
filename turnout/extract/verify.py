@@ -16,9 +16,14 @@ _TRANSLATE = str.maketrans({
 })
 
 
+_TOKEN = re.compile(r"[a-z0-9]+(?:\.[0-9]+)?")
+MAX_TOKEN_GAP = 3  # filing tokens allowed between two consecutive quote tokens
+_ZERO_WIDTH = re.compile("[\u200b\u200c\u200d\ufeff]")
+
+
 def normalize(s: str) -> str:
     """Lowercase, unify quotes/dashes, and ignore table-cell separators and spacing."""
-    s = s.translate(_TRANSLATE).replace("|", " ")
+    s = _ZERO_WIDTH.sub("", s.translate(_TRANSLATE)).replace("|", " ")
     s = re.sub(r"\s+", " ", s)
     s = re.sub(r"\s+([%)])", r"\1", s)  # "4.5 %" -> "4.5%", "(2.9 )" -> "(2.9)"
     s = re.sub(r"([($])\s+", r"\1", s)
@@ -47,9 +52,40 @@ class Check:
     reasons: list[str] = field(default_factory=list)
 
 
+def _token_match(nq: str, nt: str) -> int:
+    """Every word/number of the quote appears in the filing, in order, with small gaps.
+
+    Handles table rows whose cell separators, blank cells or punctuation differ
+    from the saved text, while still rejecting paraphrases (a word that isn't
+    there breaks the chain).
+    """
+    q = _TOKEN.findall(nq)
+    if len(q) < 2:
+        return -1
+    t = [(m.group(0), m.start()) for m in _TOKEN.finditer(nt)]
+    words = [w for w, _ in t]
+    for start in (i for i, w in enumerate(words) if w == q[0]):
+        j = start
+        ok = True
+        for token in q[1:]:
+            window = words[j + 1: j + 2 + MAX_TOKEN_GAP]
+            if token not in window:
+                ok = False
+                break
+            j = j + 1 + window.index(token)
+        if ok:
+            return t[start][1]
+    return -1
+
+
 def quote_in_text(quote: str, text: str) -> int:
     """Position of the quote in the text (normalized), or -1. '...' gaps are allowed."""
     nq, nt = normalize(quote), normalize(text)
+    if "..." not in nq and "…" not in nq:
+        exact = nt.find(nq)
+        if exact >= 0:
+            return exact
+        return _token_match(nq, nt)
     parts = [p.strip() for p in re.split(r"\.\.\.|…", nq) if p.strip()]
     if not parts:
         return -1

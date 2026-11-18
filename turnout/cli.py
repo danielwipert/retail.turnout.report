@@ -124,7 +124,7 @@ def _targets(args: argparse.Namespace) -> list:
 def _run_model(model: str, targets: list, out_dir: Path | None, force: bool,
                max_quarters: int | None = None) -> list[dict]:
     from turnout.extract.llm import OpenRouterExtractor
-    from turnout.extract.run import extract_quarter, quarter_dirs, result_path
+    from turnout.extract.run import extract_quarter, quarter_dirs, result_path, reverify
 
     extractor = OpenRouterExtractor(model)
     results = []
@@ -133,7 +133,10 @@ def _run_model(model: str, targets: list, out_dir: Path | None, force: bool,
             print(f"  {chain.ticker} {qdir.name} ...", flush=True)
             path = result_path(chain.ticker, qdir.name, out_dir) if out_dir else result_path(chain.ticker, qdir.name)
             if not force and path.exists() and json.loads(path.read_text()).get("model") == model:
-                results.append(json.loads(path.read_text()))
+                saved = reverify(json.loads(path.read_text()), chain, qdir)
+                path.write_text(json.dumps(saved, indent=2) + "\n")
+                results.append(saved)
+                print(f"  {chain.ticker} {qdir.name}  reused saved answer (re-checked)")
                 continue
             try:
                 result = extract_quarter(chain, qdir, extractor)
@@ -199,6 +202,21 @@ def cmd_review(args: argparse.Namespace) -> int:
     return 0
 
 
+def cmd_bakeoff_report(args: argparse.Namespace) -> int:
+    from turnout.extract import bakeoff
+
+    base = DATA_DIR / "bakeoff"
+    all_results = {}
+    for model_dir in sorted(p for p in base.iterdir() if p.is_dir()):
+        model = model_dir.name.replace("__", "/")
+        all_results[model] = [json.loads(p.read_text()) for p in sorted(model_dir.glob("*/*.json"))]
+    n = max((len(v) for v in all_results.values()), default=0)
+    report = bakeoff.report_markdown(bakeoff.compare(all_results), n)
+    (base / "report.md").write_text(report)
+    print(report)
+    return 0
+
+
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(prog="python -m turnout", description="The Turnout Report pipeline")
     sub = parser.add_subparsers(dest="command", required=True)
@@ -233,6 +251,9 @@ def build_parser() -> argparse.ArgumentParser:
         else:
             p.add_argument("--models", nargs="+", help="Model ids (default: data/settings.json)")
         p.set_defaults(func=func)
+
+    sub.add_parser("bakeoff-report", help="Build the bake-off report from saved results").set_defaults(
+        func=cmd_bakeoff_report)
 
     rv = sub.add_parser("review", help="Open review issues, or apply a reviewer's reply")
     rv.add_argument("action", choices=["open", "apply"])

@@ -133,3 +133,14 @@ def test_table_row_quotes_with_odd_cell_separators_match():
     quote = "Guest traffic counts | \t | 4.5 | % | \t | 1.1 | %"
     c = verify.check_field(F["comp_traffic_pct"], ans(4.5, quote, "periodic"), docs, ["company restaurants"])
     assert c.status == "verified", c.reasons
+
+
+def test_token_match_handles_blank_cells_and_zero_width_but_rejects_paraphrase():
+    text = "Guest traffic counts | 4.5 | % | | 1.1 | %\nComparable restaurant sales | 7.1 | % | \u200b | 3.5 | %"
+    docs = {"press_release": "", "periodic": text}
+    q1 = "Comparable restaurant sales | 7.1 | % | \u200b | 3.5 | %"
+    assert verify.quote_in_text(q1, text) >= 0
+    q2 = "Guest traffic counts | | | 4.5 | % | | | 1.1 | %"
+    assert verify.quote_in_text(q2, text) >= 0
+    q3 = "Guest traffic counts increased 4.5%"  # 'increased' is not in the filing
+    assert verify.quote_in_text(q3, text) == -1

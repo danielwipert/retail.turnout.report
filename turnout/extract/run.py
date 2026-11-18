@@ -18,7 +18,7 @@ from turnout.extract.snippets import snippets
 from turnout.universe import Chain
 
 EXTRACTED_DIR = DATA_DIR / "extracted"
-FULL_TEXT_LIMIT = 150_000  # characters per document on the full-text retry (~40k tokens)
+FULL_TEXT_LIMIT = 80_000  # characters per document on the full-text retry (~20k tokens each; fits 128k-context models)
 
 
 def load_documents(quarter_dir: Path) -> tuple[dict, dict[str, str]]:
@@ -111,3 +111,26 @@ def quarter_dirs(ticker: str, raw_dir: Path = RAW_DIR) -> list[Path]:
 
 def needs_review(result: dict) -> list[str]:
     return [name for name, r in result["fields"].items() if r["status"] == "flagged"]
+
+
+def reverify(result: dict, chain: Chain, quarter_dir: Path) -> dict:
+    """Re-run the deterministic checks on saved answers (no LLM call).
+
+    Lets checker fixes apply to earlier runs for free. Reviewed fields are left alone.
+    """
+    _, documents = load_documents(quarter_dir)
+    by_name = {f.name: f for f in fields_for(chain.tier)}
+    for name, r in result["fields"].items():
+        if name not in by_name or r["status"] in {"approved_manual", "rejected", "derived"}:
+            continue
+        check = verify.check_field(by_name[name], r, documents, chain.segment_keywords)
+        r["status"], r["reasons"] = check.status, check.reasons
+    if chain.tier == "core":
+        f = result["fields"]
+        val = lambda n: f[n]["value"] if f[n]["status"] in {"verified", "approved_manual"} else None  # noqa: E731
+        result["flags"] = (
+            ["comp_not_equal_traffic_plus_ticket"]
+            if verify.arithmetic_ok(val("comp_sales_pct"), val("comp_traffic_pct"), val("comp_ticket_pct")) is False
+            else []
+        )
+    return result

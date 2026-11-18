@@ -68,6 +68,7 @@ class OpenRouterExtractor:
         body = {
             "model": self.model,
             "temperature": 0,
+            "max_tokens": 4000,
             "messages": [
                 {"role": "system", "content": SYSTEM_PROMPT},
                 {"role": "user", "content": user_prompt},
@@ -97,7 +98,9 @@ class OpenRouterExtractor:
                     raise RuntimeError(f"{self.model}: HTTP {resp.status_code}: {resp.text[:500]}")
                 resp.raise_for_status()
                 payload = resp.json()
-                content = payload["choices"][0]["message"]["content"]
+                content = payload["choices"][0]["message"].get("content")
+                if not content:
+                    raise ValueError("model returned an empty answer")
                 data = json.loads(content)
                 u = payload.get("usage", {}) or {}
                 usage = Usage(
@@ -109,7 +112,7 @@ class OpenRouterExtractor:
                 print(f"    llm call ok: {len(user_prompt):,} chars in, "
                       f"{time.monotonic() - started:.1f}s, ${usage.cost_usd:.4f}", flush=True)
                 return Answer(data=data, usage=usage)
-            except (httpx.HTTPError, json.JSONDecodeError, KeyError, IndexError) as exc:
+            except (httpx.HTTPError, json.JSONDecodeError, KeyError, IndexError, ValueError) as exc:
                 print(f"    llm call failed (try {attempt + 1}/3) after "
                       f"{time.monotonic() - started:.1f}s: {type(exc).__name__}: {str(exc)[:200]}", flush=True)
                 last_error = exc
