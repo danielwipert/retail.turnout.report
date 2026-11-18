@@ -9,11 +9,11 @@
     "https://www.sec.gov/Archives/edgar/data/1289460/000155837025006967/txrh-20250507xex99d1.htm"
   ],
   "model": "google/gemini-2.5-flash",
-  "extracted_at": "2026-11-18T03:59:49+00:00",
+  "extracted_at": "2026-11-18T04:05:43+00:00",
   "fields": {
     "comp_sales_pct": {
       "value": 3.5,
-      "quote": "\u25cf | Comparable restaurant sales increased 3.5% at company restaurants;",
+      "quote": "Comparable restaurant sales increased 3.5% at company restaurants;",
       "source": "press_release",
       "status": "verified",
       "reasons": [],
@@ -21,7 +21,7 @@
     },
     "comp_traffic_pct": {
       "value": 1.1,
-      "quote": "Guest traffic counts | 1.1 | % | \n",
+      "quote": "Guest traffic counts | 1.1 | % | \n | 4.3 | %",
       "source": "periodic",
       "status": "verified",
       "reasons": [],
@@ -29,23 +29,23 @@
     },
     "comp_ticket_pct": {
       "value": 2.4,
-      "quote": "Per person average check | 2.4 | % | \n",
+      "quote": "Per person average check | 2.4 | % | \n | 4.1 | %",
       "source": "periodic",
       "status": "verified",
       "reasons": [],
       "pass": "snippets"
     },
     "ending_units": {
-      "value": 792,
-      "quote": "Total restaurants | 792 | 753 | 39",
+      "value": 688,
+      "quote": "Total company restaurants | \n | 688 | 644 | 44",
       "source": "press_release",
       "status": "verified",
       "reasons": [],
-      "pass": "snippets"
+      "pass": "full_text"
     },
     "margin_pct": {
       "value": 16.6,
-      "quote": "Restaurant margin (as a percentage of restaurant and other sales) | \n | 16.6% | \n | 17.4%",
+      "quote": "Restaurant margin, as a percentage of restaurant and other sales, decreased 77 basis points to 16.6% as commodity inflation of 2.1% and wage and other labor inflation of 4.6% were partially offset by higher sales;",
       "source": "press_release",
       "status": "verified",
       "reasons": [],
@@ -54,9 +54,9 @@
   },
   "flags": [],
   "usage": {
-    "prompt_tokens": 8931,
-    "completion_tokens": 221,
-    "cost_usd": 0.0032318,
-    "calls": 1
+    "prompt_tokens": 39612,
+    "completion_tokens": 289,
+    "cost_usd": 0.012606099999999999,
+    "calls": 2
   }
 }

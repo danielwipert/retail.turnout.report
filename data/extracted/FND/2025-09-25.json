@@ -9,7 +9,7 @@
     "https://www.sec.gov/Archives/edgar/data/1507079/000162828025047536/fnd-20250925x8kxex991.htm"
   ],
   "model": "google/gemini-2.5-flash",
-  "extracted_at": "2026-11-18T04:00:27+00:00",
+  "extracted_at": "2026-11-18T04:06:19+00:00",
   "fields": {
     "comp_sales_pct": {
       "value": -1.2,
@@ -56,7 +56,7 @@
   "usage": {
     "prompt_tokens": 7400,
     "completion_tokens": 326,
-    "cost_usd": 0.003035,
+    "cost_usd": 0.00278417,
     "calls": 1
   }
 }

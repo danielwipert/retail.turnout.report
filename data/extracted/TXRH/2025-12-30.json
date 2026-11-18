@@ -9,7 +9,7 @@
     "https://www.sec.gov/Archives/edgar/data/1289460/000110465926017538/txrh-20260218xex99d1.htm"
   ],
   "model": "google/gemini-2.5-flash",
-  "extracted_at": "2026-11-18T03:59:44+00:00",
+  "extracted_at": "2026-11-18T04:05:36+00:00",
   "fields": {
     "comp_sales_pct": {
       "value": 4.2,
@@ -37,11 +37,11 @@
     },
     "ending_units": {
       "value": 714,
-      "quote": "As of December 30, 2025, we owned and operated 714 restaurants and franchised an additional 102 restaurants.",
-      "source": "periodic",
+      "quote": "Total company restaurants | | 714 | 666 | 48 | | | | ",
+      "source": "press_release",
       "status": "verified",
       "reasons": [],
-      "pass": "snippets"
+      "pass": "full_text"
     },
     "margin_pct": {
       "value": 13.9,
@@ -54,9 +54,9 @@
   },
   "flags": [],
   "usage": {
-    "prompt_tokens": 34108,
-    "completion_tokens": 287,
-    "cost_usd": 0.0109499,
+    "prompt_tokens": 34202,
+    "completion_tokens": 310,
+    "cost_usd": 0.0110356,
     "calls": 2
   }
 }

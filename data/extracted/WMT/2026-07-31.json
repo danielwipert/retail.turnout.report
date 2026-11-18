@@ -10,11 +10,11 @@
     "https://www.sec.gov/Archives/edgar/data/104169/000010416926000145/earningspresentationfy27.htm"
   ],
   "model": "google/gemini-2.5-flash",
-  "extracted_at": "2026-11-18T03:59:53+00:00",
+  "extracted_at": "2026-11-18T04:05:49+00:00",
   "fields": {
     "comp_sales_pct": {
       "value": 2.6,
-      "quote": "Walmart U.S. comp sales 2 grew 2.6%, led by growth in transactions and includes 80 bps headwind from health & wellness.",
+      "quote": "Comp sales (ex. fuel) 2 | 2.6% | 4.6% | NP | NP",
       "source": "press_release",
       "status": "verified",
       "reasons": [],
@@ -37,12 +37,12 @@
       "pass": "snippets"
     },
     "ending_units": {
-      "value": 699,
-      "quote": "Retail square feet at period end | 699 | 698 | 699 | 698",
+      "value": 4615,
+      "quote": "Unit counts at period end | 4,615 | 4,606 | 4,615 | 4,606",
       "source": "periodic",
       "status": "verified",
       "reasons": [],
-      "pass": "snippets"
+      "pass": "full_text"
     },
     "margin_pct": {
       "value": 25.4,
@@ -55,9 +55,9 @@
   },
   "flags": [],
   "usage": {
-    "prompt_tokens": 13750,
-    "completion_tokens": 302,
-    "cost_usd": 0.0046181,
-    "calls": 1
+    "prompt_tokens": 60074,
+    "completion_tokens": 335,
+    "cost_usd": 0.0185978,
+    "calls": 2
   }
 }

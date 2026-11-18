@@ -10,7 +10,7 @@
     "https://www.sec.gov/Archives/edgar/data/104169/000010416926000032/earningspresentationfy26.htm"
   ],
   "model": "google/gemini-2.5-flash",
-  "extracted_at": "2026-11-18T04:00:00+00:00",
+  "extracted_at": "2026-11-18T04:05:55+00:00",
   "fields": {
     "comp_sales_pct": {
       "value": 4.6,
@@ -40,9 +40,12 @@
       "value": 4611,
       "quote": "Walmart U.S. is our largest segment and operates 4,611 stores in the U.S., including in all 50 states, Washington D.C. and Puerto Rico.",
       "source": "periodic",
-      "status": "verified",
-      "reasons": [],
-      "pass": "full_text"
+      "status": "flagged",
+      "reasons": [
+        "required_words_missing"
+      ],
+      "pass": "full_text",
+      "review_issue": 5
     },
     "margin_pct": {
       "value": 24.0,
@@ -55,9 +58,9 @@
   },
   "flags": [],
   "usage": {
-    "prompt_tokens": 51782,
-    "completion_tokens": 437,
-    "cost_usd": 0.01636682,
+    "prompt_tokens": 51836,
+    "completion_tokens": 377,
+    "cost_usd": 0.01623302,
     "calls": 2
   }
 }

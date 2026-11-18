@@ -9,7 +9,7 @@
     "https://www.sec.gov/Archives/edgar/data/1507079/000162828026051055/fnd-20260625x8kxex991.htm"
   ],
   "model": "google/gemini-2.5-flash",
-  "extracted_at": "2026-11-18T04:00:20+00:00",
+  "extracted_at": "2026-11-18T04:06:13+00:00",
   "fields": {
     "comp_sales_pct": {
       "value": -2.1,
@@ -47,16 +47,19 @@
       "value": 48.2,
       "quote": "Gross margin of 48.2% increased 430 basis points from 43.9% in the second quarter of fiscal 2025.",
       "source": "press_release",
-      "status": "verified",
-      "reasons": [],
-      "pass": "snippets"
+      "status": "flagged",
+      "reasons": [
+        "out_of_line_with_adjacent_quarters"
+      ],
+      "pass": "snippets",
+      "review_issue": 2
     }
   },
   "flags": [],
   "usage": {
     "prompt_tokens": 8780,
-    "completion_tokens": 298,
-    "cost_usd": 0.00312439,
+    "completion_tokens": 297,
+    "cost_usd": 0.00312189,
     "calls": 1
   }
 }

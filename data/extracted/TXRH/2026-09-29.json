@@ -9,7 +9,7 @@
     "https://www.sec.gov/Archives/edgar/data/1289460/000162828026071018/txrhq32026november52026-ex.htm"
   ],
   "model": "google/gemini-2.5-flash",
-  "extracted_at": "2026-11-18T03:59:37+00:00",
+  "extracted_at": "2026-11-18T04:05:27+00:00",
   "fields": {
     "comp_sales_pct": {
       "value": 4.3,
@@ -36,12 +36,12 @@
       "pass": "snippets"
     },
     "ending_units": {
-      "value": 840,
-      "quote": "Total restaurants | 840 | 806 | 34",
+      "value": 737,
+      "quote": "Total company restaurants | 737 | 702 | 35",
       "source": "press_release",
       "status": "verified",
       "reasons": [],
-      "pass": "snippets"
+      "pass": "full_text"
     },
     "margin_pct": {
       "value": 14.6,
@@ -54,9 +54,9 @@
   },
   "flags": [],
   "usage": {
-    "prompt_tokens": 10688,
-    "completion_tokens": 283,
-    "cost_usd": 0.0039139,
-    "calls": 1
+    "prompt_tokens": 42352,
+    "completion_tokens": 319,
+    "cost_usd": 0.013503099999999999,
+    "calls": 2
   }
 }

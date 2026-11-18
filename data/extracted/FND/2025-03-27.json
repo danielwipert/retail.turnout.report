@@ -9,7 +9,7 @@
     "https://www.sec.gov/Archives/edgar/data/1507079/000150707925000094/fnd-20250327x8kxex991.htm"
   ],
   "model": "google/gemini-2.5-flash",
-  "extracted_at": "2026-11-18T04:00:31+00:00",
+  "extracted_at": "2026-11-18T04:06:23+00:00",
   "fields": {
     "comp_sales_pct": {
       "value": -1.8,
@@ -37,8 +37,8 @@
     },
     "ending_units": {
       "value": 254,
-      "quote": "Number of warehouse-format stores | 254 | 225",
-      "source": "periodic",
+      "quote": "We opened four new warehouse stores and closed one warehouse store, ending the quarter with 254 warehouse stores and five design studios.",
+      "source": "press_release",
       "status": "verified",
       "reasons": [],
       "pass": "snippets"
@@ -55,8 +55,8 @@
   "flags": [],
   "usage": {
     "prompt_tokens": 6804,
-    "completion_tokens": 253,
-    "cost_usd": 0.0026737,
+    "completion_tokens": 265,
+    "cost_usd": 0.0027037,
     "calls": 1
   }
 }

@@ -9,7 +9,7 @@
     "https://www.sec.gov/Archives/edgar/data/1507079/000162828025037011/fnd-20250626x8kxex991.htm"
   ],
   "model": "google/gemini-2.5-flash",
-  "extracted_at": "2026-11-18T04:00:29+00:00",
+  "extracted_at": "2026-11-18T04:06:20+00:00",
   "fields": {
     "comp_sales_pct": {
       "value": 0.4,

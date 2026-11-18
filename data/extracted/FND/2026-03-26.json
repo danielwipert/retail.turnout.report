@@ -9,19 +9,19 @@
     "https://www.sec.gov/Archives/edgar/data/1507079/000162828026028899/fnd-20260326x8kxex991.htm"
   ],
   "model": "google/gemini-2.5-flash",
-  "extracted_at": "2026-11-18T04:00:22+00:00",
+  "extracted_at": "2026-11-18T04:06:14+00:00",
   "fields": {
     "comp_sales_pct": {
       "value": -3.7,
-      "quote": "Comparable store sales decreased 3.7%.",
-      "source": "press_release",
+      "quote": "Comparable store sales | (3.7) | % | (1.8) | %",
+      "source": "periodic",
       "status": "verified",
       "reasons": [],
       "pass": "snippets"
     },
     "comp_traffic_pct": {
       "value": -5.5,
-      "quote": "The comparable store sales decline during the period of 3.7%, or $40.8 million, was due to a 5.5% decrease in comparable transactions, partially offset by a 1.9% increase in comparable average ticket.",
+      "quote": "Comparable transactions | (5.5) | % | (3.8) | %",
       "source": "periodic",
       "status": "verified",
       "reasons": [],
@@ -29,7 +29,7 @@
     },
     "comp_ticket_pct": {
       "value": 1.9,
-      "quote": "The comparable store sales decline during the period of 3.7%, or $40.8 million, was due to a 5.5% decrease in comparable transactions, partially offset by a 1.9% increase in comparable average ticket.",
+      "quote": "Comparable average ticket | 1.9 | % | 2.1 | %",
       "source": "periodic",
       "status": "verified",
       "reasons": [],
@@ -37,8 +37,8 @@
     },
     "ending_units": {
       "value": 276,
-      "quote": "We opened six new warehouse stores, ending the quarter with 276 warehouse stores, five design studios, and five distribution centers.",
-      "source": "press_release",
+      "quote": "Number of warehouse-format stores | 276 | 254",
+      "source": "periodic",
       "status": "verified",
       "reasons": [],
       "pass": "snippets"
@@ -55,8 +55,8 @@
   "flags": [],
   "usage": {
     "prompt_tokens": 6833,
-    "completion_tokens": 320,
-    "cost_usd": 0.0028499,
+    "completion_tokens": 252,
+    "cost_usd": 0.0026799,
     "calls": 1
   }
 }

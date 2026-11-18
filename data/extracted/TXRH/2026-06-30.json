@@ -9,7 +9,7 @@
     "https://www.sec.gov/Archives/edgar/data/1289460/000110465926091980/txrh-20260805xex99d1.htm"
   ],
   "model": "google/gemini-2.5-flash",
-  "extracted_at": "2026-11-18T03:59:39+00:00",
+  "extracted_at": "2026-11-18T04:05:30+00:00",
   "fields": {
     "comp_sales_pct": {
       "value": 6.2,
@@ -21,7 +21,7 @@
     },
     "comp_traffic_pct": {
       "value": 3.0,
-      "quote": "Guest traffic counts | 3.0 | % | \n",
+      "quote": "Guest traffic counts | 3.0 | % | \n | 4.0 | % | \n | 3.8 | % | \n | 2.6 | %",
       "source": "periodic",
       "status": "verified",
       "reasons": [],
@@ -29,19 +29,19 @@
     },
     "comp_ticket_pct": {
       "value": 3.2,
-      "quote": "Per person average check | 3.2 | % | \n",
+      "quote": "Per person average check | 3.2 | % | \n | 1.8 | % | \n | 2.9 | % | \n | 2.1 | %",
       "source": "periodic",
       "status": "verified",
       "reasons": [],
       "pass": "snippets"
     },
     "ending_units": {
-      "value": 832,
-      "quote": "Total restaurants | 832 | 797 | 35 | \n",
+      "value": 732,
+      "quote": "Total company restaurants | \n | 732 | 695 | 37 | \n | \n | \n | \n",
       "source": "press_release",
       "status": "verified",
       "reasons": [],
-      "pass": "snippets"
+      "pass": "full_text"
     },
     "margin_pct": {
       "value": 16.4,
@@ -54,9 +54,9 @@
   },
   "flags": [],
   "usage": {
-    "prompt_tokens": 10678,
-    "completion_tokens": 269,
-    "cost_usd": 0.0038759,
-    "calls": 1
+    "prompt_tokens": 47120,
+    "completion_tokens": 369,
+    "cost_usd": 0.015058499999999999,
+    "calls": 2
   }
 }

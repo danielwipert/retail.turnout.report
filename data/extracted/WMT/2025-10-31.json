@@ -11,7 +11,7 @@
     "https://www.sec.gov/Archives/edgar/data/104169/000010416925000177/pressrelease-transfertonas.htm"
   ],
   "model": "google/gemini-2.5-flash",
-  "extracted_at": "2026-11-18T04:00:04+00:00",
+  "extracted_at": "2026-11-18T04:05:58+00:00",
   "fields": {
     "comp_sales_pct": {
       "value": 4.8,
@@ -27,7 +27,7 @@
       "source": "press_release",
       "status": "verified",
       "reasons": [],
-      "pass": "full_text"
+      "pass": "snippets"
     },
     "comp_ticket_pct": {
       "value": 2.7,
@@ -35,13 +35,13 @@
       "source": "press_release",
       "status": "verified",
       "reasons": [],
-      "pass": "full_text"
+      "pass": "snippets"
     },
     "ending_units": {
-      "value": 698,
-      "quote": "Retail square feet at period end | 698 | 698 | 698 | 698",
-      "source": "periodic",
-      "status": "verified",
+      "value": null,
+      "quote": null,
+      "source": null,
+      "status": "missing",
       "reasons": [],
       "pass": "snippets"
     },
@@ -56,9 +56,9 @@
   },
   "flags": [],
   "usage": {
-    "prompt_tokens": 59343,
-    "completion_tokens": 395,
-    "cost_usd": 0.01853012,
+    "prompt_tokens": 59356,
+    "completion_tokens": 328,
+    "cost_usd": 0.01836652,
     "calls": 2
   }
 }
