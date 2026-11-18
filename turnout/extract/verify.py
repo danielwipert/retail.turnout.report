@@ -17,7 +17,12 @@ _TRANSLATE = str.maketrans({
 
 
 def normalize(s: str) -> str:
-    return re.sub(r"\s+", " ", s.translate(_TRANSLATE)).strip().lower()
+    """Lowercase, unify quotes/dashes, and ignore table-cell separators and spacing."""
+    s = s.translate(_TRANSLATE).replace("|", " ")
+    s = re.sub(r"\s+", " ", s)
+    s = re.sub(r"\s+([%)])", r"\1", s)  # "4.5 %" -> "4.5%", "(2.9 )" -> "(2.9)"
+    s = re.sub(r"([($])\s+", r"\1", s)
+    return s.strip().lower()
 
 
 NEG_WORDS = re.compile(r"\b(decreas\w*|declin\w*|fell|down|lower|negative|drop\w*|softer|reduc\w*)\b", re.I)
@@ -30,6 +35,8 @@ _NUMBER = re.compile(
     r"(?P<unit>%|percent\b|bps\b|basis points?\b)?\s*(?P<close>\))?",
     re.I,
 )
+
+SEGMENT_LOOKBACK = 6000  # characters before the quote where a segment heading may sit
 
 RANGES = {"pct": (-40.0, 40.0), "margin": (0.0, 70.0), "count": (1, 100_000)}
 
@@ -136,7 +143,7 @@ def check_field(f: Field, answer: dict, documents: dict[str, str], segment_keywo
     # 5. Segment: a keyword appears in the quote or shortly before it.
     if segment_keywords and f.name in {"comp_sales_pct", "comp_traffic_pct", "comp_ticket_pct"} and where:
         full = normalize(documents[where])
-        window = full[max(0, pos - 2000): pos] + " " + normalize(quote)
+        window = full[max(0, pos - SEGMENT_LOOKBACK): pos] + " " + normalize(quote)
         if not any(normalize(k) in window for k in segment_keywords):
             reasons.append("segment_unconfirmed")
 

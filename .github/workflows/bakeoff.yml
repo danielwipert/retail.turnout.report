@@ -16,6 +16,10 @@ on:
         description: "Latest N quarters per chain (blank = all saved)"
         required: false
         default: ""
+      force:
+        description: "Redo quarters already run"
+        type: boolean
+        default: false
 
 permissions:
   contents: write
@@ -58,6 +62,7 @@ jobs:
           if [ -n "${{ inputs.models }}" ]; then ARGS="$ARGS --models ${{ inputs.models }}"; fi
           if [ -n "${{ inputs.tickers }}" ]; then ARGS="$ARGS --tickers ${{ inputs.tickers }}"; fi
           if [ -n "${{ inputs.quarters }}" ]; then ARGS="$ARGS --quarters ${{ inputs.quarters }}"; fi
+          if [ "${{ inputs.force }}" = "true" ]; then ARGS="$ARGS --force"; fi
           python -m turnout bakeoff $ARGS
 
       - name: Summary

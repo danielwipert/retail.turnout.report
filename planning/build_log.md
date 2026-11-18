@@ -66,3 +66,5 @@ Original checklist for the first live run:
 | B-7 | Segment match = keyword in quote | Keyword in the quote **or within ~2,000 characters before it** | Segment names usually sit in a heading above the sentence. |
 
 **Run order for the first time:** `fetch filings` (fills R2) → `model bake-off` → set `extraction_model` in `data/settings.json` → `extract numbers`.
+
+**Fixes after the first live test (2026-11-17):** quotes from table rows failed "quote in filing" because the model wrote cell separators differently. `normalize()` now ignores `|` and spacing before `%`. The segment lookback was widened from 2,000 to 6,000 characters (TXRH's "Company restaurants" heading sits above a long table). The full-text retry is capped at 150k characters per document. Gemini 2.5 Flash on 3 TXRH quarters returned the right values (Q3 2026: comp 4.4, traffic 0.7, check 3.6) for about $0.02.

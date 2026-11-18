@@ -126,3 +126,10 @@ def test_extract_quarter_end_to_end_with_retry(tmp_path):
     assert f["margin_pct"]["status"] == "flagged"  # 14.9 isn't in the quote
     assert result["usage"]["calls"] == 2
     assert result["flags"] == []
+
+
+def test_table_row_quotes_with_odd_cell_separators_match():
+    docs = {"press_release": "", "periodic": "Company restaurants\nGuest traffic counts | 4.5 | % | 1.1 | %\n"}
+    quote = "Guest traffic counts | \t | 4.5 | % | \t | 1.1 | %"
+    c = verify.check_field(F["comp_traffic_pct"], ans(4.5, quote, "periodic"), docs, ["company restaurants"])
+    assert c.status == "verified", c.reasons
