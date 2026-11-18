@@ -1,0 +1,66 @@
+{
+  "ticker": "TXRH",
+  "tier": "core",
+  "period_end": "2026-09-29",
+  "periodic_accession": "0001628280-26-071362",
+  "periodic_url": "https://www.sec.gov/Archives/edgar/data/1289460/000162828026071362/txrh-20260929.htm",
+  "earnings_8k_accession": "0001628280-26-071018",
+  "press_release_urls": [
+    "https://www.sec.gov/Archives/edgar/data/1289460/000162828026071018/txrhq32026november52026-ex.htm"
+  ],
+  "model": "google/gemini-2.5-flash",
+  "extracted_at": "2026-11-18T01:46:49+00:00",
+  "fields": {
+    "comp_sales_pct": {
+      "value": 4.4,
+      "quote": "Comparable restaurant sales (1) | 4.4 | % | 6.3 | %",
+      "source": "press_release",
+      "status": "verified",
+      "reasons": [],
+      "pass": "snippets"
+    },
+    "comp_traffic_pct": {
+      "value": 0.7,
+      "quote": "Guest traffic counts | 0.7 | % | 4.3 | % | 2.8 | % | 3.1 | %",
+      "source": "periodic",
+      "status": "flagged",
+      "reasons": [
+        "segment_unconfirmed"
+      ],
+      "pass": "full_text"
+    },
+    "comp_ticket_pct": {
+      "value": 3.6,
+      "quote": "Per person average check | 3.6 | % | 1.8 | % | 3.1 | % | 2.0 | %",
+      "source": "periodic",
+      "status": "flagged",
+      "reasons": [
+        "segment_unconfirmed"
+      ],
+      "pass": "full_text"
+    },
+    "ending_units": {
+      "value": 664,
+      "quote": "Company - Texas Roadhouse | 664 | 638 | 26",
+      "source": "press_release",
+      "status": "verified",
+      "reasons": [],
+      "pass": "snippets"
+    },
+    "margin_pct": {
+      "value": 14.8,
+      "quote": "Restaurant margin, as a percentage of restaurant and other sales, increased to 14.8% in Q3 2026 from 14.4% in Q3 2025 primarily driven by lower food and beverage costs (0.3%).",
+      "source": "periodic",
+      "status": "verified",
+      "reasons": [],
+      "pass": "snippets"
+    }
+  },
+  "flags": [],
+  "usage": {
+    "prompt_tokens": 46344,
+    "completion_tokens": 333,
+    "cost_usd": 0.014735700000000001,
+    "calls": 2
+  }
+}

@@ -1,0 +1,70 @@
+{
+  "ticker": "TXRH",
+  "tier": "core",
+  "period_end": "2026-03-31",
+  "periodic_accession": "0001104659-26-057604",
+  "periodic_url": "https://www.sec.gov/Archives/edgar/data/1289460/000110465926057604/txrh-20260331x10q.htm",
+  "earnings_8k_accession": "0001104659-26-057105",
+  "press_release_urls": [
+    "https://www.sec.gov/Archives/edgar/data/1289460/000110465926057105/txrh-20260506xex99d1.htm"
+  ],
+  "model": "google/gemini-2.5-flash",
+  "extracted_at": "2026-11-18T01:46:52+00:00",
+  "fields": {
+    "comp_sales_pct": {
+      "value": 7.1,
+      "quote": "Comparable restaurant sales and store weeks increased 7.1% and 5.7%, respectively, at company restaurants in Q1 2026 compared to Q1 2025.",
+      "source": "periodic",
+      "status": "verified",
+      "reasons": [],
+      "pass": "snippets"
+    },
+    "comp_traffic_pct": {
+      "value": 4.5,
+      "quote": "Guest traffic counts | \t | 4.5 | % | \t | 1.1 | %",
+      "source": "periodic",
+      "status": "flagged",
+      "reasons": [
+        "quote_not_in_filing"
+      ],
+      "pass": "snippets"
+    },
+    "comp_ticket_pct": {
+      "value": 2.6,
+      "quote": "Per person average check | \t | 2.6 | % | \t | 2.4 | %",
+      "source": "periodic",
+      "status": "flagged",
+      "reasons": [
+        "quote_not_in_filing"
+      ],
+      "pass": "snippets"
+    },
+    "ending_units": {
+      "value": 657,
+      "quote": "Company - Texas Roadhouse | \t | 657 | 629 | 28",
+      "source": "press_release",
+      "status": "flagged",
+      "reasons": [
+        "quote_not_in_filing"
+      ],
+      "pass": "snippets"
+    },
+    "margin_pct": {
+      "value": 16.3,
+      "quote": "Restaurant margin (as a percentage of restaurant and other sales) | \t | \t | 16.3% | \t | \t | 16.6%",
+      "source": "press_release",
+      "status": "flagged",
+      "reasons": [
+        "quote_not_in_filing"
+      ],
+      "pass": "snippets"
+    }
+  },
+  "flags": [],
+  "usage": {
+    "prompt_tokens": 8926,
+    "completion_tokens": 277,
+    "cost_usd": 0.0033703,
+    "calls": 1
+  }
+}
