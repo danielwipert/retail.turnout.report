@@ -1,6 +1,7 @@
 name: model bake-off
 
 # Compares LLMs on the same saved quarters (decision P2-2).
+# Each model runs as its own job, in parallel; a final job builds the report.
 on:
   workflow_dispatch:
     inputs:
@@ -17,7 +18,7 @@ on:
         required: false
         default: ""
       force:
-        description: "Redo quarters already run"
+        description: "Ask the models again even for quarters already run (otherwise saved answers are re-checked for free)"
         type: boolean
         default: false
 
@@ -29,9 +30,30 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  bakeoff:
+  plan:
+    runs-on: ubuntu-latest
+    outputs:
+      models: ${{ steps.models.outputs.models }}
+    steps:
+      - uses: actions/checkout@v4
+      - id: models
+        run: |
+          if [ -n "${{ inputs.models }}" ]; then
+            LIST=$(python3 -c "import json,sys; print(json.dumps(sys.argv[1].split()))" "${{ inputs.models }}")
+          else
+            LIST=$(python3 -c "import json; print(json.dumps(json.load(open('data/settings.json'))['bakeoff_models']))")
+          fi
+          echo "models=$LIST" >> "$GITHUB_OUTPUT"
+          echo "Models: $LIST"
+
+  run:
+    needs: plan
     runs-on: ubuntu-latest
     timeout-minutes: 90
+    strategy:
+      fail-fast: false
+      matrix:
+        model: ${{ fromJson(needs.plan.outputs.models) }}
     env:
       PYTHONUNBUFFERED: "1"
       OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
@@ -46,35 +68,55 @@ jobs:
           python-version: "3.12"
       - run: pip install -e .
 
-      - name: Check setup
-        run: |
-          for s in OPENROUTER_API_KEY R2_ACCOUNT_ID R2_ACCESS_KEY_ID R2_SECRET_ACCESS_KEY R2_BUCKET; do
-            if [ -z "${!s}" ]; then echo "::error::Missing repository secret: $s"; exit 1; fi
-          done
-
       - name: Get saved filings from R2
-        run: python -m turnout storage pull ${{ inputs.tickers && format('--tickers {0}', inputs.tickers) || '--tickers TXRH WMT FND' }}
-
-      - name: Run bake-off
-        timeout-minutes: 60
         run: |
-          ARGS=""
-          if [ -n "${{ inputs.models }}" ]; then ARGS="$ARGS --models ${{ inputs.models }}"; fi
+          T="${{ inputs.tickers }}"
+          python -m turnout storage pull --tickers ${T:-TXRH WMT FND}
+
+      - name: Run ${{ matrix.model }}
+        timeout-minutes: 80
+        run: |
+          ARGS="--models ${{ matrix.model }}"
           if [ -n "${{ inputs.tickers }}" ]; then ARGS="$ARGS --tickers ${{ inputs.tickers }}"; fi
           if [ -n "${{ inputs.quarters }}" ]; then ARGS="$ARGS --quarters ${{ inputs.quarters }}"; fi
           if [ "${{ inputs.force }}" = "true" ]; then ARGS="$ARGS --force"; fi
           python -m turnout bakeoff $ARGS
 
-      - name: Summary
+      - name: Hand results to the report job
         if: always()
-        run: cat data/bakeoff/report.md >> "$GITHUB_STEP_SUMMARY" || true
+        uses: actions/upload-artifact@v4
+        with:
+          name: bakeoff-${{ strategy.job-index }}
+          path: data/bakeoff/
+          if-no-files-found: ignore
+          retention-days: 7
+
+  report:
+    needs: run
+    if: always()
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -e .
+
+      - name: Collect every model's results
+        uses: actions/download-artifact@v4
+        with:
+          pattern: bakeoff-*
+          path: data/bakeoff/
+          merge-multiple: true
+
+      - name: Build report
+        run: python -m turnout bakeoff-report | tee -a "$GITHUB_STEP_SUMMARY"
 
       - name: Commit report and per-model results
-        if: always()
         run: |
           git config user.name "turnout-bot"
           git config user.email "actions@users.noreply.github.com"
-          git add data/bakeoff || true
+          git add data/bakeoff
           if ! git diff --cached --quiet; then
             git commit -m "Bake-off results"
             git pull --rebase -q && git push
