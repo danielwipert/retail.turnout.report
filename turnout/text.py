@@ -21,7 +21,8 @@ def html_to_text(html: str) -> str:
     # Keep table rows on one line, cells separated by " | ".
     for row in soup.find_all("tr"):
         cells = [c.get_text(" ", strip=True) for c in row.find_all(["td", "th"])]
-        cells = [c for c in cells if c]
+        # Drop empty and zero-width-only cells (common in EDGAR tables).
+        cells = [c for c in cells if c.strip("\u200b\u200c\u200d\ufeff \u00a0")]
         row.replace_with(soup.new_string("\n" + " | ".join(cells) + "\n"))
 
     for br in soup.find_all("br"):

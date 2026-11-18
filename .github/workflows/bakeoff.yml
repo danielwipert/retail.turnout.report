@@ -74,8 +74,10 @@ jobs:
           python -m turnout storage pull --tickers ${T:-TXRH WMT FND}
 
       - name: Run ${{ matrix.model }}
+        id: run
         timeout-minutes: 80
         run: |
+          echo "slug=$(echo '${{ matrix.model }}' | sed 's#/#__#g')" >> "$GITHUB_OUTPUT"
           ARGS="--models ${{ matrix.model }}"
           if [ -n "${{ inputs.tickers }}" ]; then ARGS="$ARGS --tickers ${{ inputs.tickers }}"; fi
           if [ -n "${{ inputs.quarters }}" ]; then ARGS="$ARGS --quarters ${{ inputs.quarters }}"; fi
@@ -87,7 +89,8 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: bakeoff-${{ strategy.job-index }}
-          path: data/bakeoff/
+          # Only this model's folder; other folders in the checkout are stale copies.
+          path: data/bakeoff/${{ steps.run.outputs.slug }}/
           if-no-files-found: ignore
           retention-days: 7
 
@@ -105,9 +108,16 @@ jobs:
       - name: Collect every model's results
         uses: actions/download-artifact@v4
         with:
-          pattern: bakeoff-*
-          path: data/bakeoff/
-          merge-multiple: true
+          path: artifacts/
+
+      - name: Put each model's results in place
+        run: |
+          for d in artifacts/bakeoff-*; do
+            # each artifact holds one model's folder contents: TICKER/period.json
+            M=$(python3 -c "import json,glob,sys; p=glob.glob(sys.argv[1]+'/*/*.json'); print(json.load(open(p[0]))['model'].replace('/','__') if p else '')" "$d")
+            [ -n "$M" ] || continue
+            rm -rf "data/bakeoff/$M" && mkdir -p "data/bakeoff/$M" && cp -r "$d"/* "data/bakeoff/$M/"
+          done
 
       - name: Build report
         run: python -m turnout bakeoff-report | tee -a "$GITHUB_STEP_SUMMARY"
