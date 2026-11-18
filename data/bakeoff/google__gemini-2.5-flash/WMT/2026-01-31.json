@@ -1,0 +1,63 @@
+{
+  "ticker": "WMT",
+  "tier": "core",
+  "period_end": "2026-01-31",
+  "periodic_accession": "0000104169-26-000055",
+  "periodic_url": "https://www.sec.gov/Archives/edgar/data/104169/000010416926000055/wmt-20260131.htm",
+  "earnings_8k_accession": "0000104169-26-000032",
+  "press_release_urls": [
+    "https://www.sec.gov/Archives/edgar/data/104169/000010416926000032/earningsreleasefy26q4.htm",
+    "https://www.sec.gov/Archives/edgar/data/104169/000010416926000032/earningspresentationfy26.htm"
+  ],
+  "model": "google/gemini-2.5-flash",
+  "extracted_at": "2026-11-18T03:17:13+00:00",
+  "fields": {
+    "comp_sales_pct": {
+      "value": 4.6,
+      "quote": "Walmart U.S. comp sales 2 grew 4.6%.",
+      "source": "press_release",
+      "status": "verified",
+      "reasons": [],
+      "pass": "snippets"
+    },
+    "comp_traffic_pct": {
+      "value": 2.6,
+      "quote": "Transactions | 2.6% | 2.8% | NP | NP | NP | NP | NP | NP",
+      "source": "press_release",
+      "status": "verified",
+      "reasons": [],
+      "pass": "snippets"
+    },
+    "comp_ticket_pct": {
+      "value": 2.0,
+      "quote": "Average ticket | 2.0% | 1.8% | NP | NP | NP | NP | NP | NP",
+      "source": "press_release",
+      "status": "verified",
+      "reasons": [],
+      "pass": "snippets"
+    },
+    "ending_units": {
+      "value": 4611,
+      "quote": "Walmart U.S. is our largest segment and operates 4,611 stores in the U.S., including in all 50 states, Washington D.C. and Puerto Rico.",
+      "source": "periodic",
+      "status": "verified",
+      "reasons": [],
+      "pass": "full_text"
+    },
+    "margin_pct": {
+      "value": 26.9,
+      "quote": "Gross profit rate 26.9%, +17 bps",
+      "source": "press_release",
+      "status": "verified",
+      "reasons": [],
+      "pass": "full_text"
+    }
+  },
+  "flags": [],
+  "usage": {
+    "prompt_tokens": 51564,
+    "completion_tokens": 295,
+    "cost_usd": 0.0162067,
+    "calls": 2
+  }
+}

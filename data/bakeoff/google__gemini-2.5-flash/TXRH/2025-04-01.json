@@ -1,0 +1,62 @@
+{
+  "ticker": "TXRH",
+  "tier": "core",
+  "period_end": "2025-04-01",
+  "periodic_accession": "0001558370-25-007082",
+  "periodic_url": "https://www.sec.gov/Archives/edgar/data/1289460/000155837025007082/txrh-20250401x10q.htm",
+  "earnings_8k_accession": "0001558370-25-006967",
+  "press_release_urls": [
+    "https://www.sec.gov/Archives/edgar/data/1289460/000155837025006967/txrh-20250507xex99d1.htm"
+  ],
+  "model": "google/gemini-2.5-flash",
+  "extracted_at": "2026-11-18T03:17:01+00:00",
+  "fields": {
+    "comp_sales_pct": {
+      "value": 3.5,
+      "quote": "Comparable restaurant sales increased 3.5% at company restaurants;",
+      "source": "press_release",
+      "status": "verified",
+      "reasons": [],
+      "pass": "snippets"
+    },
+    "comp_traffic_pct": {
+      "value": 1.1,
+      "quote": "Guest traffic counts 1.1 %",
+      "source": "periodic",
+      "status": "verified",
+      "reasons": [],
+      "pass": "snippets"
+    },
+    "comp_ticket_pct": {
+      "value": 2.4,
+      "quote": "Per person average check 2.4 %",
+      "source": "periodic",
+      "status": "verified",
+      "reasons": [],
+      "pass": "snippets"
+    },
+    "ending_units": {
+      "value": 629,
+      "quote": "Company - Texas Roadhouse | \n| 629 | 591 | 38",
+      "source": "press_release",
+      "status": "verified",
+      "reasons": [],
+      "pass": "snippets"
+    },
+    "margin_pct": {
+      "value": 16.7,
+      "quote": "In our Texas Roadhouse reportable segment, restaurant margin dollars increased $10.1 million or 4.7% in Q1 2025. The increase was due to higher sales partially offset by commodity inflation and wage and other labor inflation. In addition, restaurant margin, as a percentage of restaurant and other sales, decreased to 16.7% in Q1 2025 from 17.4% in Q1 2024. Restaurant margin percentage was primarily impacted by commodity inflation and wage and other labor inflation which were partially offset by higher sales.",
+      "source": "periodic",
+      "status": "verified",
+      "reasons": [],
+      "pass": "snippets"
+    }
+  },
+  "flags": [],
+  "usage": {
+    "prompt_tokens": 8733,
+    "completion_tokens": 302,
+    "cost_usd": 0.0033749,
+    "calls": 1
+  }
+}

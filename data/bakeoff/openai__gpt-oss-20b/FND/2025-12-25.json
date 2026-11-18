@@ -1,0 +1,64 @@
+{
+  "ticker": "FND",
+  "tier": "core",
+  "period_end": "2025-12-25",
+  "periodic_accession": "0001628280-26-009770",
+  "periodic_url": "https://www.sec.gov/Archives/edgar/data/1507079/000162828026009770/fnd-20251225.htm",
+  "earnings_8k_accession": "0001628280-26-009760",
+  "press_release_urls": [
+    "https://www.sec.gov/Archives/edgar/data/1507079/000162828026009760/fnd-2025earningsreleaseex9.htm"
+  ],
+  "model": "openai/gpt-oss-20b",
+  "extracted_at": "2026-11-18T03:19:12+00:00",
+  "fields": {
+    "comp_sales_pct": {
+      "quote": "Comparable store sales decreased 4.8%.",
+      "source": "press_release",
+      "value": -4.8,
+      "status": "verified",
+      "reasons": [],
+      "pass": "snippets"
+    },
+    "comp_traffic_pct": {
+      "value": -4.8,
+      "quote": "Comparable store sales decreased 4.8%.",
+      "source": "press_release",
+      "status": "verified",
+      "reasons": [],
+      "pass": "full_text"
+    },
+    "comp_ticket_pct": {
+      "value": 0.0,
+      "quote": null,
+      "source": null,
+      "status": "derived",
+      "reasons": [
+        "ticket = comp - traffic"
+      ],
+      "pass": "derived"
+    },
+    "ending_units": {
+      "quote": "ending the quarter with 270 warehouse stores, five design studios, and five distribution centers.",
+      "source": "press_release",
+      "value": 270,
+      "status": "verified",
+      "reasons": [],
+      "pass": "snippets"
+    },
+    "margin_pct": {
+      "value": 43.5,
+      "quote": "Gross profit | 491,096 | 43.5 | 481,321 | 43.5 | 2.0 | %",
+      "source": "periodic",
+      "status": "verified",
+      "reasons": [],
+      "pass": "full_text"
+    }
+  },
+  "flags": [],
+  "usage": {
+    "prompt_tokens": 30723,
+    "completion_tokens": 1287,
+    "cost_usd": 0.002043207,
+    "calls": 2
+  }
+}

@@ -1,0 +1,62 @@
+{
+  "ticker": "FND",
+  "tier": "core",
+  "period_end": "2025-03-27",
+  "periodic_accession": "0001507079-25-000095",
+  "periodic_url": "https://www.sec.gov/Archives/edgar/data/1507079/000150707925000095/fnd-20250327.htm",
+  "earnings_8k_accession": "0001507079-25-000094",
+  "press_release_urls": [
+    "https://www.sec.gov/Archives/edgar/data/1507079/000150707925000094/fnd-20250327x8kxex991.htm"
+  ],
+  "model": "google/gemini-2.5-flash",
+  "extracted_at": "2026-11-18T03:17:44+00:00",
+  "fields": {
+    "comp_sales_pct": {
+      "value": -1.8,
+      "quote": "Comparable store sales decreased 1.8%.",
+      "source": "press_release",
+      "status": "verified",
+      "reasons": [],
+      "pass": "snippets"
+    },
+    "comp_traffic_pct": {
+      "value": -3.8,
+      "quote": "The comparable store sales decline during the period of 1.8%, or $18.5 million, was due to a 3.8% decrease in comparable transactions, which we believe was largely driven by the impact of lower existing home sales, partially offset by a 2.1% increase in comparable average ticket, which was primarily due to change in sales mix.",
+      "source": "periodic",
+      "status": "verified",
+      "reasons": [],
+      "pass": "snippets"
+    },
+    "comp_ticket_pct": {
+      "value": 2.1,
+      "quote": "The comparable store sales decline during the period of 1.8%, or $18.5 million, was due to a 3.8% decrease in comparable transactions, which we believe was largely driven by the impact of lower existing home sales, partially offset by a 2.1% increase in comparable average ticket, which was primarily due to change in sales mix.",
+      "source": "periodic",
+      "status": "verified",
+      "reasons": [],
+      "pass": "snippets"
+    },
+    "ending_units": {
+      "value": 254,
+      "quote": "We opened four new warehouse stores and closed one warehouse store, ending the quarter with 254 warehouse stores and five design studios.",
+      "source": "press_release",
+      "status": "verified",
+      "reasons": [],
+      "pass": "snippets"
+    },
+    "margin_pct": {
+      "value": 43.8,
+      "quote": "The increase in gross profit was primarily driven by the 5.8% increase in net sales and an increase in gross margin to 43.8%, up approximately 100 basis points from 42.8% in the same period a year ago primarily driven by a decrease in supply chain costs.",
+      "source": "periodic",
+      "status": "verified",
+      "reasons": [],
+      "pass": "snippets"
+    }
+  },
+  "flags": [],
+  "usage": {
+    "prompt_tokens": 6685,
+    "completion_tokens": 379,
+    "cost_usd": 0.002953,
+    "calls": 1
+  }
+}

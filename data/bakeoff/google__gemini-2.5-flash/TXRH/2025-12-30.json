@@ -1,0 +1,62 @@
+{
+  "ticker": "TXRH",
+  "tier": "core",
+  "period_end": "2025-12-30",
+  "periodic_accession": "0001104659-26-021292",
+  "periodic_url": "https://www.sec.gov/Archives/edgar/data/1289460/000110465926021292/txrh-20251230x10k.htm",
+  "earnings_8k_accession": "0001104659-26-017538",
+  "press_release_urls": [
+    "https://www.sec.gov/Archives/edgar/data/1289460/000110465926017538/txrh-20260218xex99d1.htm"
+  ],
+  "model": "google/gemini-2.5-flash",
+  "extracted_at": "2026-11-18T03:16:55+00:00",
+  "fields": {
+    "comp_sales_pct": {
+      "value": 4.2,
+      "quote": "Comparable restaurant sales increased 4.2% at company restaurants;",
+      "source": "press_release",
+      "status": "verified",
+      "reasons": [],
+      "pass": "snippets"
+    },
+    "comp_traffic_pct": {
+      "value": null,
+      "quote": null,
+      "source": null,
+      "status": "missing",
+      "reasons": [],
+      "pass": "snippets"
+    },
+    "comp_ticket_pct": {
+      "value": null,
+      "quote": null,
+      "source": null,
+      "status": "missing",
+      "reasons": [],
+      "pass": "snippets"
+    },
+    "ending_units": {
+      "value": 648,
+      "quote": "Company - Texas Roadhouse | \t | 648 | 608 | 40 | \t | \t | \t | \t",
+      "source": "press_release",
+      "status": "verified",
+      "reasons": [],
+      "pass": "snippets"
+    },
+    "margin_pct": {
+      "value": 13.9,
+      "quote": "Restaurant margin, as a percentage of restaurant and other sales, decreased 309 basis points to 13.9% as commodity inflation of 9.5% and wage and other labor inflation of 2.9% were partially offset by higher sales;",
+      "source": "press_release",
+      "status": "verified",
+      "reasons": [],
+      "pass": "snippets"
+    }
+  },
+  "flags": [],
+  "usage": {
+    "prompt_tokens": 33842,
+    "completion_tokens": 291,
+    "cost_usd": 0.0108801,
+    "calls": 2
+  }
+}

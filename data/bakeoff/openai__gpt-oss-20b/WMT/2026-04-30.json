@@ -1,0 +1,63 @@
+{
+  "ticker": "WMT",
+  "tier": "core",
+  "period_end": "2026-04-30",
+  "periodic_accession": "0000104169-26-000102",
+  "periodic_url": "https://www.sec.gov/Archives/edgar/data/104169/000010416926000102/wmt-20260430.htm",
+  "earnings_8k_accession": "0000104169-26-000095",
+  "press_release_urls": [
+    "https://www.sec.gov/Archives/edgar/data/104169/000010416926000095/earningsreleasefy27q1.htm",
+    "https://www.sec.gov/Archives/edgar/data/104169/000010416926000095/earningspresentationfy27.htm"
+  ],
+  "model": "openai/gpt-oss-20b",
+  "extracted_at": "2026-11-18T03:18:27+00:00",
+  "fields": {
+    "comp_sales_pct": {
+      "quote": "Walmart U.S. comp sales 2 grew 4.1%.",
+      "source": "press_release",
+      "value": 4.1,
+      "status": "verified",
+      "reasons": [],
+      "pass": "snippets"
+    },
+    "comp_traffic_pct": {
+      "quote": "Transactions | 3.0% | 1.6% | NP | NP",
+      "source": "press_release",
+      "value": 3.0,
+      "status": "verified",
+      "reasons": [],
+      "pass": "snippets"
+    },
+    "comp_ticket_pct": {
+      "quote": "Average ticket | 1.1% | 2.8% | NP | NP",
+      "source": "press_release",
+      "value": 1.1,
+      "status": "verified",
+      "reasons": [],
+      "pass": "snippets"
+    },
+    "ending_units": {
+      "value": 4614,
+      "quote": "Unit counts at period end | 4,614 | 4,606",
+      "source": "periodic",
+      "status": "verified",
+      "reasons": [],
+      "pass": "full_text"
+    },
+    "margin_pct": {
+      "value": 27.8,
+      "quote": "Gross profit | 27.8 | % | 27.5 | %",
+      "source": "periodic",
+      "status": "verified",
+      "reasons": [],
+      "pass": "full_text"
+    }
+  },
+  "flags": [],
+  "usage": {
+    "prompt_tokens": 51322,
+    "completion_tokens": 2412,
+    "cost_usd": 0.003467043,
+    "calls": 2
+  }
+}

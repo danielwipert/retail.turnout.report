@@ -1,0 +1,65 @@
+{
+  "ticker": "WMT",
+  "tier": "core",
+  "period_end": "2025-04-30",
+  "periodic_accession": "0000104169-25-000090",
+  "periodic_url": "https://www.sec.gov/Archives/edgar/data/104169/000010416925000090/wmt-20250430.htm",
+  "earnings_8k_accession": "0000104169-25-000069",
+  "press_release_urls": [
+    "https://www.sec.gov/Archives/edgar/data/104169/000010416925000069/earningsreleasefy26q1.htm",
+    "https://www.sec.gov/Archives/edgar/data/104169/000010416925000069/earningspresentationfy26.htm"
+  ],
+  "model": "google/gemini-2.5-flash",
+  "extracted_at": "2026-11-18T03:17:22+00:00",
+  "fields": {
+    "comp_sales_pct": {
+      "value": 4.5,
+      "quote": "Walmart U.S. comp sales 2 up 4.5% with strong growth in health & wellness and grocery.",
+      "source": "press_release",
+      "status": "verified",
+      "reasons": [],
+      "pass": "snippets"
+    },
+    "comp_traffic_pct": {
+      "value": 1.6,
+      "quote": "Transactions | 1.6% | 3.8% | NP | NP",
+      "source": "press_release",
+      "status": "verified",
+      "reasons": [],
+      "pass": "snippets"
+    },
+    "comp_ticket_pct": {
+      "value": 2.8,
+      "quote": "Average ticket | 2.8% | flat | NP | NP",
+      "source": "press_release",
+      "status": "verified",
+      "reasons": [],
+      "pass": "snippets"
+    },
+    "ending_units": {
+      "value": 4606,
+      "quote": "Unit counts at period end | 4,606 | 4,609",
+      "source": "periodic",
+      "status": "verified",
+      "reasons": [],
+      "pass": "full_text"
+    },
+    "margin_pct": {
+      "value": 25,
+      "quote": "Gross profit rate increased 25 bps; membership income up double-digits; operating expense deleveraged 8 bps",
+      "source": "press_release",
+      "status": "flagged",
+      "reasons": [
+        "number_not_in_quote"
+      ],
+      "pass": "snippets"
+    }
+  },
+  "flags": [],
+  "usage": {
+    "prompt_tokens": 56125,
+    "completion_tokens": 265,
+    "cost_usd": 0.017499999999999998,
+    "calls": 2
+  }
+}

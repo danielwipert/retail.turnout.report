@@ -39,10 +39,8 @@
       "value": 662,
       "quote": "Company - Texas Roadhouse | \n| 662 | 634 | 28 | \n| \n| \n| \n",
       "source": "press_release",
-      "status": "flagged",
-      "reasons": [
-        "quote_not_in_filing"
-      ],
+      "status": "verified",
+      "reasons": [],
       "pass": "snippets"
     },
     "margin_pct": {
