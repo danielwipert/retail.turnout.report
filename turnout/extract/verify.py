@@ -114,7 +114,12 @@ def numbers_in(quote: str) -> list[tuple[float, bool, str]]:
     return found
 
 
-def check_field(f: Field, answer: dict, documents: dict[str, str], segment_keywords: list[str]) -> Check:
+_COUNT_NOUN = re.compile(r"\b(stores?|restaurants?|units?|clubs?|shops?|locations?|warehouses?|bakery-cafes?)\b", re.I)
+_NOT_A_COUNT = re.compile(r"square\s*f(ee|oo)t|sq\.?\s*ft|square footage", re.I)
+
+
+def check_field(f: Field, answer: dict, documents: dict[str, str], segment_keywords: list[str],
+                must_include: list[str] | None = None) -> Check:
     value, quote, source = answer.get("value"), answer.get("quote"), answer.get("source")
     if value is None:
         return Check("missing")
@@ -170,6 +175,17 @@ def check_field(f: Field, answer: dict, documents: dict[str, str], segment_keywo
             reasons.append("sign_mismatch")
         if value < 0 and not shown_negative and pos_w and not neg:
             reasons.append("sign_mismatch")
+
+    # 3b. Counts must be counts of stores, not square feet or dollars.
+    if f.kind == "count":
+        if _NOT_A_COUNT.search(quote):
+            reasons.append("count_is_square_footage")
+        elif not _COUNT_NOUN.search(quote):
+            reasons.append("count_word_missing")
+
+    # 3c. Company-specific words the quote must contain (e.g. "company" for TXRH store counts).
+    if must_include and not any(w.lower() in quote.lower() for w in must_include):
+        reasons.append("required_words_missing")
 
     # 4. Plausible range.
     lo, hi = RANGES[f.kind]

@@ -151,3 +151,29 @@ def test_field_notes_go_into_the_prompt():
     p = build_prompt("Walmart", "Walmart U.S.", "2026-07-31", CORE_FIELDS, {"press_release": "x"},
                      {"ending_units": "Walmart U.S. store count only."})
     assert "FOR THIS COMPANY: Walmart U.S. store count only." in p
+
+
+def test_square_footage_is_not_a_store_count():
+    docs = {"press_release": "", "periodic": "Unit counts at period end | 4,606\nRetail square feet at period end | 698\n"}
+    bad = verify.check_field(F["ending_units"], ans(698, "Retail square feet at period end | 698", "periodic"), docs, [])
+    good = verify.check_field(F["ending_units"], ans(4606, "Unit counts at period end | 4,606", "periodic"), docs, [])
+    assert "count_is_square_footage" in bad.reasons and good.status == "verified", good.reasons
+
+
+def test_required_words():
+    docs = {"press_release": "Total restaurants | 840\nTotal company restaurants | 737\n", "periodic": ""}
+    bad = verify.check_field(F["ending_units"], ans(840, "Total restaurants | 840"), docs, [], ["company"])
+    good = verify.check_field(F["ending_units"], ans(737, "Total company restaurants | 737"), docs, [], ["company"])
+    assert "required_words_missing" in bad.reasons and good.status == "verified"
+
+
+def test_series_check_flags_value_out_of_line_with_both_neighbours():
+    from turnout.extract.run import check_series
+    def r(p, units, margin):
+        return {"period_end": p, "fields": {"ending_units": {"value": units, "status": "verified"},
+                                            "margin_pct": {"value": margin, "status": "verified"}}}
+    rs = [r("2026-01", 4611, 24.0), r("2026-04", 698, 24.3), r("2026-07", 4614, 29.0), r("2026-10", 4620, 24.4)]
+    assert check_series(rs) == 2
+    assert rs[1]["fields"]["ending_units"]["status"] == "flagged"
+    assert rs[2]["fields"]["margin_pct"]["status"] == "flagged"
+    assert rs[2]["fields"]["ending_units"]["status"] == "verified"

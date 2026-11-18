@@ -23,6 +23,7 @@ class Chain:
     cik: str | None = None
     notes: str = ""
     field_notes: dict[str, str] = field(default_factory=dict)  # per-field instructions for the LLM
+    quote_must_include: dict[str, list[str]] = field(default_factory=dict)  # field -> words, any one required
 
 
 def load_universe(path: Path = UNIVERSE_PATH) -> list[Chain]:

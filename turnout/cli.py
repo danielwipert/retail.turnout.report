@@ -160,8 +160,20 @@ def cmd_extract(args: argparse.Namespace) -> int:
     if not model:
         print("No extraction model set yet. Run the bake-off first, or pass --model.")
         return 2
+    from turnout.extract.run import check_series, result_path
+
     print(f"Extracting with {model}")
     results = _run_model(model, _targets(args), None, args.force, args.quarters)
+    by_ticker: dict[str, list[dict]] = {}
+    for r in results:
+        by_ticker.setdefault(r["ticker"], []).append(r)
+    for ticker, rs in by_ticker.items():
+        n = check_series(rs)
+        if n:
+            print(f"  {ticker}: {n} value(s) out of line with neighbouring quarters -> flagged for review")
+        for r in rs:
+            if "fields" in r:
+                result_path(ticker, r["period_end"]).write_text(json.dumps(r, indent=2) + "\n")
     return 1 if any("error" in r for r in results) else 0
 
 
@@ -188,6 +200,7 @@ def cmd_review(args: argparse.Namespace) -> int:
 
     tracker = review.GitHubIssues()
     if args.action == "open":
+        print(f"Closed {review.close_stale(tracker)} review issues that no longer apply.")
         print(f"Opened {review.open_issues(tracker)} review issues.")
         return 0
     event = json.loads(Path(os.environ["GITHUB_EVENT_PATH"]).read_text())

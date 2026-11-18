@@ -53,7 +53,7 @@ def extract_quarter(chain: Chain, quarter_dir: Path, extractor: Extractor) -> di
     results: dict[str, dict] = {}
     for f in fields:
         ans = data.get(f.name) or {}
-        check = verify.check_field(f, ans, documents, chain.segment_keywords)
+        check = verify.check_field(f, ans, documents, chain.segment_keywords, chain.quote_must_include.get(f.name))
         results[f.name] = {**ans, "status": check.status, "reasons": check.reasons, "pass": "snippets"}
 
     # Pass 2: anything still missing gets one retry on the full documents.
@@ -63,7 +63,7 @@ def extract_quarter(chain: Chain, quarter_dir: Path, extractor: Extractor) -> di
         data2 = _ask(extractor, chain, manifest["period_end"], missing, full_docs, usage)
         for f in missing:
             ans = data2.get(f.name) or {}
-            check = verify.check_field(f, ans, documents, chain.segment_keywords)
+            check = verify.check_field(f, ans, documents, chain.segment_keywords, chain.quote_must_include.get(f.name))
             if check.status != "missing":
                 results[f.name] = {**ans, "status": check.status, "reasons": check.reasons, "pass": "full_text"}
 
@@ -123,7 +123,7 @@ def reverify(result: dict, chain: Chain, quarter_dir: Path) -> dict:
     for name, r in result["fields"].items():
         if name not in by_name or r["status"] in {"approved_manual", "rejected", "derived"}:
             continue
-        check = verify.check_field(by_name[name], r, documents, chain.segment_keywords)
+        check = verify.check_field(by_name[name], r, documents, chain.segment_keywords, chain.quote_must_include.get(name))
         r["status"], r["reasons"] = check.status, check.reasons
     if chain.tier == "core":
         f = result["fields"]
@@ -134,3 +134,33 @@ def reverify(result: dict, chain: Chain, quarter_dir: Path) -> dict:
             else []
         )
     return result
+
+
+# How far a value may sit from BOTH neighbouring quarters before it's flagged.
+SERIES_LIMITS = {"ending_units": ("ratio", 0.15), "margin_pct": ("points", 4.0)}
+
+
+def check_series(results: list[dict]) -> int:
+    """Flag a count or margin that is far out of line with both adjacent quarters.
+
+    Catches "right number, wrong row" (e.g. square footage or another segment)
+    that a quote check can't see. Returns how many fields were newly flagged.
+    """
+    ordered = sorted((r for r in results if "fields" in r), key=lambda r: r["period_end"])
+    flagged = 0
+    for name, (mode, limit) in SERIES_LIMITS.items():
+        vals = [r["fields"].get(name, {}) for r in ordered]
+        good = [v.get("value") if v.get("status") in {"verified", "approved_manual"} else None for v in vals]
+        for i in range(1, len(ordered) - 1):
+            cur, prev, nxt = good[i], good[i - 1], good[i + 1]
+            if None in (cur, prev, nxt) or vals[i].get("status") == "approved_manual":
+                continue
+            if mode == "ratio":
+                off = lambda a, b: abs(a - b) / max(abs(b), 1e-9) > limit  # noqa: E731
+            else:
+                off = lambda a, b: abs(a - b) > limit  # noqa: E731
+            if off(cur, prev) and off(cur, nxt):
+                vals[i]["status"] = "flagged"
+                vals[i].setdefault("reasons", []).append("out_of_line_with_adjacent_quarters")
+                flagged += 1
+    return flagged

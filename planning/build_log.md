@@ -83,3 +83,10 @@ Other chains get notes as they're onboarded in Phase 5.
 **Bake-off workflow bug fixed:** each parallel job's artifact contained stale copies of the other models' folders, which overwrote re-checked results when merged. Each job now uploads only its own folder.
 
 **Known gap:** Q4 (10-K) quarters often have no Q4-only traffic or check figure, and all models agree. These stay "missing", never guessed.
+
+**Verified-but-wrong values found on the first real extraction, and the guards added:**
+- WMT store count picked "Retail square feet at period end | 698" (Walmart U.S. square footage in millions). → Counts quoting square feet are rejected, and a count's quote must contain a store/restaurant/unit word.
+- TXRH store count picked "Total restaurants | 840" (includes franchises). → Per-chain `quote_must_include` (TXRH `ending_units` must say "company") plus sharper notes.
+- **Neighbour-quarter check** (`check_series`): a store count more than 15% away from **both** adjacent quarters, or a margin more than 4 points away from both, is flagged for review. This catches "right number, wrong row" that a quote check can't see.
+- Review issues that no longer apply after a re-extraction are closed automatically.
+- Open question for Dan: FND Q2 2026 GAAP gross margin is 48.2% because of a one-time tariff refund (adjusted: 43.7%).

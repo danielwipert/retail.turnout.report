@@ -33,6 +33,8 @@ class IssueTracker(Protocol):
 
     def close(self, number: int) -> None: ...
 
+    def open_review_issues(self) -> list[dict]: ...
+
 
 class GitHubIssues:
     def __init__(self, repo: str | None = None, token: str | None = None):
@@ -56,6 +58,17 @@ class GitHubIssues:
 
     def close(self, number):
         self.client.patch(f"/issues/{number}", json={"state": "closed"}).raise_for_status()
+
+    def open_review_issues(self):
+        out, page = [], 1
+        while True:
+            r = self.client.get("/issues", params={"labels": LABEL, "state": "open", "per_page": 100, "page": page})
+            r.raise_for_status()
+            batch = r.json()
+            out += [i for i in batch if "pull_request" not in i]
+            if len(batch) < 100:
+                return out
+            page += 1
 
 
 def _context(field: dict, documents: dict[str, str]) -> str:
@@ -102,6 +115,26 @@ def issue_body(result: dict, field_name: str, documents: dict[str, str]) -> str:
 
 <!-- turnout-review {marker} -->
 """
+
+
+def close_stale(tracker: IssueTracker, extracted_dir: Path = EXTRACTED_DIR) -> int:
+    """Close open review issues whose field is no longer flagged (e.g. after a re-extraction)."""
+    closed = 0
+    for issue in tracker.open_review_issues():
+        m = MARKER.search(issue.get("body") or "")
+        if not m:
+            continue
+        key = json.loads(m.group(1))
+        path = extracted_dir / key["ticker"] / f"{key['period_end']}.json"
+        if not path.exists():
+            continue
+        f = json.loads(path.read_text())["fields"].get(key["field"], {})
+        if f.get("status") != "flagged" or f.get("review_issue") not in (None, issue["number"]):
+            tracker.comment(issue["number"], f"Re-extracted; this field is now **{f.get('status')}** "
+                                             f"(value `{f.get('value')}`). Closing.")
+            tracker.close(issue["number"])
+            closed += 1
+    return closed
 
 
 def open_issues(tracker: IssueTracker, extracted_dir: Path = EXTRACTED_DIR, raw_dir: Path = RAW_DIR) -> int:

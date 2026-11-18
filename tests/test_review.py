@@ -16,7 +16,10 @@ class FakeTracker:
         pass
 
     def close(self, number):
-        pass
+        self.issues[number]["closed"] = True
+
+    def open_review_issues(self):
+        return [{"number": n, **i} for n, i in self.issues.items() if not i.get("closed")]
 
 
 def _result(tmp_path):
@@ -63,3 +66,15 @@ def test_apply_value_updates_the_file(tmp_path):
     f = saved["fields"]["comp_traffic_pct"]
     assert f["value"] == 0.7 and f["status"] == "approved_manual"
     assert f["review"]["model_value"] == 1.7 and f["review"]["by"] == "danielwipert"
+
+
+def test_stale_issue_is_closed_after_reextraction(tmp_path):
+    ex = _result(tmp_path)
+    tracker = FakeTracker()
+    review.open_issues(tracker, ex, tmp_path / "raw")
+    path = ex / "TXRH" / "2026-09-29.json"
+    r = json.loads(path.read_text())
+    r["fields"]["comp_traffic_pct"] = {"value": 0.7, "quote": "q", "status": "verified", "reasons": []}
+    path.write_text(json.dumps(r))
+    assert review.close_stale(tracker, ex) == 1
+    assert tracker.issues[1]["closed"]
