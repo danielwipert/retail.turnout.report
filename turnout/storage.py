@@ -31,20 +31,25 @@ class R2Store:
     def __init__(self) -> None:
         import boto3  # imported here so tests don't need it
 
-        missing = [
-            name for name in ("R2_ACCOUNT_ID", "R2_ACCESS_KEY_ID", "R2_SECRET_ACCESS_KEY", "R2_BUCKET")
-            if not os.environ.get(name)
-        ]
+        # Pasted secrets often carry stray spaces, quotes or line breaks.
+        env = {
+            name: os.environ.get(name, "").strip().strip('"').strip("'").strip()
+            for name in ("R2_ACCOUNT_ID", "R2_ACCESS_KEY_ID", "R2_SECRET_ACCESS_KEY", "R2_BUCKET")
+        }
+        missing = [name for name, value in env.items() if not value]
         if missing:
             raise ConfigError(f"Missing R2 secrets: {', '.join(missing)}")
-        self.bucket = os.environ["R2_BUCKET"]
+        self.bucket = env["R2_BUCKET"]
         self.client = boto3.client(
             "s3",
-            endpoint_url=f"https://{os.environ['R2_ACCOUNT_ID']}.r2.cloudflarestorage.com",
-            aws_access_key_id=os.environ["R2_ACCESS_KEY_ID"],
-            aws_secret_access_key=os.environ["R2_SECRET_ACCESS_KEY"],
+            endpoint_url=f"https://{env['R2_ACCOUNT_ID']}.r2.cloudflarestorage.com",
+            aws_access_key_id=env["R2_ACCESS_KEY_ID"],
+            aws_secret_access_key=env["R2_SECRET_ACCESS_KEY"],
             region_name="auto",
         )
+        # Lengths only (never the values) so a bad paste is easy to spot in the log.
+        print(f"R2: bucket={self.bucket} account_id_len={len(env['R2_ACCOUNT_ID'])} "
+              f"access_key_len={len(env['R2_ACCESS_KEY_ID'])} secret_len={len(env['R2_SECRET_ACCESS_KEY'])}")
 
     def list(self, prefix: str) -> dict[str, int]:
         found: dict[str, int] = {}
