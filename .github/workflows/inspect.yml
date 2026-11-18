@@ -1,0 +1,33 @@
+name: inspect filing
+
+# Debugging helper: print matching lines (with context) from a saved filing.
+on:
+  workflow_dispatch:
+    inputs:
+      ticker:
+        description: "Ticker, e.g. TXRH"
+        required: true
+      period:
+        description: "Period end date, e.g. 2026-09-29"
+        required: true
+      pattern:
+        description: "Text or regular expression to find"
+        required: true
+
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    env:
+      R2_ACCOUNT_ID: ${{ secrets.R2_ACCOUNT_ID }}
+      R2_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+      R2_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+      R2_BUCKET: ${{ secrets.R2_BUCKET }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -e .
+      - run: python -m turnout storage pull --tickers ${{ inputs.ticker }}
+      - name: Inspect
+        run: python -m turnout inspect "${{ inputs.ticker }}" "${{ inputs.period }}" "${{ inputs.pattern }}" | tee -a "$GITHUB_STEP_SUMMARY"

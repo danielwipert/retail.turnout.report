@@ -217,6 +217,29 @@ def cmd_bakeoff_report(args: argparse.Namespace) -> int:
     return 0
 
 
+def cmd_inspect(args: argparse.Namespace) -> int:
+    """Print the lines of a saved filing that match a pattern, with context."""
+    import re as _re
+
+    qdir = RAW_DIR / args.ticker.upper() / args.period
+    if not qdir.exists():
+        print(f"Not saved: {qdir}")
+        return 1
+    pattern = _re.compile(args.pattern, _re.I)
+    for path in sorted(qdir.glob("*.txt")):
+        lines = path.read_text(encoding="utf-8").splitlines()
+        hits = [i for i, line in enumerate(lines) if pattern.search(line)]
+        print(f"\n===== {path.name}: {len(hits)} matching lines =====")
+        shown = set()
+        for i in hits[: args.max]:
+            for j in range(max(0, i - args.context), min(len(lines), i + args.context + 1)):
+                if j not in shown:
+                    print(f"{j:6d}{'>' if j == i else ' '} {lines[j]!r}")
+                    shown.add(j)
+            print("   ...")
+    return 0
+
+
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(prog="python -m turnout", description="The Turnout Report pipeline")
     sub = parser.add_subparsers(dest="command", required=True)
@@ -254,6 +277,14 @@ def build_parser() -> argparse.ArgumentParser:
 
     sub.add_parser("bakeoff-report", help="Build the bake-off report from saved results").set_defaults(
         func=cmd_bakeoff_report)
+
+    ins = sub.add_parser("inspect", help="Show matching lines from a saved filing")
+    ins.add_argument("ticker")
+    ins.add_argument("period", help="Period end date, e.g. 2026-09-29")
+    ins.add_argument("pattern", help="Regular expression to search for")
+    ins.add_argument("--context", type=int, default=2)
+    ins.add_argument("--max", type=int, default=15)
+    ins.set_defaults(func=cmd_inspect)
 
     rv = sub.add_parser("review", help="Open review issues, or apply a reviewer's reply")
     rv.add_argument("action", choices=["open", "apply"])
