@@ -70,3 +70,16 @@ Original checklist for the first live run:
 **Fixes after the first live test (2026-11-17):** quotes from table rows failed "quote in filing" because the model wrote cell separators differently. `normalize()` now ignores `|` and spacing before `%`. The segment lookback was widened from 2,000 to 6,000 characters (TXRH's "Company restaurants" heading sits above a long table). The full-text retry is capped at 150k characters per document. Gemini 2.5 Flash on 3 TXRH quarters returned the right values (Q3 2026: comp 4.4, traffic 0.7, check 3.6) for about $0.02.
 
 **Bake-off run 1 (2026-11-17) hit its 60-minute limit.** Models ran one after another, and gpt-oss-20b was slow (about 800s for 27 calls), sometimes returned empty answers, and overflowed its 131k context on WMT full-text retries. Fixes: models now run as **parallel jobs**; full-text retry is capped at 80k characters per document; empty answers are retried; `max_tokens` is 4000. The quote check gained a **token-order fallback**: every word and number of the quote must appear in order in the filing, with at most 3 tokens between each. That handles table rows with blank cells, zero-width characters and trailing punctuation, while still rejecting paraphrases. Saved answers are now **re-checked for free** with the current checker whenever a run reuses them.
+
+**Model locked (2026-11-17, gate P2-2b): Gemini 2.5 Flash** (`data/settings.json`). Bake-off over 24 quarters: verified 108 / flagged 2 / not found 10 at $0.22. Flash-Lite: 106 / 9 / 5 at $0.24. gpt-oss-20b: 105 / 9 / 3 at $0.05, but it made real errors (e.g. TXRH check 5.8 vs 1.8) and reworded quotes.
+
+**Definition gaps found by the bake-off and fixed with per-chain `field_notes`** in `data/universe.json`, which are injected into the prompt:
+- TXRH: use "Company restaurants (all concepts)" (comps 4.3% in Q3 2026; 737 company restaurants), not the Texas Roadhouse-brand row (4.4%; 664).
+- WMT: Walmart U.S. comp sales ex-fuel, Transactions, Average ticket; Walmart U.S. unit count (not Sam's Club); margin = consolidated gross profit rate.
+- FND: comparable transactions and average ticket; warehouse-format store count.
+- New prompt rules for all chains: prefer ex-fuel figures; prefer the quarter over year-to-date.
+Other chains get notes as they're onboarded in Phase 5.
+
+**Bake-off workflow bug fixed:** each parallel job's artifact contained stale copies of the other models' folders, which overwrote re-checked results when merged. Each job now uploads only its own folder.
+
+**Known gap:** Q4 (10-K) quarters often have no Q4-only traffic or check figure, and all models agree. These stay "missing", never guessed.

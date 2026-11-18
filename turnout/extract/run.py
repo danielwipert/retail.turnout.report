@@ -35,7 +35,7 @@ def load_documents(quarter_dir: Path) -> tuple[dict, dict[str, str]]:
 
 def _ask(extractor: Extractor, chain: Chain, period_end: str, fields: list[Field],
          documents: dict[str, str], usage: Usage) -> dict:
-    prompt = build_prompt(chain.name, chain.segment, period_end, fields, documents)
+    prompt = build_prompt(chain.name, chain.segment, period_end, fields, documents, chain.field_notes)
     answer = extractor.extract(prompt, json_schema(fields))
     usage.add(answer.usage)
     return answer.data

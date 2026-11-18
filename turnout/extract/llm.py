@@ -27,6 +27,8 @@ Rules:
 - "source" is "press_release" or "periodic", whichever part the quote came from.
 - Use the current quarter, not year-to-date, not a prior year, not guidance.
 - Use the segment the user names. If only a different segment's number is given, return null.
+- If a figure is given both with and without fuel, use the one without fuel.
+- If the text gives both a quarter and a year-to-date figure, use the quarter.
 - If something is not stated, return null for value, quote and source. A null is always better than a guess."""
 
 
@@ -120,8 +122,13 @@ class OpenRouterExtractor:
         raise RuntimeError(f"{self.model}: extraction failed after retries: {last_error}")
 
 
-def build_prompt(chain_name: str, segment: str, period_end: str, fields: list, documents: dict[str, str]) -> str:
-    asks = "\n".join(f'- "{f.name}": {f.ask}' for f in fields)
+def build_prompt(chain_name: str, segment: str, period_end: str, fields: list, documents: dict[str, str],
+                 field_notes: dict[str, str] | None = None) -> str:
+    notes = field_notes or {}
+    asks = "\n".join(
+        f'- "{f.name}": {f.ask}' + (f" FOR THIS COMPANY: {notes[f.name]}" if f.name in notes else "")
+        for f in fields
+    )
     docs = "\n\n".join(
         f"===== {name.upper()} =====\n{text}" for name, text in documents.items() if text
     )

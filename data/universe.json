@@ -20,7 +20,8 @@
       "calendar": "fiscal_sep",
       "status": "confirmed",
       "cik": "0000829224",
-      "notes": ""
+      "notes": "",
+      "field_notes": {}
     },
     {
       "ticker": "BROS",
@@ -35,7 +36,8 @@
       "calendar": "calendar",
       "status": "confirmed",
       "cik": "0001866581",
-      "notes": "Also reports company-operated"
+      "notes": "Also reports company-operated",
+      "field_notes": {}
     },
     {
       "ticker": "LOCO",
@@ -50,7 +52,8 @@
       "calendar": "calendar",
       "status": "confirmed",
       "cik": "0001606366",
-      "notes": "Company and franchise splits also reported"
+      "notes": "Company and franchise splits also reported",
+      "field_notes": {}
     },
     {
       "ticker": "SHAK",
@@ -64,7 +67,8 @@
       "calendar": "calendar",
       "status": "confirmed",
       "cik": "0001620533",
-      "notes": "Traffic + price/mix; results in a shareholder letter exhibit"
+      "notes": "Traffic + price/mix; results in a shareholder letter exhibit",
+      "field_notes": {}
     },
     {
       "ticker": "PTLO",
@@ -76,7 +80,8 @@
       "calendar": "calendar",
       "status": "confirmed",
       "cik": "0001871509",
-      "notes": ""
+      "notes": "",
+      "field_notes": {}
     },
     {
       "ticker": "SG",
@@ -88,7 +93,8 @@
       "calendar": "calendar",
       "status": "confirmed",
       "cik": "0001477815",
-      "notes": "Traffic + mix + price"
+      "notes": "Traffic + mix + price",
+      "field_notes": {}
     },
     {
       "ticker": "CMG",
@@ -100,7 +106,8 @@
       "calendar": "calendar",
       "status": "to_confirm",
       "cik": "0001058090",
-      "notes": ""
+      "notes": "",
+      "field_notes": {}
     },
     {
       "ticker": "CAVA",
@@ -114,7 +121,8 @@
       "calendar": "calendar",
       "status": "to_confirm",
       "cik": "0001639438",
-      "notes": ""
+      "notes": "",
+      "field_notes": {}
     },
     {
       "ticker": "TXRH",
@@ -128,7 +136,14 @@
       "calendar": "calendar",
       "status": "confirmed",
       "cik": "0001289460",
-      "notes": ""
+      "notes": "",
+      "field_notes": {
+        "comp_sales_pct": "Use the 'Company restaurants (all concepts)' figure (e.g. 'Comparable restaurant sales increased 4.3%' under results at company restaurants), not the Texas Roadhouse-brand-only, Bubba's 33 or Jaggers rows.",
+        "comp_traffic_pct": "'Guest traffic counts' for company restaurants.",
+        "comp_ticket_pct": "'Per person average check' for company restaurants.",
+        "ending_units": "Total company-owned restaurants across all concepts (e.g. 'we owned and operated 737 restaurants'), not the Texas Roadhouse brand row and not franchise restaurants.",
+        "margin_pct": "Restaurant margin as a percentage of restaurant and other sales, company restaurants, for the quarter (13 weeks), not year-to-date."
+      }
     },
     {
       "ticker": "EAT",
@@ -142,7 +157,8 @@
       "calendar": "fiscal_jun",
       "status": "confirmed",
       "cik": "0000703351",
-      "notes": ""
+      "notes": "",
+      "field_notes": {}
     },
     {
       "ticker": "CAKE",
@@ -156,7 +172,8 @@
       "calendar": "calendar",
       "status": "confirmed",
       "cik": "0000887596",
-      "notes": "Traffic + pricing + mix"
+      "notes": "Traffic + pricing + mix",
+      "field_notes": {}
     },
     {
       "ticker": "BLMN",
@@ -170,7 +187,8 @@
       "calendar": "calendar",
       "status": "confirmed",
       "cik": "0001546417",
-      "notes": ""
+      "notes": "",
+      "field_notes": {}
     },
     {
       "ticker": "CBRL",
@@ -184,7 +202,8 @@
       "calendar": "fiscal_jul",
       "status": "confirmed",
       "cik": "0001067294",
-      "notes": "Fiscal year ends ~Aug 1"
+      "notes": "Fiscal year ends ~Aug 1",
+      "field_notes": {}
     },
     {
       "ticker": "BJRI",
@@ -196,7 +215,8 @@
       "calendar": "calendar",
       "status": "confirmed",
       "cik": "0001013488",
-      "notes": "New in v2"
+      "notes": "New in v2",
+      "field_notes": {}
     },
     {
       "ticker": "KRUS",
@@ -208,7 +228,8 @@
       "calendar": "fiscal_aug",
       "status": "confirmed",
       "cik": "0001772177",
-      "notes": "New in v2. Fiscal year ends Aug 31"
+      "notes": "New in v2. Fiscal year ends Aug 31",
+      "field_notes": {}
     },
     {
       "ticker": "FWRG",
@@ -220,7 +241,8 @@
       "calendar": "calendar",
       "status": "to_confirm",
       "cik": "0001789940",
-      "notes": ""
+      "notes": "",
+      "field_notes": {}
     },
     {
       "ticker": "WMT",
@@ -234,7 +256,14 @@
       "calendar": "nrf",
       "status": "confirmed",
       "cik": "0000104169",
-      "notes": ""
+      "notes": "",
+      "field_notes": {
+        "comp_sales_pct": "Walmart U.S. 'Comp sales (ex. fuel)' for the 13-week quarter. Not Sam's Club, not International, not including fuel, not the ex-H&W figure.",
+        "comp_traffic_pct": "Walmart U.S. 'Transactions' comp line.",
+        "comp_ticket_pct": "Walmart U.S. 'Average ticket' comp line.",
+        "ending_units": "Walmart U.S. store (unit) count at quarter end. Not Sam's Club, not International, not total company.",
+        "margin_pct": "Consolidated gross profit rate: gross profit as a percentage of net sales for the quarter (Walmart does not report a Walmart U.S. gross margin percentage)."
+      }
     },
     {
       "ticker": "COST",
@@ -248,7 +277,8 @@
       "calendar": "fiscal_aug",
       "status": "confirmed",
       "cik": "0000909832",
-      "notes": "16-week Q4"
+      "notes": "16-week Q4",
+      "field_notes": {}
     },
     {
       "ticker": "TGT",
@@ -260,7 +290,8 @@
       "calendar": "nrf",
       "status": "confirmed",
       "cik": "0000027419",
-      "notes": ""
+      "notes": "",
+      "field_notes": {}
     },
     {
       "ticker": "GO",
@@ -272,7 +303,8 @@
       "calendar": "calendar",
       "status": "confirmed",
       "cik": "0001771515",
-      "notes": ""
+      "notes": "",
+      "field_notes": {}
     },
     {
       "ticker": "DG",
@@ -284,7 +316,8 @@
       "calendar": "nrf",
       "status": "to_confirm",
       "cik": "0000029534",
-      "notes": ""
+      "notes": "",
+      "field_notes": {}
     },
     {
       "ticker": "DLTR",
@@ -298,7 +331,8 @@
       "calendar": "nrf",
       "status": "to_confirm",
       "cik": "0000935703",
-      "notes": ""
+      "notes": "",
+      "field_notes": {}
     },
     {
       "ticker": "HD",
@@ -312,7 +346,8 @@
       "calendar": "nrf",
       "status": "confirmed",
       "cik": "0000354950",
-      "notes": ""
+      "notes": "",
+      "field_notes": {}
     },
     {
       "ticker": "LOW",
@@ -326,7 +361,8 @@
       "calendar": "nrf",
       "status": "to_confirm",
       "cik": "0000060667",
-      "notes": ""
+      "notes": "",
+      "field_notes": {}
     },
     {
       "ticker": "FND",
@@ -338,7 +374,14 @@
       "calendar": "calendar",
       "status": "confirmed",
       "cik": "0001507079",
-      "notes": "New in v2. Traffic/ticket are in the 10-Q"
+      "notes": "New in v2. Traffic/ticket are in the 10-Q",
+      "field_notes": {
+        "comp_sales_pct": "Comparable store sales for the quarter.",
+        "comp_traffic_pct": "Comparable store transactions (number of transactions) change for the quarter.",
+        "comp_ticket_pct": "Comparable average ticket change for the quarter.",
+        "ending_units": "Number of warehouse-format stores at quarter end (exclude design studios).",
+        "margin_pct": "Gross margin (gross profit as a percentage of net sales) for the quarter."
+      }
     },
     {
       "ticker": "DKS",
@@ -352,7 +395,8 @@
       "calendar": "nrf",
       "status": "confirmed",
       "cik": "0001089063",
-      "notes": ""
+      "notes": "",
+      "field_notes": {}
     },
     {
       "ticker": "ULTA",
@@ -364,7 +408,8 @@
       "calendar": "nrf",
       "status": "to_confirm",
       "cik": "0001403568",
-      "notes": ""
+      "notes": "",
+      "field_notes": {}
     },
     {
       "ticker": "ASO",
@@ -376,7 +421,8 @@
       "calendar": "nrf",
       "status": "to_confirm",
       "cik": "0001817358",
-      "notes": ""
+      "notes": "",
+      "field_notes": {}
     },
     {
       "ticker": "TSCO",
@@ -388,7 +434,8 @@
       "calendar": "calendar",
       "status": "to_confirm",
       "cik": "0000916365",
-      "notes": ""
+      "notes": "",
+      "field_notes": {}
     },
     {
       "ticker": "FIVE",
@@ -400,7 +447,8 @@
       "calendar": "nrf",
       "status": "to_confirm",
       "cik": "0001177609",
-      "notes": ""
+      "notes": "",
+      "field_notes": {}
     },
     {
       "ticker": "MCD",
@@ -412,7 +460,8 @@
       "calendar": "calendar",
       "status": "to_confirm",
       "cik": "0000063908",
-      "notes": ""
+      "notes": "",
+      "field_notes": {}
     },
     {
       "ticker": "WEN",
@@ -424,7 +473,8 @@
       "calendar": "calendar",
       "status": "to_confirm",
       "cik": "0000030697",
-      "notes": ""
+      "notes": "",
+      "field_notes": {}
     },
     {
       "ticker": "DPZ",
@@ -436,7 +486,8 @@
       "calendar": "calendar",
       "status": "to_confirm",
       "cik": "0001286681",
-      "notes": ""
+      "notes": "",
+      "field_notes": {}
     },
     {
       "ticker": "JACK",
@@ -448,7 +499,8 @@
       "calendar": "fiscal_sep",
       "status": "to_confirm",
       "cik": "0000807882",
-      "notes": ""
+      "notes": "",
+      "field_notes": {}
     },
     {
       "ticker": "WING",
@@ -460,7 +512,8 @@
       "calendar": "calendar",
       "status": "to_confirm",
       "cik": "0001636222",
-      "notes": ""
+      "notes": "",
+      "field_notes": {}
     },
     {
       "ticker": "PZZA",
@@ -472,7 +525,8 @@
       "calendar": "calendar",
       "status": "to_confirm",
       "cik": "0000901491",
-      "notes": ""
+      "notes": "",
+      "field_notes": {}
     },
     {
       "ticker": "DRI",
@@ -484,7 +538,8 @@
       "calendar": "fiscal_may",
       "status": "to_confirm",
       "cik": "0000940944",
-      "notes": ""
+      "notes": "",
+      "field_notes": {}
     },
     {
       "ticker": "PLAY",
@@ -496,7 +551,8 @@
       "calendar": "nrf",
       "status": "to_confirm",
       "cik": "0001525769",
-      "notes": ""
+      "notes": "",
+      "field_notes": {}
     },
     {
       "ticker": "NDLS",
@@ -508,7 +564,8 @@
       "calendar": "calendar",
       "status": "to_confirm",
       "cik": "0001275158",
-      "notes": ""
+      "notes": "",
+      "field_notes": {}
     },
     {
       "ticker": "BJ",
@@ -520,7 +577,8 @@
       "calendar": "nrf",
       "status": "to_confirm",
       "cik": "0001531152",
-      "notes": ""
+      "notes": "",
+      "field_notes": {}
     },
     {
       "ticker": "KR",
@@ -532,7 +590,8 @@
       "calendar": "fiscal_jan",
       "status": "to_confirm",
       "cik": "0000056873",
-      "notes": ""
+      "notes": "",
+      "field_notes": {}
     },
     {
       "ticker": "ACI",
@@ -544,7 +603,8 @@
       "calendar": "fiscal_feb",
       "status": "to_confirm",
       "cik": "0001646972",
-      "notes": ""
+      "notes": "",
+      "field_notes": {}
     },
     {
       "ticker": "SFM",
@@ -556,7 +616,8 @@
       "calendar": "calendar",
       "status": "to_confirm",
       "cik": "0001575515",
-      "notes": ""
+      "notes": "",
+      "field_notes": {}
     },
     {
       "ticker": "OLLI",
@@ -568,7 +629,8 @@
       "calendar": "nrf",
       "status": "to_confirm",
       "cik": "0001639300",
-      "notes": ""
+      "notes": "",
+      "field_notes": {}
     },
     {
       "ticker": "AZO",
@@ -580,7 +642,8 @@
       "calendar": "fiscal_aug",
       "status": "to_confirm",
       "cik": "0000866787",
-      "notes": ""
+      "notes": "",
+      "field_notes": {}
     },
     {
       "ticker": "ORLY",
@@ -592,7 +655,8 @@
       "calendar": "calendar",
       "status": "to_confirm",
       "cik": "0000898173",
-      "notes": ""
+      "notes": "",
+      "field_notes": {}
     },
     {
       "ticker": "TJX",
@@ -604,7 +668,8 @@
       "calendar": "nrf",
       "status": "to_confirm",
       "cik": "0000109198",
-      "notes": ""
+      "notes": "",
+      "field_notes": {}
     },
     {
       "ticker": "ROST",
@@ -616,7 +681,8 @@
       "calendar": "nrf",
       "status": "to_confirm",
       "cik": "0000745732",
-      "notes": ""
+      "notes": "",
+      "field_notes": {}
     },
     {
       "ticker": "BURL",
@@ -628,7 +694,8 @@
       "calendar": "nrf",
       "status": "to_confirm",
       "cik": "0001579298",
-      "notes": ""
+      "notes": "",
+      "field_notes": {}
     },
     {
       "ticker": "BBY",
@@ -640,7 +707,8 @@
       "calendar": "nrf",
       "status": "to_confirm",
       "cik": "0000764478",
-      "notes": ""
+      "notes": "",
+      "field_notes": {}
     },
     {
       "ticker": "ANF",
@@ -652,7 +720,8 @@
       "calendar": "nrf",
       "status": "to_confirm",
       "cik": "0001018840",
-      "notes": ""
+      "notes": "",
+      "field_notes": {}
     },
     {
       "ticker": "AEO",
@@ -664,7 +733,8 @@
       "calendar": "nrf",
       "status": "to_confirm",
       "cik": "0000919012",
-      "notes": ""
+      "notes": "",
+      "field_notes": {}
     },
     {
       "ticker": "BBWI",
@@ -676,7 +746,8 @@
       "calendar": "nrf",
       "status": "to_confirm",
       "cik": "0000701985",
-      "notes": ""
+      "notes": "",
+      "field_notes": {}
     }
   ]
 }

@@ -144,3 +144,10 @@ def test_token_match_handles_blank_cells_and_zero_width_but_rejects_paraphrase()
     assert verify.quote_in_text(q2, text) >= 0
     q3 = "Guest traffic counts increased 4.5%"  # 'increased' is not in the filing
     assert verify.quote_in_text(q3, text) == -1
+
+
+def test_field_notes_go_into_the_prompt():
+    from turnout.extract.llm import build_prompt
+    p = build_prompt("Walmart", "Walmart U.S.", "2026-07-31", CORE_FIELDS, {"press_release": "x"},
+                     {"ending_units": "Walmart U.S. store count only."})
+    assert "FOR THIS COMPANY: Walmart U.S. store count only." in p

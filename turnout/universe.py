@@ -22,6 +22,7 @@ class Chain:
     status: str = ""  # "confirmed" (checked in a 2026 filing) or "to_confirm"
     cik: str | None = None
     notes: str = ""
+    field_notes: dict[str, str] = field(default_factory=dict)  # per-field instructions for the LLM
 
 
 def load_universe(path: Path = UNIVERSE_PATH) -> list[Chain]:
