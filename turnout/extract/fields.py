@@ -22,7 +22,8 @@ CORE_FIELDS = [
     Field("ending_units", "count",
           "Number of stores or restaurants open at the end of the quarter, for the segment named above."),
     Field("margin_pct", "margin",
-          "Restaurants: restaurant-level margin as a % of restaurant sales. Retailers: gross margin (gross profit rate) as a % of sales. For the quarter."),
+          "Restaurants: restaurant-level margin as a % of restaurant sales. Retailers: gross margin (gross profit rate) as a % of sales. For the quarter. "
+          "If the company reports both a GAAP margin and an 'adjusted' (non-GAAP) margin for the quarter, use the ADJUSTED one, and quote the sentence or row that says 'adjusted'."),
 ]
 
 WATCH_FIELDS = [

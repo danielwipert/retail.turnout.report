@@ -177,3 +177,13 @@ def test_series_check_flags_value_out_of_line_with_both_neighbours():
     assert rs[1]["fields"]["ending_units"]["status"] == "flagged"
     assert rs[2]["fields"]["margin_pct"]["status"] == "flagged"
     assert rs[2]["fields"]["ending_units"]["status"] == "verified"
+
+
+def test_margin_basis_recorded():
+    from turnout.extract.run import _set_margin_basis
+    f = {"margin_pct": {"value": 43.7, "quote": "Adjusted gross margin | 43.7 % | 43.9 %"}}
+    _set_margin_basis(f)
+    assert f["margin_pct"]["basis"] == "adjusted"
+    g = {"margin_pct": {"value": 14.6, "quote": "Restaurant margin % | 14.6 | %"}}
+    _set_margin_basis(g)
+    assert g["margin_pct"]["basis"] == "gaap"

@@ -67,6 +67,8 @@ def extract_quarter(chain: Chain, quarter_dir: Path, extractor: Extractor) -> di
             if check.status != "missing":
                 results[f.name] = {**ans, "status": check.status, "reasons": check.reasons, "pass": "full_text"}
 
+    _set_margin_basis(results)
+
     flags = []
     if chain.tier == "core":
         val = lambda n: results[n]["value"] if results[n]["status"] == "verified" else None  # noqa: E731
@@ -93,6 +95,13 @@ def extract_quarter(chain: Chain, quarter_dir: Path, extractor: Extractor) -> di
         "flags": flags,
         "usage": asdict(usage),
     }
+
+
+def _set_margin_basis(fields: dict) -> None:
+    """Decision P2-5: record whether the margin is adjusted (non-GAAP) or GAAP, read from the quote."""
+    m = fields.get("margin_pct")
+    if m and m.get("value") is not None:
+        m["basis"] = "adjusted" if "adjusted" in (m.get("quote") or "").lower() else "gaap"
 
 
 def result_path(ticker: str, period_end: str, out_dir: Path = EXTRACTED_DIR) -> Path:
@@ -125,6 +134,7 @@ def reverify(result: dict, chain: Chain, quarter_dir: Path) -> dict:
             continue
         check = verify.check_field(by_name[name], r, documents, chain.segment_keywords, chain.quote_must_include.get(name))
         r["status"], r["reasons"] = check.status, check.reasons
+    _set_margin_basis(result["fields"])
     if chain.tier == "core":
         f = result["fields"]
         val = lambda n: f[n]["value"] if f[n]["status"] in {"verified", "approved_manual"} else None  # noqa: E731

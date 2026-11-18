@@ -90,3 +90,5 @@ Other chains get notes as they're onboarded in Phase 5.
 - **Neighbour-quarter check** (`check_series`): a store count more than 15% away from **both** adjacent quarters, or a margin more than 4 points away from both, is flagged for review. This catches "right number, wrong row" that a quote check can't see.
 - Review issues that no longer apply after a re-extraction are closed automatically.
 - Open question for Dan: FND Q2 2026 GAAP gross margin is 48.2% because of a one-time tariff refund (adjusted: 43.7%).
+
+**Decision P2-5 (2026-11-17): margin basis.** When a company reports both GAAP and adjusted (non-GAAP) margin for the quarter, use **adjusted**; otherwise GAAP. Every margin records `basis: adjusted | gaap`, read deterministically from the quote. Why: one-time items (e.g. FND's Q2 2026 tariff refund: GAAP 48.2% vs adjusted 43.7%) would otherwise trigger false margin-expansion badges. Spec §4.1 `margin_pct` is refined by this.
