@@ -1,0 +1,9 @@
+{
+  "_about": "Pipeline settings. extraction_model is set after the model bake-off (decision P2-2).",
+  "extraction_model": null,
+  "bakeoff_models": [
+    "openai/gpt-oss-20b",
+    "google/gemini-3.1-flash-lite",
+    "google/gemini-2.5-flash"
+  ]
+}

@@ -10,10 +10,12 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 import sys
+from pathlib import Path
 
 from turnout import cache, filings
-from turnout.config import RAW_DIR, ConfigError, sec_user_agent
+from turnout.config import DATA_DIR, RAW_DIR, ConfigError, sec_user_agent
 from turnout.sources.sec import SecHttpFetcher
 from turnout.universe import load_universe, resolve_ciks, save_universe, select
 
@@ -96,6 +98,105 @@ def cmd_status(args: argparse.Namespace) -> int:
     return 0
 
 
+def _settings() -> dict:
+    return json.loads((DATA_DIR / "settings.json").read_text())
+
+
+def cmd_storage(args: argparse.Namespace) -> int:
+    from turnout import storage
+
+    store = storage.R2Store()
+    if args.action == "pull":
+        n = storage.pull(store, args.tickers)
+        print(f"Downloaded {n} files from R2.")
+    else:
+        n = storage.push(store)
+        print(f"Uploaded {n} new or changed files to R2.")
+    return 0
+
+
+def _targets(args: argparse.Namespace) -> list:
+    chains = load_universe()
+    tickers = None if args.all else (args.tickers or PHASE1_TEST_CHAINS)
+    return select(chains, tickers)
+
+
+def _run_model(model: str, targets: list, out_dir: Path | None, force: bool) -> list[dict]:
+    from turnout.extract.llm import OpenRouterExtractor
+    from turnout.extract.run import extract_quarter, quarter_dirs, result_path
+
+    extractor = OpenRouterExtractor(model)
+    results = []
+    for chain in targets:
+        for qdir in quarter_dirs(chain.ticker):
+            path = result_path(chain.ticker, qdir.name, out_dir) if out_dir else result_path(chain.ticker, qdir.name)
+            if not force and path.exists() and json.loads(path.read_text()).get("model") == model:
+                results.append(json.loads(path.read_text()))
+                continue
+            try:
+                result = extract_quarter(chain, qdir, extractor)
+            except Exception as exc:  # keep going
+                print(f"  {chain.ticker} {qdir.name}  ERROR: {exc}")
+                results.append({"ticker": chain.ticker, "period_end": qdir.name, "error": str(exc)})
+                continue
+            path.parent.mkdir(parents=True, exist_ok=True)
+            path.write_text(json.dumps(result, indent=2) + "\n")
+            counts = {}
+            for r in result["fields"].values():
+                counts[r["status"]] = counts.get(r["status"], 0) + 1
+            summary = ", ".join(f"{k} {v}" for k, v in sorted(counts.items()))
+            print(f"  {chain.ticker} {qdir.name}  {summary}  ${result['usage']['cost_usd']:.4f}")
+            results.append(result)
+    return results
+
+
+def cmd_extract(args: argparse.Namespace) -> int:
+    model = args.model or _settings().get("extraction_model")
+    if not model:
+        print("No extraction model set yet. Run the bake-off first, or pass --model.")
+        return 2
+    print(f"Extracting with {model}")
+    results = _run_model(model, _targets(args), None, args.force)
+    return 1 if any("error" in r for r in results) else 0
+
+
+def cmd_bakeoff(args: argparse.Namespace) -> int:
+    from turnout.extract import bakeoff
+
+    models = args.models or _settings()["bakeoff_models"]
+    targets = _targets(args)
+    all_results = {}
+    for model in models:
+        print(f"\n=== {model} ===")
+        out = DATA_DIR / "bakeoff" / model.replace("/", "__")
+        all_results[model] = _run_model(model, targets, out, args.force)
+    n = max((len(v) for v in all_results.values()), default=0)
+    report = bakeoff.report_markdown(bakeoff.compare(all_results), n)
+    (DATA_DIR / "bakeoff").mkdir(parents=True, exist_ok=True)
+    (DATA_DIR / "bakeoff" / "report.md").write_text(report)
+    print("\n" + report)
+    return 0
+
+
+def cmd_review(args: argparse.Namespace) -> int:
+    from turnout import review
+
+    tracker = review.GitHubIssues()
+    if args.action == "open":
+        print(f"Opened {review.open_issues(tracker)} review issues.")
+        return 0
+    event = json.loads(Path(os.environ["GITHUB_EVENT_PATH"]).read_text())
+    issue, comment = event["issue"], event["comment"]
+    msg = review.apply_comment(issue.get("body", ""), comment.get("body", ""),
+                               comment.get("html_url", ""), comment["user"]["login"])
+    if msg is None:
+        print("No review command in this comment.")
+        return 0
+    print(msg)
+    Path("review_message.txt").write_text(msg)
+    return 0
+
+
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(prog="python -m turnout", description="The Turnout Report pipeline")
     sub = parser.add_subparsers(dest="command", required=True)
@@ -110,6 +211,29 @@ def build_parser() -> argparse.ArgumentParser:
     fetch.set_defaults(func=cmd_fetch)
 
     sub.add_parser("status", help="Show cached filings").set_defaults(func=cmd_status)
+
+    st = sub.add_parser("storage", help="Sync data/raw with Cloudflare R2")
+    st.add_argument("action", choices=["pull", "push"])
+    st.add_argument("--tickers", nargs="+", help="Only these tickers (pull only)")
+    st.set_defaults(func=cmd_storage)
+
+    for name, func, help_text in [
+        ("extract", cmd_extract, "Extract numbers with the chosen model"),
+        ("bakeoff", cmd_bakeoff, "Compare several models on the same quarters"),
+    ]:
+        p = sub.add_parser(name, help=help_text)
+        p.add_argument("--tickers", nargs="+", help="Tickers (default: TXRH WMT FND)")
+        p.add_argument("--all", action="store_true", help="Every chain")
+        p.add_argument("--force", action="store_true", help="Redo even if already extracted")
+        if name == "extract":
+            p.add_argument("--model", help="OpenRouter model id (default: data/settings.json)")
+        else:
+            p.add_argument("--models", nargs="+", help="Model ids (default: data/settings.json)")
+        p.set_defaults(func=func)
+
+    rv = sub.add_parser("review", help="Open review issues, or apply a reviewer's reply")
+    rv.add_argument("action", choices=["open", "apply"])
+    rv.set_defaults(func=cmd_review)
     return parser
 
 

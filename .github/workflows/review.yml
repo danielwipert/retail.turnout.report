@@ -1,0 +1,50 @@
+name: apply review
+
+# When the repo owner replies /approve, /value X or /reject on a "review" issue,
+# save the decision to the data and close the issue.
+on:
+  issue_comment:
+    types: [created]
+
+permissions:
+  contents: write
+  issues: write
+
+concurrency:
+  group: pipeline
+  cancel-in-progress: false
+
+jobs:
+  apply:
+    if: >-
+      github.event.issue.pull_request == null &&
+      contains(github.event.issue.labels.*.name, 'review') &&
+      github.event.comment.author_association == 'OWNER' &&
+      startsWith(github.event.comment.body, '/')
+    runs-on: ubuntu-latest
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -e .
+
+      - name: Apply the reply
+        run: python -m turnout review apply
+
+      - name: Save and close
+        run: |
+          if [ ! -f review_message.txt ]; then
+            gh issue comment ${{ github.event.issue.number }} --body "Didn't find a command. Reply with \`/approve\`, \`/value 1.2\` or \`/reject\`."
+            exit 0
+          fi
+          git config user.name "turnout-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add data/extracted
+          git commit -m "Review: issue #${{ github.event.issue.number }}"
+          git pull --rebase -q && git push
+          gh issue comment ${{ github.event.issue.number }} --body-file review_message.txt
+          gh issue close ${{ github.event.issue.number }}

@@ -34,3 +34,35 @@ Original checklist for the first live run:
 1. Every quarter for TXRH, WMT and FND has an `ex99_1.txt` that is clearly the quarterly results release.
 2. Any `multiple_8k_candidates` quarters picked the right release.
 3. FND's `periodic.txt` contains the "comparable transactions" sentence.
+
+---
+
+## Phase 2: Extract + verify · 2026-11-17
+
+**Decisions (logic gates)**
+
+| Date | Gate | Decision | Why |
+|---|---|---|---|
+| 2026-11-17 | P2-1 Storage | **Cloudflare R2** for raw filings (`raw/{TICKER}/{period_end}/…`) | Permanent, cheap, already in Dan's stack. Replaces the Actions cache, which evicts after 7 days. |
+| 2026-11-17 | P2-2 Model | **Bake-off of 3 models** on the saved quarters; keep the cheapest with zero suspected false passes | Pick on our own data; the model id lives in `data/settings.json`. |
+| 2026-11-17 | P2-3 Input | **Keyword snippets first**; any field still missing gets one retry on the full documents | Cheaper and more accurate for small models. Quotes are always checked against the full filing. |
+| 2026-11-17 | P2-4 Review | **One GitHub Issue per flagged field**; owner replies `/approve`, `/value X` or `/reject` | Works from any browser or phone, with email notifications and a permanent record. |
+
+**Delivered**
+- `turnout/storage.py`: R2 sync (`storage pull` / `storage push`). The pipeline still works on `data/raw/` locally inside each run.
+- `turnout/extract/`: fields + strict JSON schema, keyword snippets, OpenRouter extractor (Protocol, temperature 0, structured output, provider must support it), deterministic checks (spec 5.2: quote exists, number in quote incl. `(x)%` and basis points, sign vs words, range, segment keyword in or just before the quote), derived ticket = comp − traffic when ticket isn't stated, arithmetic flag.
+- `turnout/extract/bakeoff.py`: per-model verified / flagged / missing / cost, and "suspected false pass" = a verified value that disagrees with the majority of the other models.
+- `turnout/review.py`: opens review issues (value, quote, reasons, nearby filing text, SEC links) and applies replies.
+- Workflows: `fetch filings` (now uses R2), `model bake-off`, `extract numbers`, `apply review` (runs on owner comments on `review` issues).
+- Results: `data/extracted/{TICKER}/{period_end}.json` (committed). Bake-off results: `data/bakeoff/`.
+
+**Refinements to the spec**
+
+| # | Spec said | Built as | Why |
+|---|---|---|---|
+| B-4 | Review via CLI | Review via GitHub Issues | Decision P2-4 + cloud-only rule. |
+| B-5 | Results in `data/quarters/` | Raw extraction results in `data/extracted/`; `data/quarters/` is built in Phase 3 | Keeps "what the filing said" separate from computed signals. |
+| B-6 | Status values verified / derived / approved_manual / missing | Adds `flagged` (awaiting review) and `rejected` | Needed for the review loop. |
+| B-7 | Segment match = keyword in quote | Keyword in the quote **or within ~2,000 characters before it** | Segment names usually sit in a heading above the sentence. |
+
+**Run order for the first time:** `fetch filings` (fills R2) → `model bake-off` → set `extraction_model` in `data/settings.json` → `extract numbers`.

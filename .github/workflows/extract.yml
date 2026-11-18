@@ -1,0 +1,72 @@
+name: extract numbers
+
+# Reads comp / traffic / ticket / units / margin out of saved filings,
+# checks every quote, commits results, and opens a review issue for anything flagged.
+on:
+  workflow_dispatch:
+    inputs:
+      tickers:
+        description: "Tickers (blank = TXRH WMT FND; ALL = every chain)"
+        required: false
+        default: ""
+      model:
+        description: "OpenRouter model id (blank = data/settings.json)"
+        required: false
+        default: ""
+      force:
+        description: "Redo quarters already extracted"
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+  issues: write
+
+concurrency:
+  group: pipeline
+  cancel-in-progress: false
+
+jobs:
+  extract:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    env:
+      OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+      R2_ACCOUNT_ID: ${{ secrets.R2_ACCOUNT_ID }}
+      R2_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+      R2_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+      R2_BUCKET: ${{ secrets.R2_BUCKET }}
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -e .
+
+      - name: Get saved filings from R2
+        run: python -m turnout storage pull
+
+      - name: Extract
+        run: |
+          T="${{ inputs.tickers }}"
+          ARGS=""
+          if [ "$T" = "ALL" ]; then ARGS="--all"; elif [ -n "$T" ]; then ARGS="--tickers $T"; fi
+          if [ -n "${{ inputs.model }}" ]; then ARGS="$ARGS --model ${{ inputs.model }}"; fi
+          if [ "${{ inputs.force }}" = "true" ]; then ARGS="$ARGS --force"; fi
+          python -m turnout extract $ARGS | tee extract.txt
+          { echo "## Extraction"; echo '```'; cat extract.txt; echo '```'; } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Open review issues for flagged numbers
+        run: python -m turnout review open | tee -a "$GITHUB_STEP_SUMMARY"
+
+      - name: Commit results
+        if: always()
+        run: |
+          git config user.name "turnout-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add data/extracted || true
+          if ! git diff --cached --quiet; then
+            git commit -m "Extraction results"
+            git pull --rebase -q && git push
+          fi

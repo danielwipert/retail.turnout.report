@@ -18,7 +18,7 @@ Every number comes from SEC filings and traces back to its source. The full plan
 | Phase | What | Status |
 |---|---|---|
 | 1 | Fetch and cache filings | ✅ Built |
-| 2 | Extract numbers with an LLM, then verify the quotes | Next |
+| 2 | Extract numbers with an LLM, then verify the quotes | ✅ Built (bake-off pending) |
 | 3 | Derived signals and badges | — |
 | 4 | Company Health from XBRL | — |
 | 5 | Full universe and backfill | — |
@@ -37,7 +37,13 @@ The SEC requires a name and email on every request. It's not a password.
 4. Secret: your name and email, e.g. `Dan Wipert you@example.com`
 5. Click **Add secret**.
 
-(Later phases add `OPENROUTER_API_KEY` and `FRED_API_KEY` the same way.)
+Add these the same way:
+
+| Secret | Needed for |
+|---|---|
+| `OPENROUTER_API_KEY` | Phase 2 (reading the filings) |
+| `R2_ACCOUNT_ID`, `R2_ACCESS_KEY_ID`, `R2_SECRET_ACCESS_KEY`, `R2_BUCKET` | Storing filings in Cloudflare R2 |
+| `FRED_API_KEY` | Phase 3 (inflation data) |
 
 ---
 
@@ -46,15 +52,20 @@ The SEC requires a name and email on every request. It's not a password.
 | Workflow | When it runs | What it does |
 |---|---|---|
 | **tests** | Automatically on every push | Runs the automated tests (sample data, no internet) |
-| **fetch filings** | When you click **Run workflow** | Downloads 10-Q/10-Ks and earnings releases from the SEC |
+| **fetch filings** | When you click **Run workflow** | Downloads 10-Q/10-Ks and earnings releases from the SEC, saves them to R2 |
+| **model bake-off** | When you click **Run workflow** | Runs several LLMs on the same quarters and compares them |
+| **extract numbers** | When you click **Run workflow** | Reads comp/traffic/ticket/units/margin, checks every quote, opens a review issue for anything flagged |
+| **apply review** | Automatically when you reply on a review issue | Saves your `/approve`, `/value X` or `/reject` and closes the issue |
 
 **To fetch filings:**
 1. Open the **Actions** tab → **fetch filings** → **Run workflow**.
 2. Leave the boxes as they are for the 3 test chains (Texas Roadhouse, Walmart, Floor & Decor), or type other tickers, or `ALL`.
 3. Click the green **Run workflow** button. A run takes a few minutes, since the SEC asks scripts to go slowly.
-4. Open the finished run. The **Summary** shows every saved quarter and any flags. The saved files can be downloaded under **Artifacts → raw-filings**.
+4. Open the finished run. The **Summary** shows every saved quarter, its press-release headline, and any flags.
 
-Saved filings are reused by the next run, so nothing is downloaded twice.
+**Reviewing flagged numbers:** each one shows up under **Issues** (labeled `review`), and GitHub emails you. Each issue shows the value, the quote and the filing text nearby. Reply with one line: `/approve`, `/value -2.9` or `/reject`.
+
+Saved filings live in Cloudflare R2 and are reused by every run, so nothing is downloaded twice.
 
 ---
 
